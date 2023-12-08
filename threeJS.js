@@ -510,6 +510,22 @@ function disableBtn(btn, toDo){
 }
 
 
+const switchDim = document.getElementById('switchDim');
+let cameraDimention = '2D';
+
+switchDim.addEventListener('change', function() {
+    if (switchDim.checked){
+        cameraDimention = '3D';
+    }
+    else{
+        cameraDimention = '2D';
+    }
+});
+
+
+
+
+
 window.addEventListener('resize', function(){
     resizeCanvas();
 });
@@ -590,9 +606,37 @@ function resizeCanvas(){
 	//const camera = new THREE.PerspectiveCamera( fov, aspect, near, far );
     //const camera = new THREE.OrthographicCamera( -2,2,1.5,-1.5, near, far );
     const camera = new THREE.OrthographicCamera( 0,4/3,1,0, near, far );
-	camera.position.z = 9;
+	camera2D(camera);
+
+function camera3D(camera){
+    camera.position.z = 9;
     camera.position.y = 3;
     camera.lookAt( 0,0,0 );
+}
+
+function camera2D(camera){
+    camera.position.z = 9;
+    camera.position.y = 0;
+    camera.lookAt( 0,0,0 );
+}
+
+function moveCameraStep(camera, dimention, step){
+    if (dimention === '2D'){
+        if (camera.position.y > 0){
+            camera.position.y -= step;
+            camera.position.y = camera.position.y < 0 ? 0 : camera.position.y;
+            camera.lookAt( 0,0,0 );
+        }
+    }
+    else if (dimention === '3D'){
+        if (camera.position.y < 3){
+            camera.position.y += step;
+            camera.position.y = camera.position.y > 3 ? 3 : camera.position.y;
+            camera.lookAt( 0,0,0 );
+        }
+    }
+}
+
 
 	const scene = new THREE.Scene();
     //scene.background = new THREE.Color( 0xadd8e6 );
@@ -2052,6 +2096,8 @@ function render( time ) {
 
     updateLineHeight();
     updateLineVolume();
+
+    moveCameraStep(camera, cameraDimention, 0.1);
 
 
 
