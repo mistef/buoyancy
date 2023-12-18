@@ -1,5 +1,6 @@
 import * as THREE from 'three';
 import { drawBackground } from './scripts/scene/background.js';
+import {calculateErrorForce, calculateErrorBeaker} from './scripts/calculations/errors.js'
 //(function(){var script=document.createElement('script');script.onload=function(){var stats=new Stats();document.body.appendChild(stats.dom);requestAnimationFrame(function loop(){stats.update();requestAnimationFrame(loop)});};script.src='https://mrdoob.github.io/stats.js/build/stats.min.js';document.head.appendChild(script);})()
 
 
@@ -637,7 +638,6 @@ function moveCameraStep(camera, dimention, step){
         }
     }
 }
-
 
 const scene = new THREE.Scene();
 
@@ -2071,8 +2071,8 @@ function render( time ) {
     //volumeText.style.bottom = (beaker.yPos + beaker.mixedHeight - 0.03)*100 + "%";
     //volumeText.style.left = (object.xPos - beaker.radius - 0.105)*100*3/4 + "%";
     //measurments.volume = Math.round(beaker.mixedHeight*Math.PI*beaker.radius*beaker.radius/beaker.accuracy*1000000)*beaker.accuracy;
-    measurments.volume = Math.round(beaker.mixedHeight*Math.PI*beaker.radius*beaker.radius/beaker.accuracy*1000000)*beaker.accuracy;
-    volumeText.textContent = measurments.volume.toPrecision(4) + "ml"
+    measurments.volume = calculateVolume(beaker.mixedHeight, beaker.radius, beaker.accuracy);
+    volumeText.textContent = measurments.volume.toPrecision(4) + "ml";
 
     if (ui.upBtn){
         if (forceMeter.height < 0.8) {
@@ -2167,4 +2167,14 @@ function updateLineVolume(){
     lineVolume.geometry.attributes.position.setXYZ(2, -beaker.radius + object.xPos - 0.02, beaker.yPos - 0.06, 0 );
     lineVolume.geometry.attributes.position.setXYZ(3, -beaker.radius + object.xPos - 0.12, beaker.yPos - 0.06, 0 );
     lineVolume.geometry.attributes.position.needsUpdate = true;
+}
+
+
+
+
+function calculateVolume(mixedHeight, beakerRadius, accuracy){
+    let volume = mixedHeight*Math.PI*beakerRadius*beakerRadius * 1000000; //in ml
+    volume = calculateErrorBeaker(volume, accuracy);
+
+    return volume;
 }

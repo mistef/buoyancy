@@ -698,9 +698,13 @@ input[type=radio]:checked:hover + label {
 }
 
 
+#settingsSim{
+    position: relative;
+    margin:auto;
+    border-style: solid;
+}
 
-#switchDim{
+.toggleSettings{
     position: relative;
     margin: auto;
 }
-
