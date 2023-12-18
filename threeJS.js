@@ -1,4 +1,5 @@
 import * as THREE from 'three';
+import { drawBackground } from './scripts/scene/background.js';
 //(function(){var script=document.createElement('script');script.onload=function(){var stats=new Stats();document.body.appendChild(stats.dom);requestAnimationFrame(function loop(){stats.update();requestAnimationFrame(loop)});};script.src='https://mrdoob.github.io/stats.js/build/stats.min.js';document.head.appendChild(script);})()
 
 
@@ -638,16 +639,9 @@ function moveCameraStep(camera, dimention, step){
 }
 
 
-	const scene = new THREE.Scene();
-    //scene.background = new THREE.Color( 0xadd8e6 );
+const scene = new THREE.Scene();
 
-    //Load background texture
-    const loader = new THREE.TextureLoader();
-    loader.load('textures/background.jpg' , function(texture)
-        {
-            scene.background = texture;  
-        });
-
+drawBackground(scene, beaker.yPos);
 
 	{
 
