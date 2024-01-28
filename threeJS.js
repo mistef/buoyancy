@@ -1,6 +1,7 @@
 import * as THREE from 'three';
-import { drawBackground } from './scripts/scene/background.js';
-import {calculateErrorForce, calculateErrorBeaker} from './scripts/calculations/errors.js'
+import { drawBackground } from './scripts/background.js';
+import {calculateErrorForce, calculateErrorBeaker} from './scripts/errors.js'
+import * as FORCEM from './scripts/forcemeter.js'
 //(function(){var script=document.createElement('script');script.onload=function(){var stats=new Stats();document.body.appendChild(stats.dom);requestAnimationFrame(function loop(){stats.update();requestAnimationFrame(loop)});};script.src='https://mrdoob.github.io/stats.js/build/stats.min.js';document.head.appendChild(script);})()
 
 
@@ -85,31 +86,7 @@ object.ellipseFactor = object.radius/3;
 
 let maxFall = 0.15;
 
-let forceMeter = {
-    height : 0.8,
-    tube : 0, //tube mesh
-    canvasTube : document.createElement('canvas'),
-    ctxTube : 0,    //ctx
-    spring : 0, //spring mesh
-    canvasSpring : document.createElement('canvas'),
-    springCtx : 0,  //ctx
-    textureSpring : 0,  //texture for spring
-    indicator : 0,  //mesh
-    tubeTap : 0,    //mesh
-    rod :0,  //mesh
-    displacement : 0,
-    randomFactor : 0,
-    maxForce : 5
-};
-forceMeter.ctxTube = forceMeter.canvasTube.getContext('2d');
-forceMeter.springCtx = forceMeter.canvasSpring.getContext('2d');
-forcemeterLimit.textContent = "(" + forceMeter.maxForce + " ± " + (forceMeter.maxForce/100).toLocaleString() + ") N";
-
-//forceMeter["low"] = 5;
-//console.log(forceMeter.low);
-//forceMeter.low = "abd";
-//console.log(forceMeter.low);
-//console.log(typeof forceMeter);
+forcemeterLimit.textContent = "(" + 5 + " ± " + (5/100).toLocaleString() + ") N";
 
 //beaker characteristics
 let beaker = {
@@ -176,14 +153,6 @@ increaseHeight.addEventListener("touchend", function(){
     ui.upBtn = false
 })
 
-function increment(){
-    updateForcemeterRandom();
-    if(!ui.upBtn) return;
-    if (forceMeter.height < 0.8) {
-        forceMeter.height += 0.001;
-    }
-    setTimeout(()=> increment(), 10)
-}
 
 //events for when down button is pressed
 reduceHeight.addEventListener("mousedown", function(){
@@ -299,7 +268,7 @@ cText.style.visibility = "hidden";
 //cText.style.display = 'none';
 
 function changeHandler(event) {
-    forceMeter.height = 0.8;
+    FORCEM.changeVarHeight(0.8);
     object.height = 0.5;
     removeObject(object.type);
     object.type = this.value;
@@ -454,7 +423,7 @@ decBeakerRadiusBtn.addEventListener('click', function() {
 });
 
 incForce.addEventListener('click', function() {
-    let force = forceMeter.maxForce;
+    let force = FORCEM.maxForce;
     disableBtn(decForce, "enable");
     switch (force){
         case 1 :
@@ -471,12 +440,12 @@ incForce.addEventListener('click', function() {
             disableBtn(incForce, "disable");
             break
     }
-    forceMeter.maxForce = force;
+    FORCEM.changeMaxForce(force);
     forcemeterLimit.textContent = "(" + force + " ± " + (force/100).toLocaleString() + ") N";
 });
 
 decForce.addEventListener('click', function() {
-    let force = forceMeter.maxForce;
+    let force = FORCEM.maxForce;
     disableBtn(incForce, "enable");
     switch (force){
         case 100 :
@@ -493,7 +462,7 @@ decForce.addEventListener('click', function() {
             disableBtn(decForce, "disable");
             break
     }
-    forceMeter.maxForce = force;
+    FORCEM.changeMaxForce(force);
     forcemeterLimit.textContent = "(" + force + " ± " + (force/100).toLocaleString() + ") N";
 });
 
@@ -696,8 +665,8 @@ drawBackground(scene, beaker.yPos);
         //calculate if there will be displacement of the force Meter
         let displacement;
         let ropeHeight = object.height;
-        if (forceMeter.height - ropeHeight > 0.3 ){
-            displacement = forceMeter.height - ropeHeight - 0.3;
+        if (FORCEM.height - ropeHeight > 0.3 ){
+            displacement = FORCEM.height - ropeHeight - 0.3;
         }
         else{
             displacement = 0;
@@ -730,13 +699,13 @@ drawBackground(scene, beaker.yPos);
         }
 
         if (displacement > 0.05 ) {
-            ropeHeight = forceMeter.height - 0.3 - 0.05;
+            ropeHeight = FORCEM.height - 0.3 - 0.05;
             object.height = ropeHeight;
             object.speed = 0;
         }
 
-        placeForceMeter(displacement);
-        placeRope(ropeHeight, forceMeter.height - displacement, type);
+        measurments.force = FORCEM.placeForceMeter(displacement, holder);
+        placeRope(ropeHeight, FORCEM.height - displacement, type);
         
         //updateRope(ropeHeight, forceMeter.height - displacement, ropeData);
 
@@ -769,10 +738,10 @@ function calculateForce(){
         force += (-1)*object.speed*circumference*1;
     }
     //add the force of the displaced force meter. For now up to 5 N;
-    if (forceMeter.displacement < 0){
-        force += -forceMeter.maxForce/0.05*forceMeter.displacement;
+    if (FORCEM.displacement < 0){
+        force += -FORCEM.maxForce/0.05*FORCEM.displacement;
         //add resistance to spring movement in order not to bounce
-        force += -forceMeter.maxForce*object.speed;
+        force += -FORCEM.maxForce*object.speed;
     }
     
     return force;
@@ -860,7 +829,7 @@ function calculateForce(){
         holder = new THREE.Mesh( geomHolder, matHolder );
         scene.add(holder);
         holder.position.x = ruler.position.x + (object.xPos - ruler.position.x)/2
-        holder.position.y = forceMeter.height + 0.1;
+        holder.position.y = FORCEM.height + 0.1;
 
         let mode = document.querySelector('input[type=radio][name="tgmass"]:checked').value;
         if ( mode == "density"){
@@ -1261,84 +1230,7 @@ function drawBeakerLines(){
 
 
     //draw the force meter
-    function drawForceMeter(){
-        //First draw the tube
-        let tubeLength = 0.10;
-        let tubeRadius = 0.007;
-        let textureTube = new THREE.CanvasTexture(forceMeter.canvasTube);
-
-        const tubeGeometry = new THREE.CylinderGeometry( tubeRadius, tubeRadius, tubeLength, 32, 1 );
-        const tubeMaterial = new THREE.MeshBasicMaterial( {map: textureTube, transparent: true} );
-        forceMeter.tube = new THREE.Mesh( tubeGeometry, tubeMaterial );
-        scene.add(forceMeter.tube);
-        forceMeter.tube.position.x = object.xPos;
-        forceMeter.tube.position.y = object.height + 0.3;
-        //forceMeter.tube.material.opacity = 0.3;
-        forceMeter.tube.renderOrder = 1;
-
-        forceMeter.canvasTube.width = 1000*2*Math.PI*(tubeRadius);
-        forceMeter.canvasTube.height = 1000*tubeLength;   //in mm
-        forceMeter.ctxTube.fillStyle = 'rgba(200, 200, 200, 0.5)';
-        forceMeter.ctxTube.fillRect(0, 0, forceMeter.canvasTube.width, forceMeter.canvasTube.height);
-        for (let i = forceMeter.canvasTube.height/2; i < forceMeter.canvasTube.height; i+=3){
-            // Start a new Path
-            forceMeter.ctxTube.beginPath();
-            forceMeter.ctxTube.moveTo(forceMeter.canvasTube.width-1, i);
-            forceMeter.ctxTube.lineTo(forceMeter.canvasTube.width-7, i);
-
-            // Draw the Path
-            forceMeter.ctxTube.stroke();
-        }
-
-
-        //draw the cylinder for the spring
-        let springLength = 0.05;
-        let springSteps = 10;
-        forceMeter.textureSpring = new THREE.CanvasTexture(forceMeter.canvasSpring);
-
-        const springGeometry = new THREE.CylinderGeometry( tubeRadius-0.001, tubeRadius-0.001, springLength, 32, 1, true );
-        const springMaterial = new THREE.MeshBasicMaterial( { map: forceMeter.textureSpring, transparent: true } );
-        forceMeter.spring = new THREE.Mesh( springGeometry, springMaterial );
-
-        scene.add(forceMeter.spring);
-        forceMeter.spring.position.x = object.xPos;
-        forceMeter.spring.material.side = THREE.DoubleSide;
-        forceMeter.canvasSpring.width = 1000*2*Math.PI*(tubeRadius-0.001);
-        forceMeter.canvasSpring.height = 1000*springLength;   //in mm
-        let distancePerStep = forceMeter.canvasSpring.height/springSteps;
-        for (let i = 0; i < springSteps; i++){
-            // Start a new Path
-            forceMeter.springCtx.beginPath();
-            forceMeter.springCtx.moveTo(0, i*distancePerStep);
-            forceMeter.springCtx.lineTo(forceMeter.canvasSpring.width, (i+1)*distancePerStep);
-
-            // Draw the Path
-            forceMeter.springCtx.stroke();
-        }
-
-        //Draw the tap
-        //First the Force indicator
-        const indicatorGeometry = new THREE.CylinderGeometry( tubeRadius-0.0005, tubeRadius-0.0005, 0.002, 32, 1 );
-        const indicatorMaterial = new THREE.MeshBasicMaterial( {color: 800080} );
-        forceMeter.indicator = new THREE.Mesh( indicatorGeometry, indicatorMaterial );
-        scene.add(forceMeter.indicator);
-        forceMeter.indicator.position.x = object.xPos;
-        //The Bottom tap
-        const tapGeometry = new THREE.CylinderGeometry( tubeRadius-0.0005, tubeRadius-0.0005, 0.002, 32, 1 );
-        forceMeter.tubeTap = new THREE.Mesh( tapGeometry, indicatorMaterial );
-        scene.add(forceMeter.tubeTap);
-        forceMeter.tubeTap.position.x = object.xPos;
-        //The Connecting Rod
-        const rodGeometry = new THREE.CylinderGeometry( 0.002, 0.002, 0.053, 32, 1 );
-        forceMeter.rod = new THREE.Mesh( rodGeometry, indicatorMaterial );
-        scene.add(forceMeter.rod);
-        forceMeter.rod.position.x = object.xPos;
-
-        
-
-
-    }
-    drawForceMeter();
+    FORCEM.drawForceMeter(scene, object.xPos, object.height);
 
 let beakerMesh = {
     bot:0,
@@ -1431,11 +1323,8 @@ function redrawBeaker(radius, height){
         cube.position.x = object.xPos;
         cone.position.x = object.xPos;
         rope.position.x = object.xPos;
-        forceMeter.tube.position.x = object.xPos;
-        forceMeter.spring.position.x = object.xPos;
-        forceMeter.indicator.position.x = object.xPos;
-        forceMeter.tubeTap.position.x = object.xPos;
-        forceMeter.rod.position.x = object.xPos;
+
+        FORCEM.changeXPosition(object.xPos);
 
         //change the hanging thing
         holder.geometry.dispose();
@@ -1491,93 +1380,6 @@ function signedVolumeOfTriangle(p1, p2, p3) {
 }
       
       
-
-function placeForceMeter(displacement){
-    holder.position.y = forceMeter.height + 0.1;
-    //let height = maxFall + 0.05;
-    //maxFall = forceMeter.height - 0.35;
-    //console.log(displacement);
-    
-
-    forceMeter.tube.position.y = forceMeter.height+0.05;
-    //spring.position.y = height+0.375;
-    forceMeter.indicator.position.y = forceMeter.height+0.05;
-    forceMeter.tubeTap.position.y = forceMeter.height - 0.003;
-    forceMeter.rod.position.y = forceMeter.height + 0.0235;
-
-    //convert force to displacement 0-5N -> 0-5cm
-    //let displacement = force * 0.01;
-    
-    //forceMeter.displacement = force * 0.01;
-    //forceMeter.displacement = forceMeter.displacement < -0.05 ? -0.05 : forceMeter.displacement;
-
-    forceMeter.displacement = -displacement;
-    
-    forceMeter.displacement = forceMeter.displacement < -0.05 ? -0.05 : forceMeter.displacement;
-
-    forceMeter.indicator.position.y += forceMeter.displacement;
-    forceMeter.rod.position.y += forceMeter.displacement;
-
-    //change spring
-    forceMeter.spring.geometry.dispose();
-    forceMeter.spring.geometry = new THREE.CylinderGeometry( 0.006, 0.006, (0.05-forceMeter.displacement), 32, 1, true );
-    forceMeter.spring.position.y = forceMeter.height + 0.05 + (0.05 + forceMeter.displacement)/2;
-
-    forceMeter.springCtx.clearRect(0, 0, forceMeter.canvasSpring.width, forceMeter.canvasSpring.height);
-    forceMeter.canvasSpring.height = 1000*(0.05 - forceMeter.displacement);   //in mm
-    let distancePerStep = forceMeter.canvasSpring.height/10;
-    for (let i = 0; i < 10; i++){
-        // Start a new Path
-        forceMeter.springCtx.beginPath();
-        forceMeter.springCtx.moveTo(0, i*distancePerStep);
-        forceMeter.springCtx.lineTo(forceMeter.canvasSpring.width, (i+1)*distancePerStep);
-
-        // Draw the Path
-        forceMeter.springCtx.stroke();
-    }
-    //spring.material.map.needsUpdate = true;
-    forceMeter.textureSpring.dispose();
-    forceMeter.textureSpring = new THREE.CanvasTexture(forceMeter.canvasSpring);
-    forceMeter.spring.material.map = forceMeter.textureSpring;
-
-    //Force text
-    let textHeight = (forceMeter.height + 0.04);
-    //let force =  -forceMeter.displacement*500/forceMeter.maxForce; //in N
-    let force =  -forceMeter.displacement/0.05*forceMeter.maxForce; //in N
-
-    let accuracy = forceMeter.maxForce/100;
-
-    if (force > accuracy && force < (forceMeter.maxForce-accuracy)){
-        force += forceMeter.randomFactor*accuracy;
-    }
-    
-    force = Math.round(force/accuracy)*accuracy;
-
-    forceText.style.top = (100 - textHeight*100) + "%";
-
-    let numPres = 2;
-    switch (forceMeter.maxForce) {
-        case 1:
-            numPres = 2;
-            break;
-        case 5:
-            numPres = 2;
-            break;
-        case 10:
-            numPres = 1;
-            break;
-        case 50:
-            numPres = 1;
-            break;
-        case 100:
-            numPres = 0;
-            break;
-    }
-    forceText.textContent = "F:" + force.toFixed(numPres).replace(".", ",") + " N";
-    measurments.force = parseFloat(force.toFixed(numPres));
-    //console.log(typeof force.toPrecision(2));
-    
-}
 
 function updateForcemeterRandom(){
     forceMeter.randomFactor = Math.random()*2-1;
@@ -2075,15 +1877,17 @@ function render( time ) {
     volumeText.textContent = measurments.volume.toPrecision(4) + "ml";
 
     if (ui.upBtn){
-        if (forceMeter.height < 0.8) {
-            updateForcemeterRandom();
-            forceMeter.height += 0.002/16.7*dt;
+        if (FORCEM.height < 0.8) {
+            //updateForcemeterRandom();
+            FORCEM.changeVarHeight(FORCEM.height + 0.002/16.7*dt)
+            //FORCEM.height += 0.002/16.7*dt;
         }
     }
     else if (ui.downBtn){
-        if (forceMeter.height > 0.45){
-            updateForcemeterRandom();
-            forceMeter.height -= 0.002/16.7*dt;
+        if (FORCEM.height > 0.45){
+            //updateForcemeterRandom();
+            FORCEM.changeVarHeight(FORCEM.height - 0.002/16.7*dt)
+            //FORCEM.height -= 0.002/16.7*dt;
         }
     }
 
