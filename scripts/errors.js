@@ -16,7 +16,7 @@ function init() {
 init();
 
 
-export function calculateErrorForce(force, limit, accuracy){
+export function calculateErrorForce(force, accuracy = 1){
     if (!isError){
         return force;
     }
@@ -24,9 +24,6 @@ export function calculateErrorForce(force, limit, accuracy){
         return Math.round(force/accuracy)*accuracy;
     }
 
-    // if (force > accuracy && force < (forceMeter.maxForce-accuracy)){
-    //     force += forceMeter.randomFactor*accuracy;
-    // }
 }
 
 export function calculateErrorBeaker(volume, accuracy){

@@ -1,4 +1,5 @@
 import * as THREE from 'three';
+import {calculateErrorForce} from './errors.js'
 
 const forceText = document.getElementById('forceInfo');
 
@@ -163,7 +164,8 @@ export function placeForceMeter(displ, holder){
         force += randomFactor*accuracy;
     }
     
-    force = Math.round(force/accuracy)*accuracy;
+    //force = Math.round(force/accuracy)*accuracy;
+    force = calculateErrorForce(force, accuracy);
 
     forceText.style.top = (100 - textHeight*100) + "%";
 

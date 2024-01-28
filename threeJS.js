@@ -1,6 +1,6 @@
 import * as THREE from 'three';
 import { drawBackground } from './scripts/background.js';
-import {calculateErrorForce, calculateErrorBeaker} from './scripts/errors.js'
+import {calculateErrorBeaker} from './scripts/errors.js'
 import * as FORCEM from './scripts/forcemeter.js'
 //(function(){var script=document.createElement('script');script.onload=function(){var stats=new Stats();document.body.appendChild(stats.dom);requestAnimationFrame(function loop(){stats.update();requestAnimationFrame(loop)});};script.src='https://mrdoob.github.io/stats.js/build/stats.min.js';document.head.appendChild(script);})()
 
