@@ -7,6 +7,7 @@
     <link rel="stylesheet" href="style.css">
     <link href="https://cdn.datatables.net/v/dt/jq-3.7.0/dt-1.13.6/sl-1.7.0/datatables.min.css" rel="stylesheet">
     <link rel="stylesheet" href="tableStyle.css" />
+    <link rel="stylesheet" href="./css/buttonsDimention.css" />
     <script type="importmap">
         {
           "imports": {
@@ -190,7 +191,15 @@
         </div>
 
         <div id = "settingsSim">
-            <input type="checkbox" id="switchDim" class = "toggleSettings" name="dimention" value="2D">
+            <div id="buttonDimention" class="buttonStart" onclick="this.classList.toggle('active')">
+                <div class="buttonBackground" x="0" y="0" width="100" height="100"></div>
+                <div class="buttonIcon" width="100" height="100">
+                  <div class="movPart leftPart" x="0" y="0" width="100" height="100" fill="#fff"></div>
+                  <div class="movPart rightPart" x="0" y="0" width="100" height="100" fill="#fff"></div>
+                  <div class="movPart rightestPart" x="0" y="0" width="100" height="100" fill="#fff"></div>
+                </div>
+                <div class="cursorArea"></div>
+            </div>
             <input type="checkbox" id="switchErrors" class = "toggleSettings" name="errors" value="1">
         </div>
 

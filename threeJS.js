@@ -481,17 +481,20 @@ function disableBtn(btn, toDo){
 }
 
 
-const switchDim = document.getElementById('switchDim');
 let cameraDimention = '2D';
 
-switchDim.addEventListener('change', function() {
-    if (switchDim.checked){
+//the button that changes between 2D and 3D
+const buttonDimention = document.querySelector( '#buttonDimention' )
+buttonDimention.addEventListener("click", function(){
+    if (buttonDimention.classList.contains("active")){
         cameraDimention = '3D';
     }
-    else{
+    else {
         cameraDimention = '2D';
+        //beakerMesh.out.rotation.y = 0;
     }
-});
+})
+
 
 
 
@@ -593,16 +596,20 @@ function camera2D(camera){
 
 function moveCameraStep(camera, dimention, step){
     if (dimention === '2D'){
-        if (camera.position.y > 0){
+        if (camera.position.y > 0 || cube.rotation.y > 0){
             camera.position.y -= step;
             camera.position.y = camera.position.y < 0 ? 0 : camera.position.y;
+            cube.rotation.y -= step/3;
+            cube.rotation.y = cube.rotation.y < 0 ? 0 : cube.rotation.y;
             camera.lookAt( 0,0,0 );
         }
     }
     else if (dimention === '3D'){
-        if (camera.position.y < 3){
+        if (camera.position.y < 3 || cube.rotation.y < Math.PI/4){
             camera.position.y += step;
             camera.position.y = camera.position.y > 3 ? 3 : camera.position.y;
+            cube.rotation.y += step/3;
+            cube.rotation.y = cube.rotation.y > Math.PI/4 ? Math.PI/4 : cube.rotation.y;
             camera.lookAt( 0,0,0 );
         }
     }

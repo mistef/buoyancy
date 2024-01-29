@@ -1,0 +1,72 @@
+.buttonStart {
+    align-items: center;
+    display: flex;
+    justify-content: center;
+    margin: auto;
+    margin-top: 5%;
+}
+
+.buttonBackground {
+    background: #f4471f;
+    border-radius: 20%;
+    cursor: pointer;
+    height: 50px;
+    position: absolute;
+    width: 50px;
+}
+
+  .buttonStart:active .buttonBackground {
+    background: #e93c15;
+  }
+  .buttonIcon {
+    height: 50px;
+    transform: rotate(-0deg);
+    transition: transform 500ms;
+    width: 50px;
+  }
+  .movPart {
+    background: white;
+    height: 50px;
+    position: absolute;
+    width: 50px;
+  }
+  .leftPart {
+    clip-path: polygon(14% 29%, 18% 26%, 23% 24%, 31% 24%, 36% 26%, 39% 29%, 41% 33%, 41% 40%, 40% 45%, 37% 50%, 35% 53%, 32% 56%, 29% 59%, 25% 63%, 22% 66%, 
+    27% 66%, 30% 66%, 34% 66%, 37% 66%, 40% 66%, 43% 66%, 43% 71%, 43% 71%, 39% 71%, 35% 71%, 32% 71%, 24% 71%, 20% 71%, 16% 71%, 13% 71%, 13% 68%, 
+    15% 66%, 18% 64%, 19% 62%, 21% 60%, 23% 58%, 26% 55%, 29% 52%, 31% 49%, 33% 46%, 35% 42%, 35% 35%, 33% 31%, 29% 29%, 23% 29%, 17% 32%, 16% 32%);
+    transition: clip-path 250ms;
+  }
+  .rightPart {
+    clip-path: polygon(53% 24%, 59% 23%, 59% 71%, 53% 70%);
+    transition: clip-path 250ms;
+  }
+  .rightestPart {
+    clip-path: polygon(59% 23%, 69% 23%, 76% 24%, 79% 25%, 83% 27%, 86% 29%, 89% 33%, 91% 39%, 92% 43%, 92% 48%, 91% 53%, 90% 57%, 87% 62%, 84% 65%, 80% 68%,
+    74% 70%, 66% 71%, 59% 71%, 59% 66%, 70% 66%, 75% 65%, 79% 62%, 82% 59%, 85% 54%, 85% 40%, 84% 36%, 82% 33%, 79% 31%, 76% 29%, 73% 28%, 69% 27%, 54% 27%);
+    transition: clip-path 250ms;
+  }
+  .cursorArea {
+    border-radius: 50%;
+    cursor: pointer;
+    height: 50px;
+    position: absolute;
+    -webkit-tap-highlight-color: transparent;
+    width: 50px;
+  }
+  .active .buttonIcon {
+    
+  }
+  .active .leftPart {
+    clip-path: polygon(14% 28%, 19% 25%, 22% 24%, 26% 23%, 27% 23%, 32% 24%, 36% 27%, 39% 31%, 40% 34%, 38% 39%, 37% 42%, 32% 46%, 38% 50%, 41% 54%, 42% 58%, 
+    41% 62%, 39% 66%, 36% 69%, 33% 71%, 28% 72%, 21% 72%, 17% 71%, 14% 70%, 13% 69%, 13% 67%, 14% 66%, 15% 65%, 18% 67%, 22% 68%, 27% 68%, 
+    31% 66%, 34% 63%, 35% 60%, 35% 56%, 34% 53%, 32% 51%, 29% 49%, 20% 48%, 20% 44%, 29% 43%, 32% 40%, 33% 33%, 31% 30%, 29% 29%, 22% 29%, 
+    19% 30%, 16% 31%);
+  }
+  .active .rightPart {
+    clip-path: polygon(53% 24%, 59% 23%, 59% 71%, 53% 70%);
+  }
+  .active .rightestPart {
+    clip-path: polygon(59% 23%, 69% 23%, 76% 24%, 79% 25%, 83% 27%, 86% 29%, 89% 33%, 91% 39%, 92% 43%, 92% 48%, 91% 53%, 90% 57%, 87% 62%, 84% 65%, 80% 68%,
+    74% 70%, 66% 71%, 59% 71%, 59% 66%, 70% 66%, 75% 65%, 79% 62%, 82% 59%, 85% 54%, 85% 40%, 84% 36%, 82% 33%, 79% 31%, 76% 29%, 73% 28%, 69% 27%, 54% 27%);
+  }
+
