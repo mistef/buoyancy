@@ -1,19 +1,37 @@
-const switchErrors = document.getElementById('switchErrors');
+const buttonAcc = document.getElementById('buttonAcc');
 let isError = false;
 
-switchErrors.addEventListener('change', function() {
-    if (switchErrors.checked){
-        isError = true;
-    }
-    else{
-        isError = false;
-    }
+export{isError};
+
+
+buttonAcc.addEventListener('click', function() {
+    changeState();
 });
 
 function init() {
-    calculateForceCoefficients();
+    changeState(false);
 }
 init();
+
+//optional arguement otherwise switches
+function changeState(set){
+    if (set === true){
+        isError = true;
+        buttonAcc.textContent = "Ακρίβεια: Ρεαλιστική";
+    }
+    else if (set === false){
+        isError = false;
+        buttonAcc.textContent = "Ακρίβεια: Μέγιστη";
+    }
+    else if (isError){
+        isError = false;
+        buttonAcc.textContent = "Ακρίβεια: Μέγιστη";
+    }
+    else{
+        isError = true;
+        buttonAcc.textContent = "Ακρίβεια: Ρεαλιστική";
+    }
+}
 
 
 export function calculateErrorForce(force, accuracy = 1){
@@ -36,6 +54,3 @@ export function calculateErrorBeaker(volume, accuracy){
 }
 
 
-function calculateForceCoefficients(){
-
-}

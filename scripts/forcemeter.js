@@ -1,5 +1,5 @@
 import * as THREE from 'three';
-import {calculateErrorForce} from './errors.js'
+import {calculateErrorForce, isError} from './errors.js'
 
 const forceText = document.getElementById('forceInfo');
 
@@ -172,19 +172,19 @@ export function placeForceMeter(displ, holder){
     let numPres = 2;
     switch (maxForce) {
         case 1:
-            numPres = 2;
+            numPres = 2 + !isError;
             break;
         case 5:
             numPres = 2;
             break;
         case 10:
-            numPres = 1;
+            numPres = 1 + !isError;
             break;
         case 50:
             numPres = 1;
             break;
         case 100:
-            numPres = 0;
+            numPres = 0 + !isError;
             break;
     }
     forceText.textContent = "F:" + force.toFixed(numPres).replace(".", ",") + " N";
