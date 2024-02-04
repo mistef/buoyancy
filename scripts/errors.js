@@ -53,4 +53,13 @@ export function calculateErrorBeaker(volume, accuracy){
     }
 }
 
+export function calculateErrorHeight(height){ //accuracy 0.5 cm if error else 0.1 cm
+    if (!isError){
+        return Math.round((height)*100*10)/10;
+    }
+    else{
+        return Math.round((height)*100*2)/2;
+    }
+}
+
 

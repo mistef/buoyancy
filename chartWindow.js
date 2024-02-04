@@ -141,7 +141,7 @@ function addNewRow(data) {
     let row = [
     (data.volume/1000).toString().replace(".", ","),   //in L
     (data.force).toString().replace(".", ","),  //in N
-    (data.height/100).toString().replace(".", ","),   //in m
+    (Math.round(data.height*10)/1000).toString().replace(".", ","),   //in m
     (Math.round(data.mass*1000)/1000).toString().replace(".", ","),
     data.densityFl.toString().replace(".", ","),
     (data.volumeObj/1000).toString().replace(".", ","),    //in L
@@ -149,7 +149,7 @@ function addNewRow(data) {
     (data.gravity).toString().replace(".", ","),
     (data.volume/1000).toString().replace(".", ","),   //in L
     (data.force).toString().replace(".", ","),  //in N
-    (data.height/100).toString().replace(".", ","),   //in m
+    (Math.round(data.height*10)/1000).toString().replace(".", ","),   //in m
     (Math.round(data.mass*1000)/1000).toString().replace(".", ","),
     data.densityFl.toString().replace(".", ","),
     (data.volumeObj/1000).toString().replace(".", ","),    //in L

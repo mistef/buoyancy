@@ -1,6 +1,6 @@
 import * as THREE from 'three';
 import { drawBackground } from './scripts/background.js';
-import {calculateErrorBeaker} from './scripts/errors.js'
+import {calculateErrorBeaker, calculateErrorHeight} from './scripts/errors.js'
 import * as FORCEM from './scripts/forcemeter.js'
 //(function(){var script=document.createElement('script');script.onload=function(){var stats=new Stats();document.body.appendChild(stats.dom);requestAnimationFrame(function loop(){stats.update();requestAnimationFrame(loop)});};script.src='https://mrdoob.github.io/stats.js/build/stats.min.js';document.head.appendChild(script);})()
 
@@ -1852,8 +1852,9 @@ function updateObjectPosition(type, height){
         heightShow -= object.c;
     }
 
-    heightText.textContent = (Math.round((heightShow)*100*2)/2).toFixed(1).replace(".", ",")    + " cm";
-    measurments.height = Math.round((heightShow)*100*2)/2;
+    measurments.height = calculateErrorHeight(heightShow);
+    heightText.textContent = measurments.height.toFixed(1).replace(".", ",")    + " cm";
+    
     heightBottom = heightShow;
 }
 let heightBottom = 0.5;
