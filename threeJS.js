@@ -711,6 +711,7 @@ drawBackground(scene, beaker.yPos);
             object.speed = 0;
         }
 
+
         measurments.force = FORCEM.placeForceMeter(displacement, holder);
         placeRope(ropeHeight, FORCEM.height - displacement, type);
         
@@ -1390,6 +1391,15 @@ function updateForcemeterRandom(){
 }
 
 function placeRope(low, high, type){
+    //if rope is stretched rotate randomly the rope
+    if (high - low >= 0.3){
+        if (Math.random() > 0.5) {
+            rope.rotation.y = -2.2;
+        }
+        else{
+            rope.rotation.y = -0.7;
+        }
+    }
     rope.position.y = low;
 
     //let curve = calculateRopePosition(low, high, type);
