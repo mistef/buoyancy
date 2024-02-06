@@ -714,9 +714,6 @@ drawBackground(scene, beaker.yPos);
         measurments.force = FORCEM.placeForceMeter(displacement, holder);
         placeRope(ropeHeight, FORCEM.height - displacement, type);
         
-        //updateRope(ropeHeight, forceMeter.height - displacement, ropeData);
-
-    
     }
 //This function calculates the force not depending on vertical position
 function calculateForce(){
@@ -1408,8 +1405,8 @@ function placeRope(low, high, type){
         let curve = new THREE.CatmullRomCurve3( [
             new THREE.Vector3( 0, (high - low), 0 ),
             new THREE.Vector3( 0, (high - low)-0.01, 0 ),
-            new THREE.Vector3( 1/(1 + Math.exp(5-50*ratio))*0.01, (-ratio)*0.15+0.06, 0),
-            new THREE.Vector3( 1/(1 + Math.exp(5-50*ratio))*0.01, (-ratio)*0.15+0.03, 0),
+            new THREE.Vector3( 1/(1 + Math.exp(5-100*ratio))*0.01, (-ratio)*0.15+0.06, 0),
+            new THREE.Vector3( 1/(1 + Math.exp(5-100*ratio))*0.01, (-ratio)*0.15+0.03, 0),
             new THREE.Vector3( 0, 0.005, 0 ),
             new THREE.Vector3( 0, 0, 0 )
         ]);
@@ -1649,7 +1646,6 @@ function placeRope(low, high, type){
     rope.geometry.dispose();
     rope.geometry = new THREE.BufferGeometry().setFromPoints( points );
 
-    //console.log((high - low) + ", " + curve.getLength());
 }
 
 function calculateRopePosition(low, high, type){
