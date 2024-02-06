@@ -514,9 +514,9 @@ function resizeCanvas(){
         canvas.width = window.innerWidth;
         canvas.height = window.innerWidth*3/4;
     }
-    if (canvas.width < 700 || canvas.height < 525){
-        canvas.width = 700;
-        canvas.height = 525;
+    if (canvas.width < 800 || canvas.height < 600){
+        canvas.width = 800;
+        canvas.height = 600;
     }
     //depending on the canvas element resize the div container
     container.style.height = canvas.height+'px';
