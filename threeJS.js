@@ -2000,11 +2000,14 @@ function updateLineVolume(){
     
 
     volumeText.style.left = (object.xPos + beaker.radius + 0.02)*100*3/4 + "%";
+    volumeText.style.bottom = (beaker.yPos + beaker.mixedHeight)*100 + "%";
     if (cameraDimention == "3D"){
         volumeText.style.bottom = (beaker.yPos + beaker.mixedHeight- 0.014)*100 + "%";
+        //volumeText.style.transform = "translateY(30%)";
     }
     else{
         volumeText.style.bottom = (beaker.yPos + beaker.mixedHeight)*100 + "%";
+        //volumeText.style.transform = "translateY(0%)";
     }
 }
 

@@ -591,7 +591,8 @@ input[type=radio]:checked:hover + label {
     user-select: none;
     font-size: 1.4rem;
     font-weight:bold;
-    color:rgb(0, 3, 182)
+    color:rgb(0, 3, 182);
+    transition-duration: 600ms;
 }
 
 #record{
