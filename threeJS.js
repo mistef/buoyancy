@@ -359,6 +359,18 @@ fluidList.addEventListener('change', function() {
             colorOut = 0xcccccc;
             opacity = 0.3;
             break;
+        case 'glucose':
+            fluid.density = 1560;
+            colorIn = 0xaaaaaa;
+            colorOut = 0xcccccc;
+            opacity = 0.2;
+            break;
+        case 'gasoline':
+            fluid.density = 730;
+            colorIn = 0xb4a622;
+            colorOut = 0xe4d96f;
+            opacity = 0.3;
+            break;
     }
 
     const cylinderMats = [
