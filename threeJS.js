@@ -594,7 +594,6 @@ function camera2D(camera){
     camera.lookAt( 0,0,0 );
 }
 
-
 function moveCameraStep(camera, dimention, step){
     if (dimention === '2D'){
         if (camera.position.y > 0 || cube.rotation.y > 0){
@@ -1983,6 +1982,7 @@ pointsLineVolume.push( new THREE.Vector3( -beaker.radius + object.xPos - 0.00, b
 pointsLineVolume.push( new THREE.Vector3( -beaker.radius + object.xPos - 0.02, beaker.mixedHeight + beaker.yPos, 0 ) );
 pointsLineVolume.push( new THREE.Vector3( -beaker.radius + object.xPos - 0.02, beaker.yPos - 0.06, 0 ) );
 pointsLineVolume.push( new THREE.Vector3( -beaker.radius + object.xPos - 0.12, beaker.yPos - 0.06, 0 ) );
+pointsLineVolume.push( new THREE.Vector3(0, 0, 0) );
 
 const geometryLineVolume = new THREE.BufferGeometry().setFromPoints( pointsLineVolume );
 
@@ -1990,11 +1990,22 @@ const lineVolume = new THREE.Line( geometryLineVolume, materialLineVolume );
 scene.add( lineVolume );
 
 function updateLineVolume(){
-    lineVolume.geometry.attributes.position.setXYZ(0, -beaker.radius + object.xPos - 0.00, beaker.mixedHeight + beaker.yPos, 0  );
-    lineVolume.geometry.attributes.position.setXYZ(1, -beaker.radius + object.xPos - 0.02, beaker.mixedHeight + beaker.yPos, 0 );
-    lineVolume.geometry.attributes.position.setXYZ(2, -beaker.radius + object.xPos - 0.02, beaker.yPos - 0.06, 0 );
-    lineVolume.geometry.attributes.position.setXYZ(3, -beaker.radius + object.xPos - 0.12, beaker.yPos - 0.06, 0 );
+    lineVolume.geometry.attributes.position.setXYZ(0, beaker.radius + object.xPos + 0.01*1.414/2, beaker.mixedHeight + beaker.yPos + 0.01*1.414/2, 0  );
+    lineVolume.geometry.attributes.position.setXYZ(1, beaker.radius + object.xPos - 0.00, beaker.mixedHeight + beaker.yPos, 0  );
+    lineVolume.geometry.attributes.position.setXYZ(2, beaker.radius + object.xPos + 0.01*1.414/2, beaker.mixedHeight + beaker.yPos - 0.01*1.414/2, 0  );
+    lineVolume.geometry.attributes.position.setXYZ(3, beaker.radius + object.xPos - 0.00, beaker.mixedHeight + beaker.yPos, 0  );
+    lineVolume.geometry.attributes.position.setXYZ(4, beaker.radius + object.xPos + 0.1, beaker.mixedHeight + beaker.yPos, 0  );
     lineVolume.geometry.attributes.position.needsUpdate = true;
+
+    
+
+    volumeText.style.left = (object.xPos + beaker.radius + 0.02)*100*3/4 + "%";
+    if (cameraDimention == "3D"){
+        volumeText.style.bottom = (beaker.yPos + beaker.mixedHeight- 0.014)*100 + "%";
+    }
+    else{
+        volumeText.style.bottom = (beaker.yPos + beaker.mixedHeight)*100 + "%";
+    }
 }
 
 
