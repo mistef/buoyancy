@@ -130,6 +130,27 @@ let measurments = {
 }
 export { measurments };
 
+let audio = false;
+let audioMachine = new Audio('./sounds/sound1.mp3');
+audioMachine.volume = 0;
+audioMachine.loop=true;
+
+let audioSplash = new Audio('./sounds/sound2.mp3');
+audioSplash.volume = 0;
+
+document.getElementById("volumeControl").addEventListener('click', function() {
+    if (audio){
+        audio = false;
+        audioSplash.volume = 0;
+        audioMachine.volume = 0;
+    }
+    else{
+        audio = true;
+        audioSplash.volume = 0.03;
+        audioMachine.volume = 0.03;
+    }
+});
+
 //events for when up Button is pressed
 increaseHeight.addEventListener("mousedown", function(){
     ui.upBtn = true
@@ -660,16 +681,9 @@ drawBackground(scene, beaker.yPos);
 
 	}
 
-    function rk4(x, dt){
-        let k1 = calculateForce(x);
-        let k2 = calculateForce(x + 0.5*dt*k1);
-        let k3 = calculateForce(x + 0.5*dt*k2);
-        let k4 = calculateForce(x+dt*k3);
-    
-        return (k1 + 2*k2 + 2*k3 + k4)/6.0;
-    }
     
     function calculateNewPosition(dt, type){
+        let isInWaterBefore = isInWater;
         dt = (dt>50) ? 50 : dt;
         dt /= 1000;
         //Calculate the movement
@@ -726,8 +740,15 @@ drawBackground(scene, beaker.yPos);
 
         measurments.force = FORCEM.placeForceMeter(displacement, holder);
         placeRope(ropeHeight, FORCEM.height - displacement, type);
+
+        if (isInWater != isInWaterBefore && Math.abs(object.speed) > 0.1){
+            audioSplash.play();
+        }
         
     }
+
+let isInWater = false;
+
 //This function calculates the force not depending on vertical position
 function calculateForce(){
     let type = object.type;
@@ -742,6 +763,7 @@ function calculateForce(){
     if (dVolume == 0){
         //add the draf Force
         force += object.dragCoefficient*(-1)*object.speed*Math.abs(object.speed);
+        isInWater = false;
     }
     else {
         //change the container water Height according to volume
@@ -753,6 +775,7 @@ function calculateForce(){
         force += object.dragCoefficient*(-1)*object.speed*Math.abs(object.speed)*(fluid.density/1.3);
         //if on surface add extra resistance from surface tension
         force += (-1)*object.speed*circumference*1;
+        isInWater = true;
     }
     //add the force of the displaced force meter. For now up to 5 N;
     if (FORCEM.displacement < 0){
@@ -1897,8 +1920,10 @@ function render( time ) {
     volumeText.textContent = measurments.volume.toPrecision(4) + "ml";
 
     if (ui.upBtn){
+
         if (FORCEM.height < 0.8) {
             //updateForcemeterRandom();
+            audioMachine.play();
             FORCEM.changeVarHeight(FORCEM.height + 0.002/16.7*dt)
             //FORCEM.height += 0.002/16.7*dt;
         }
@@ -1906,9 +1931,14 @@ function render( time ) {
     else if (ui.downBtn){
         if (FORCEM.height > 0.45){
             //updateForcemeterRandom();
+            audioMachine.play();
             FORCEM.changeVarHeight(FORCEM.height - 0.002/16.7*dt)
             //FORCEM.height -= 0.002/16.7*dt;
         }
+    }
+    else{
+        audioMachine.currentTime = 0;
+        audioMachine.pause();
     }
 
 
