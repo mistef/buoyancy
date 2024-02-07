@@ -592,7 +592,7 @@ input[type=radio]:checked:hover + label {
     font-size: 1.4rem;
     font-weight:bold;
     color:rgb(0, 3, 182);
-    transition-duration: 600ms;
+    transition-duration: 200ms;
 }
 
 #record{
@@ -701,8 +701,8 @@ input[type=radio]:checked:hover + label {
 
 #settingsSim{
     position: relative;
-    margin:auto;
-    border-style: solid;
+    left: 53.3%;
+    top : 7%;
 }
 
 .toggleSettings{
@@ -713,4 +713,8 @@ input[type=radio]:checked:hover + label {
 
 #showHeightLine{
     accent-color: red;
+}
+
+#showHeightLine{
+    position: absolute;
 }

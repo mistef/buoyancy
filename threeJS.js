@@ -340,6 +340,16 @@ function toggleMass(event) {
     }
 }
 
+const showHeightLine = document.querySelector( '#showHeightLine' )
+showHeightLine.addEventListener("change", function(){
+    if (showHeightLine.checked){
+        scene.add(lineHeight);
+    }
+    else{
+        scene.remove(lineHeight);
+    }
+})
+
 selectList.addEventListener('change', function() {
     object.mat = this.value;
     changeMaterial(this.value);
@@ -415,22 +425,26 @@ fluidList.addEventListener('change', function() {
 incBeakerHeightBtn.addEventListener('click', function() {
 
     beaker.height += 0.01;
+
     disableBtn(decBeakerHeightBtn, "enable");
     if (beaker.height >= 0.299){
         disableBtn(incBeakerHeightBtn, "disable");
     }
     beakerHeightValue.textContent = (beaker.height*100).toPrecision(2) + "cm";
     redrawBeaker(beaker.radius, beaker.height);
+    resizeCanvas();
 });
 
 decBeakerHeightBtn.addEventListener('click', function() {
     beaker.height -= 0.01;
+
     disableBtn(incBeakerHeightBtn, "enable");
     if (beaker.height < 0.101){
         disableBtn(decBeakerHeightBtn, "disable");
     }
     beakerHeightValue.textContent = (beaker.height*100).toPrecision(2) + "cm";
     redrawBeaker(beaker.radius, beaker.height);
+    resizeCanvas();
 });
 
 incBeakerRadiusBtn.addEventListener('click', function() {
@@ -573,12 +587,14 @@ function resizeCanvas(){
         //Place the buttons
         increaseHeight.style.left = canvas.width*(object.xPos + beaker.radius + 0.03)*3/4  + 'px';
         reduceHeight.style.left = canvas.width*(object.xPos + beaker.radius + 0.03)*3/4   + 'px';
-        increaseHeight.style.top = canvas.height*0.65 + 'px';
-        reduceHeight.style.top = (canvas.height*0.65 + unit/20 +10) + 'px';
+        increaseHeight.style.bottom = canvas.height*(beaker.mixedHeight + beaker.yPos ) + 1.6* unit/10 + 'px';
+        reduceHeight.style.bottom = canvas.height*(beaker.mixedHeight + beaker.yPos ) + unit/10 + 'px';
         //the text for the height
         heightText.style.left = canvas.width*(object.xPos + beaker.radius + 0.03)*3/4  + 'px';
-        heightText.style.top = canvas.height*0.65 - unit/20 + 'px';
-
+        heightText.style.bottom = canvas.height*(beaker.mixedHeight + beaker.yPos ) + 2.2*unit/10 + 'px';
+        //the checkbox for the height arrow
+        showHeightLine.style.left = canvas.width*(object.xPos + beaker.radius + 0.005)*3/4  + 'px';
+        showHeightLine.style.bottom = canvas.height*(beaker.mixedHeight + beaker.yPos ) + 2.25*unit/10 + 'px';
         //resise indicator for volume
         volumeText.style.fontSize = unit/40 + 'px';
 
@@ -2059,12 +2075,3 @@ function calculateVolume(mixedHeight, beakerRadius, accuracy){
 
 
 
-const showHeightLine = document.querySelector( '#showHeightLine' )
-showHeightLine.addEventListener("change", function(){
-    if (showHeightLine.checked){
-        scene.add(lineHeight);
-    }
-    else{
-        scene.remove(lineHeight);
-    }
-})
