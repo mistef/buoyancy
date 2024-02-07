@@ -73,8 +73,8 @@ let object = {
     ellipseFactor:0,
     c: heightSlider.value/10000,
     type: "sphere",  //possible sphere, cylinder, cube, cone
-    mat: "ABS",
-    density: 1100,
+    mat: "coal",
+    density: 1800,
     color: 0x32CD32
 };
 if (object.type == "cube"){
@@ -302,7 +302,7 @@ function toggleMass(event) {
         
         massText.style.display = "none";
         selectList.dispatchEvent(new Event("change"));
-        if (object.mat == 'pine' || object.mat == 'walnut'){
+        if (object.mat == 'pine' || object.mat == 'walnut' || object.mat == 'coal'){
             updateMatt(false, object.mat);
         }
         else{
@@ -752,15 +752,6 @@ function calculateForce(){
     return force;
 }
     
-    function sphereCapVolume(radius, h){
-        //h is the submerged height
-        if (h<2*radius){
-            return Math.PI*h*h/3*(3*radius-h);
-        }
-        else {
-            return 4/3*Math.PI*radius*radius*radius;
-        }
-    }
 
     let ruler;
     let holder;
@@ -846,6 +837,10 @@ function calculateForce(){
     function changeMaterial(mat){
         let density = 100;
         switch(mat){
+            case 'coal':
+                density = 1800;
+                updateMatt(false, 'coal', object.type);
+            break;
             case 'pine':
                 density = 500;
                 updateMatt(false, 'pine', object.type);
@@ -899,10 +894,9 @@ function calculateForce(){
             mat = new THREE.MeshPhongMaterial( { map :  texture} );
         }
         else{
-            mat = new THREE.MeshPhongMaterial( { color: text } ); // greenish blue
+            mat = new THREE.MeshPhongMaterial( { color: text} );
         }
 
-        
 
 
 
@@ -1791,7 +1785,7 @@ function initialiseMeshObject(type){
     //will fix this later
     let mode = document.querySelector('input[type=radio][name="tgmass"]:checked').value;
     if ( mode == "density"){
-        if (object.mat == 'pine' || object.mat == 'walnut'){
+        if (object.mat == 'pine' || object.mat == 'walnut' || object.mat == 'coal'){
             updateMatt(false, object.mat);
         }
         else{
