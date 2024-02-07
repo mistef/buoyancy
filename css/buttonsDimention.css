@@ -71,6 +71,7 @@
 
 
   .buttonAccuracy {
+    display:inline;
     appearance: button;
     backface-visibility: hidden;
     background-color: #405cf5;

@@ -578,7 +578,7 @@ function resizeCanvas(){
 	const near = 0.1;
 	const far = 10;
 	//const camera = new THREE.PerspectiveCamera( fov, aspect, near, far );
-    //const camera = new THREE.OrthographicCamera( -2,2,1.5,-1.5, near, far );
+    //const camera = new THREE.OrthographicCamera( left,right,top,bottom, near, far );
     const camera = new THREE.OrthographicCamera( 0,4/3,1,0, near, far );
 	camera2D(camera);
 
@@ -594,6 +594,7 @@ function camera2D(camera){
     camera.lookAt( 0,0,0 );
 }
 
+
 function moveCameraStep(camera, dimention, step){
     if (dimention === '2D'){
         if (camera.position.y > 0 || cube.rotation.y > 0){
@@ -601,7 +602,7 @@ function moveCameraStep(camera, dimention, step){
             camera.position.y = camera.position.y < 0 ? 0 : camera.position.y;
             cube.rotation.y -= step/3;
             cube.rotation.y = cube.rotation.y < 0 ? 0 : cube.rotation.y;
-            camera.lookAt( 0,0,0 );
+            camera.lookAt( 0, 0, 0 );
         }
     }
     else if (dimention === '3D'){
@@ -1937,27 +1938,36 @@ const materialLineHeight = new THREE.LineBasicMaterial({
 	color: 0xff0000
 });
 const pointsLineHeight = [];
-pointsLineHeight.push( new THREE.Vector3( beaker.radius + object.xPos + 0.00, beaker.yPos, 0 ) );
-pointsLineHeight.push( new THREE.Vector3( beaker.radius + object.xPos + 0.02, beaker.yPos, 0 ) );
+pointsLineHeight.push( new THREE.Vector3(object.xPos + 0.00, beaker.yPos, 0 ) );
+pointsLineHeight.push( new THREE.Vector3( object.xPos + 0.00, beaker.yPos, 0  ) );
 pointsLineHeight.push( new THREE.Vector3( beaker.radius + object.xPos + 0.02, object.height, 0 ) );
-pointsLineHeight.push( new THREE.Vector3( beaker.radius + object.xPos + 0.00, object.height, 0 ) );
+pointsLineHeight.push( new THREE.Vector3( object.xPos + 0.00, beaker.yPos, 0  ) );
 pointsLineHeight.push( new THREE.Vector3( beaker.radius + object.xPos + 0.02, object.height, 0 ) );
 pointsLineHeight.push( new THREE.Vector3( beaker.radius + object.xPos + 0.02, 0.39, 0 ) );
 pointsLineHeight.push( new THREE.Vector3( beaker.radius + object.xPos + 0.12, 0.39, 0 ) );
+pointsLineHeight.push( new THREE.Vector3( 0, 0, 0 ) );
 
 const geometryLineHeight = new THREE.BufferGeometry().setFromPoints( pointsLineHeight );
 
 const lineHeight = new THREE.Line( geometryLineHeight, materialLineHeight );
-scene.add( lineHeight );
+//scene.add( lineHeight );
 
 function updateLineHeight(){
-    lineHeight.geometry.attributes.position.setXYZ(0, beaker.radius + object.xPos + 0.00, beaker.yPos, 0 );
-    lineHeight.geometry.attributes.position.setXYZ(1, beaker.radius + object.xPos + 0.02, beaker.yPos, 0 );
-    lineHeight.geometry.attributes.position.setXYZ(2, beaker.radius + object.xPos + 0.02, beaker.yPos + heightBottom, 0 );
-    lineHeight.geometry.attributes.position.setXYZ(3, beaker.radius + object.xPos + 0.00, beaker.yPos + heightBottom, 0 );
-    lineHeight.geometry.attributes.position.setXYZ(4, beaker.radius + object.xPos + 0.02, beaker.yPos + heightBottom, 0 );
-    lineHeight.geometry.attributes.position.setXYZ(5, beaker.radius + object.xPos + 0.02, 0.39, 0 );
-    lineHeight.geometry.attributes.position.setXYZ(6, beaker.radius + object.xPos + 0.12, 0.39, 0 );
+    let theta;
+    if (heightBottom > 0.1){
+        theta = 1.414/2;
+    }
+    else{
+        theta = Math.sin(Math.PI/0.4 * heightBottom);
+    }
+    lineHeight.geometry.attributes.position.setXYZ(0, object.xPos - 0.02*1.414/2 + 0.00, beaker.yPos + 0.02*theta, 0 );
+    lineHeight.geometry.attributes.position.setXYZ(1, object.xPos + 0.00, beaker.yPos, 0 );
+    lineHeight.geometry.attributes.position.setXYZ(2, object.xPos + 0.02*1.414/2 + 0.00, beaker.yPos + 0.02*theta, 0 );
+    lineHeight.geometry.attributes.position.setXYZ(3, object.xPos + 0.00, beaker.yPos, 0 );
+    lineHeight.geometry.attributes.position.setXYZ(4, object.xPos + 0.00, beaker.yPos + heightBottom, 0 );
+    lineHeight.geometry.attributes.position.setXYZ(5, object.xPos - 0.02*1.414/2, beaker.yPos - 0.02*theta + heightBottom, 0 );
+    lineHeight.geometry.attributes.position.setXYZ(6, object.xPos + 0.00, beaker.yPos + heightBottom, 0 );
+    lineHeight.geometry.attributes.position.setXYZ(7, object.xPos + 0.02*1.414/2, beaker.yPos - 0.02*theta + heightBottom, 0 );
     lineHeight.geometry.attributes.position.needsUpdate = true;
 
 }
@@ -1996,3 +2006,15 @@ function calculateVolume(mixedHeight, beakerRadius, accuracy){
 
     return volume;
 }
+
+
+
+const showHeightLine = document.querySelector( '#showHeightLine' )
+showHeightLine.addEventListener("change", function(){
+    if (showHeightLine.checked){
+        scene.add(lineHeight);
+    }
+    else{
+        scene.remove(lineHeight);
+    }
+})
