@@ -118,18 +118,13 @@
                 <button id = 'decHeight' class="small-buttons">-</button>
             </div>
             <div id="beakerVolume">3,4L ± 25ml</div>
-            <div id="forcemeterText">Δυναμόμετρο</div>
-            <div id="forcemeterChange">
-                <button id = 'incForce' class="small-buttons">+</button>
-                <div id="forcemeterLimit">(5 ± 0,05) N</div>
-                <button id = 'decForce' class="small-buttons">-</button>
-            </div>
+
             <div id="gravityText">g: 9,81 m/s²</div>
             <input type="range" min="100" max="2000" value="981" class="slider" id="gravitySlider">
         </div>
         <input type="checkbox" id="showHeightLine">
         <div id="heightInfo">100cm</div>
-        <div id="forceInfo">F: 0N</div>
+
         <div id="volumeText">500mL ►</div>
         <button id = 'record'>Καταγραφή</button>
 
@@ -215,6 +210,13 @@
             </div>
         </div>
         <button id = "buttonAcc" class="buttonAccuracy" role="button">Ακρίβεια: Μέγιστη</button>
+        <div id = "forceDiv">
+            <div id="forcemeterText">Δυναμόμετρο</div>
+            <div id="forceInfo">F: 0N</div>
+            <div id="forcemeterLimit">(5 ± 0,01) N</div>
+        </div>
+        <button id = 'incForce' class="small-buttons">+</button>
+        <button id = 'decForce' class="small-buttons">-</button>
 
 
     </div>

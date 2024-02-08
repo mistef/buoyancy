@@ -167,7 +167,7 @@ export function placeForceMeter(displ, holder){
     //force = Math.round(force/accuracy)*accuracy;
     force = calculateErrorForce(force, accuracy);
 
-    forceText.style.top = (100 - textHeight*100) + "%";
+    //forceText.style.top = (100 - textHeight*100) + "%";
 
     let numPres = 2;
     switch (maxForce) {

@@ -1,6 +1,6 @@
 import * as THREE from 'three';
 import { drawBackground } from './scripts/background.js';
-import {calculateErrorBeaker, calculateErrorHeight} from './scripts/errors.js'
+import {calculateErrorBeaker, calculateErrorHeight, isError} from './scripts/errors.js'
 import * as FORCEM from './scripts/forcemeter.js'
 //(function(){var script=document.createElement('script');script.onload=function(){var stats=new Stats();document.body.appendChild(stats.dom);requestAnimationFrame(function loop(){stats.update();requestAnimationFrame(loop)});};script.src='https://mrdoob.github.io/stats.js/build/stats.min.js';document.head.appendChild(script);})()
 
@@ -86,7 +86,7 @@ object.ellipseFactor = object.radius/3;
 
 let maxFall = 0.15;
 
-forcemeterLimit.textContent = "(" + 5 + " ± " + (5/100).toLocaleString() + ") N";
+forcemeterLimit.textContent = "(" + 5 + " ± " + (5/100/5).toLocaleString() + ") N";
 
 //beaker characteristics
 let beaker = {
@@ -471,6 +471,7 @@ decBeakerRadiusBtn.addEventListener('click', function() {
 
 incForce.addEventListener('click', function() {
     let force = FORCEM.maxForce;
+    let ratio = 5;
     disableBtn(decForce, "enable");
     switch (force){
         case 1 :
@@ -478,21 +479,42 @@ incForce.addEventListener('click', function() {
             break
         case 5 :
             force = 10;
+            ratio = 10;
             break
         case 10 :
             force = 50;
             break
         case 50 :
             force = 100;
+            ratio = 10;
             disableBtn(incForce, "disable");
             break
     }
     FORCEM.changeMaxForce(force);
-    forcemeterLimit.textContent = "(" + force + " ± " + (force/100).toLocaleString() + ") N";
+    if (isError){
+        forcemeterLimit.textContent = "(" + force + " ± " + (force/100).toLocaleString() + ") N";
+    }
+    else{
+        forcemeterLimit.textContent = "(" + force + " ± " + (force/100/ratio).toLocaleString() + ") N";
+    }
+    
 });
+
+export function resetForceLimit(){
+    if (FORCEM.maxForce == 1){
+        incForce.click();
+        decForce.click();
+    }
+    else{
+        decForce.click();
+        incForce.click();  
+    }
+
+}
 
 decForce.addEventListener('click', function() {
     let force = FORCEM.maxForce;
+    let ratio = 5;
     disableBtn(incForce, "enable");
     switch (force){
         case 100 :
@@ -500,17 +522,24 @@ decForce.addEventListener('click', function() {
             break
         case 50 :
             force = 10;
+            ratio = 10;
             break
         case 10 :
             force = 5;
             break
         case 5 :
             force = 1;
+            ratio = 10;
             disableBtn(decForce, "disable");
             break
     }
     FORCEM.changeMaxForce(force);
-    forcemeterLimit.textContent = "(" + force + " ± " + (force/100).toLocaleString() + ") N";
+    if (isError){
+        forcemeterLimit.textContent = "(" + force + " ± " + (force/100).toLocaleString() + ") N";
+    }
+    else{
+        forcemeterLimit.textContent = "(" + force + " ± " + (force/100/ratio).toLocaleString() + ") N";
+    }
 });
 
 function disableBtn(btn, toDo){
@@ -612,7 +641,7 @@ function resizeCanvas(){
 
 
         //forcemetertext
-        forceText.style.left = canvas.width*(object.xPos)*3/4 - 90  + 'px';
+        //forceText.style.left = canvas.width*(object.xPos)*3/4 - 90  + 'px';
 }
 
 
@@ -1333,7 +1362,7 @@ function drawBeaker(){
     scene.add(beakerMesh.top);
 }
 drawBeaker();
-
+redrawBeaker(beaker.radius, beaker.height);
 function redrawBeaker(radius, height){
     beakerMesh.bot.geometry.dispose();
     beakerMesh.bot.geometry = new THREE.CylinderGeometry( radius+0.005, radius+0.005, 0.005, 32, 1 );
@@ -1383,7 +1412,7 @@ function redrawBeaker(radius, height){
     } 
 
     //change water level 0.3 to 0.65 depending on height
-    let levelPerc = 2.917*height + 0.0083;
+    let levelPerc = 2.915*height + 0.0083;
     levelPerc = levelPerc>0.65 ? 0.65 : levelPerc;
     beaker.waterHeight = height * levelPerc;
     beaker.mixedHeight = beaker.waterHeight;
