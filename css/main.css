@@ -1,0 +1,22 @@
+body{
+    background-color: rgb(180, 180, 180);
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+}
+
+img{
+    height: 300px;
+    border-radius: 40px;
+}
+
+.navText{
+    margin:20px;
+    font-size: 1.7em;
+    font-weight: bold;
+}
+
+.mainDiv{
+    display: inline-block;
+    margin:50px;
+}

@@ -274,7 +274,7 @@ gravitySlider.addEventListener("input", function(){
     object.gravity = -this.value/100;
     measurments.gravity = this.value/100;
     gravityText.textContent = "g: " + (this.value/100).toFixed(2).toString().replace(".", ",") + " m/s²";
-    updateForcemeterRandom();
+    //updateForcemeterRandom();
 })
 
 

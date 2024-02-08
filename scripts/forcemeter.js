@@ -188,6 +188,13 @@ export function placeForceMeter(displ, holder){
             break;
     }
     forceText.textContent = "F:" + force.toFixed(numPres).replace(".", ",") + " N";
+    
+    if(force == maxForce){
+        forceText.style.color = "red";
+    }
+    else{
+        forceText.style.color = "black";
+    }
 
     return parseFloat(force.toFixed(numPres));
     //measurments.force = parseFloat(force.toFixed(numPres));
