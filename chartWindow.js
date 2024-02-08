@@ -105,6 +105,7 @@ function addData(chart, x, y) {
 
 let table = new DataTable('#myTable', {
     info: false,
+    locale: 'gr',
     paging: false,
     searching: false,
     order : [],

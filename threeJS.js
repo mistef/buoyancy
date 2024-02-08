@@ -1426,15 +1426,21 @@ function redrawBeaker(radius, height){
     }
 
     //Write the volume and the accuracy of the beaker
-    beakerVolume.textContent = Number((height*radius*radius*Math.PI*1000*1).toPrecision(2)).toLocaleString() + "L ± " + Number(beaker.accuracy.toPrecision(2)).toLocaleString() + "ml"
+    if (isError){
+        beakerVolume.textContent = Number((height*radius*radius*Math.PI*1000*1).toPrecision(2)).toLocaleString() + "L ± " + Number(beaker.accuracy.toPrecision(2)).toLocaleString() + "ml"
+    }
+    else{
+        beakerVolume.textContent = Number((height*radius*radius*Math.PI*1000*1).toPrecision(2)).toLocaleString() + "L ± " + 1 + "ml";
+    }
+
 
     //reset scene to avoid errors
     changeRadius.dispatchEvent(new Event("input"));
 
+}
 
-
-
-
+export function refreshBeakerVolume(){
+    redrawBeaker(beaker.radius, beaker.height);
 }
 
 

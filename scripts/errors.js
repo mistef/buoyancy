@@ -1,7 +1,7 @@
 const buttonAcc = document.getElementById('buttonAcc');
 let isError = false;
 
-import{resetForceLimit} from "../threeJS.js"
+import{resetForceLimit, refreshBeakerVolume} from "../threeJS.js"
 export{isError};
 
 
@@ -20,6 +20,7 @@ function changeState(set){
         isError = true;
         buttonAcc.textContent = "Ακρίβεια: Ρεαλιστική";
         resetForceLimit();
+        refreshBeakerVolume();
     }
     else if (set === false){
         isError = false;
@@ -29,13 +30,14 @@ function changeState(set){
         isError = false;
         buttonAcc.textContent = "Ακρίβεια: Αυξημένη";
         resetForceLimit();
+        refreshBeakerVolume();
     }
     else{
         isError = true;
         buttonAcc.textContent = "Ακρίβεια: Ρεαλιστική";
         resetForceLimit();
+        refreshBeakerVolume();
     }
-    
 }
 
 

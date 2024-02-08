@@ -739,3 +739,15 @@ input[type=radio]:checked:hover + label {
     container-type: inline-size;
 }
 
+#beakerBox{
+    position:absolute;
+    border-style: solid;
+    border-radius: 30px;
+    border-color: #9AD284;
+    height: 17%;
+    width:90%;
+    left:3.9%;
+    bottom: 5%;
+    display: flex;
+    flex-direction: column;
+}

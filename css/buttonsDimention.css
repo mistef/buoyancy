@@ -88,7 +88,7 @@
     margin: 12px 0 0;
     outline: none;
     overflow: hidden;
-    padding: 0 25px;
+    padding: auto;
     position: relative;
     text-align: center;
     text-transform: none;
@@ -101,6 +101,7 @@
     left: 44.7%;
     position: absolute;
   }
+
 
   .active .volumeMain {
     clip-path: polygon(11% 36%, 26% 36%, 41% 20%, 41% 75%, 26% 59%, 11% 59%);
