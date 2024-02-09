@@ -751,3 +751,8 @@ input[type=radio]:checked:hover + label {
     display: flex;
     flex-direction: column;
 }
+
+.greenText
+{
+    color:rgb(22, 16, 58);
+}
