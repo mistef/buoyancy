@@ -39,6 +39,9 @@ const saltText = document.getElementById('saltText');
 const volumeText = document.getElementById('volumeText');
 const volumeObj = document.getElementById('volumeObj');
 
+const mInfo = document.getElementById('mInfo');
+const vInfo = document.getElementById('vInfo');
+
 //dropdown for material
 const selectMat = document.getElementById("materialSelect");
 const selectList = document.getElementById("selectList");
@@ -229,6 +232,7 @@ changeRadius.addEventListener("input", function(){
     else{
         measurments.volumeObj = Math.round(getSubmergedVolume(object.type, 1)[0]*1000*1000);
         volumeObj.textContent = "V = " + measurments.volumeObj + "ml";
+        vInfo.textContent = measurments.volumeObj + "ml";
         measurments.density = measurments.mass/measurments.volumeObj;
     }
 })
@@ -239,6 +243,8 @@ massSlider.addEventListener("input", function(){
     measurments.mass = object.mass;
     measurments.density = 1000*object.mass/measurments.volumeObj;
     massText.textContent = "Μάζα: " + object.mass.toFixed(3).replace(".", ",") + " kg";
+    vInfo.textContent = measurments.volumeObj + "ml";
+    mInfo.textContent = Math.round(measurments.mass*1000) + "gr";
     volumeObj.textContent = "V = " + measurments.volumeObj + "ml" +", m = " + measurments.mass.toFixed(3).replace(".", ",") + "kg";
 })
 saltSlider.addEventListener("input", function(){
@@ -263,6 +269,7 @@ heightSlider.addEventListener("input", function(){
     else{
         measurments.volumeObj = Math.round(getSubmergedVolume(object.type, 1)[0]*1000*1000);
         volumeObj.textContent = "V = " + measurments.volumeObj + "ml";
+        vInfo.textContent = measurments.volumeObj + "ml";
         measurments.density = measurments.mass/measurments.volumeObj;
     }
 })
@@ -965,6 +972,8 @@ function calculateForce(){
         measurments.density = density;
 
         volumeObj.textContent = "V = " + measurments.volumeObj + "ml" +", m = " + measurments.mass.toFixed(3).replace(".", ",") + "kg";
+        vInfo.textContent = measurments.volumeObj + "ml";
+        mInfo.textContent = Math.round(measurments.mass*1000) + "gr";
     }
 
     function updateMatt(color, text, type){

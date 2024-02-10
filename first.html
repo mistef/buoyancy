@@ -21,8 +21,8 @@
         <canvas id = "canvas1"></canvas>
         <div style="position: absolute; background-color:#9AD284; width:25%; height:30%; top:5%; border-style: solid; border-radius: 0 30px 30px 0; user-select: none;">
             <div style="position: absolute; width:100%; font-size: 1.35cqw; font-weight: bold; top: 10%; left:4%;">Υλικό σώματος : <span class="greenText">Άνθρακας (1800 kg/m³)</span></div>
-            <div style="position: absolute; width:100%; font-size: 1.35cqw; font-weight: bold; top: 25%; left:4%;">Όγκος σώματος (V): <span class="greenText">268ml</span></div>
-            <div style="position: absolute; width:100%; font-size: 1.35cqw; font-weight: bold; top: 40%; left:4%;">Μάζα σώματος (m): <span class="greenText">483gr</span></div>
+            <div style="position: absolute; width:100%; font-size: 1.35cqw; font-weight: bold; top: 25%; left:4%;">Όγκος σώματος (V): <span id="vInfo" class="greenText">268ml</span></div>
+            <div style="position: absolute; width:100%; font-size: 1.35cqw; font-weight: bold; top: 40%; left:4%;">Μάζα σώματος (m): <span id="mInfo" class="greenText">483gr</span></div>
             <div style="position: absolute; width:100%; font-size: 1.35cqw; font-weight: bold; top: 65%; left:4%;">Υγρό δοχείου : <span class="greenText">Νερό (997 kg/m³)</span></div>
             <div style="position: absolute; width:100%; font-size: 1.35cqw; font-weight: bold; top: 80%; left:4%;">Επιτάχυνση βαρύτητας (g): <span class="greenText">9,81 m/s²</span></div>
         </div>
@@ -79,7 +79,7 @@
             <input type="range" min="150" max="500" value="400" class="slider" id="radiusSlider" style="display:none;">
             <div id="cInfo">Ύψος: 4 cm</div>
             <input type="range" min="200" max="1000" value="400" class="slider" id="heightSlider">
-            <div id="volumeObj">V = X</div>
+            <div id="volumeObj"">V = X</div>
             <div id = massToggle>
                 <input type="radio" id="rdensity" name="tgmass" value="density" checked>
                 <label for="rdensity" class="switch">Υλικό</label>
