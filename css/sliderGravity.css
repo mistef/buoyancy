@@ -1,0 +1,146 @@
+
+#gravitySliderContainer {
+
+    --earthTransform: scale(1) translateX(+10%);
+    --marsTransform: scale(0.65) translateX(+26%);
+    --moonTransform: scale(0.65) translateX(-10%);
+
+    position:relative;
+    width: 100%;
+    height:20%;
+    /* border-style:solid; */
+    container-type:size;
+  }
+
+#gravitySlider {
+    position: relative;
+    --thumbTransform: rotate(45deg) scale(0.75);
+    --thumbBorderRad: 10%;
+    -webkit-appearance: none;
+    appearance: none;
+    background: #ccc;
+    cursor: pointer;
+    width: 100%;
+    height:1.4rem;
+    border:none;
+    margin:0;
+    z-index: 2;
+}
+
+  #gravitySlider::-webkit-slider-thumb {
+    -webkit-appearance: none;
+    appearance: none;
+    width: 1.4rem;
+    height: 1.4rem;
+    border-radius: var(--thumbBorderRad);
+    background: #04AA6D;
+    cursor: pointer;
+
+    transform: var(--thumbTransform);
+    transition-duration:250ms;
+  }
+  
+  #gravitySlider::-moz-range-thumb {
+    border:none;
+    width: 1.4rem;
+    height: 1.4rem;
+    border-radius: var(--thumbBorderRad);
+    background: #04AA6D;
+    cursor: pointer;
+    
+    transform: var(--thumbTransform);
+    transition-duration:250ms;
+  }
+
+.gravitySliderTick{
+    z-index: 0;
+    position: relative;
+    display: inline-block;
+    margin:none;
+    transition-duration: 250ms;
+    width:1px;
+    height:100%;
+    background-color: #ccc;
+}
+
+#earthTick{
+    left: 37.7%;
+}
+
+#marsTick{
+    transform: translateY(-130%);
+    left: 14.3%;
+}
+
+#moonTick{
+    left: 4.6%;
+}
+
+.gravitySliderPlanet{
+
+    position:absolute;
+    height:11cqh;
+    display:flex;
+    flex-direction: row;
+    align-items: center;
+    /* justify-content:space-between; */
+    gap: 3cqh;
+    width: fit-content;
+    color:#ccc;
+    font-size:8cqh;
+    font-family: Arial, Helvetica, sans-serif;
+    transition-duration: 250ms;
+    margin-left:1%;
+}
+
+#sliderEarth{
+    left:31.5%;
+
+    
+    transform: var(--earthTransform);
+}
+
+#sliderMoon{
+    left:0%;
+    transform: var(--moonTransform);
+}
+
+#sliderMars{
+    left:2%;
+    transform: var(--marsTransform);
+}
+
+.planetIconsLine{
+    position:relative;
+    height:11cqh;
+}
+
+.upTicks{
+    height:5cqh;
+}
+
+.gravityTextBox{
+    position:absolute;
+    background-color: #9AD284;
+    width:45%;
+    right:1%;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    border-radius: 10px;
+}
+
+#gravityText{
+    margin: 1cqw;
+    margin-left:auto;
+    font-weight:200;
+    color:#000;
+    font-size: 7cqw;
+}
+
+#gravityTitle{
+    color:#ccc;
+    font-family: Arial, Helvetica, sans-serif;
+    margin:5cqh;
+    font-weight: 300;
+}

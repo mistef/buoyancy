@@ -670,21 +670,13 @@ input[type=radio]:checked:hover + label {
 
 
 #gravityText{
-    display: block;
+    display: inline-block;
     margin: auto;
     margin-top:10%;
     width: 90%;
     font-weight:200;
-    color:#ccc;
+    color:#000;
     font-size: 1.1em;
-}
-
-#gravitySlider{
-    margin: auto;
-    margin-top:1%;
-    display: block;
-    width: 95%;
-    accent-color: #9AD284;
 }
 
 
@@ -756,3 +748,4 @@ input[type=radio]:checked:hover + label {
 {
     color:rgb(22, 16, 58);
 }
+

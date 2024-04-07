@@ -609,6 +609,7 @@ function resizeCanvas(){
     camera.updateProjectionMatrix();
 
     renderer.setSize( canvas.width, canvas.height );
+    renderer.setPixelRatio( window.devicePixelRatio );
 
         //resize the buttons
         const unit = canvas.height>500 ? canvas.height : 500;
