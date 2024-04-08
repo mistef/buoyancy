@@ -589,23 +589,47 @@ window.addEventListener('resize', function(){
 
 function resizeCanvas(){
     //First resize the canvas element
-    if (window.innerHeight*4/3 < window.innerWidth){
-        canvas.height = window.innerHeight;
-        canvas.width = window.innerHeight*4/3;
+    canvas.height = window.innerHeight*0.99;
+    canvas.width = window.innerWidth;
+
+    let aspect = canvas.width / canvas.height;
+    let offsetX = 0;
+    if (aspect < 0.7){
+        canvas.width = window.innerWidth;
+        canvas.height = window.innerWidth/0.7;
+        offsetX = 0;
+    }
+    else if (aspect < 1.6){
+        offsetX = (aspect - 0.7)*0.2;
     }
     else{
-        canvas.width = window.innerWidth;
-        canvas.height = window.innerWidth*3/4;
+        offsetX = 0.2;
     }
-    if (canvas.width < 800 || canvas.height < 600){
-        canvas.width = 800;
-        canvas.height = 600;
-    }
+    // if (canvas.width < 1000 || canvas.height < 700){
+    //     canvas.width = 1000;
+    //     canvas.height = 700;
+    // }
+
+    // if (window.innerHeight*4/3 < window.innerWidth){
+    //     canvas.height = window.innerHeight;
+    //     canvas.width = window.innerHeight*4/3;
+    // }
+    // else{
+    //     canvas.width = window.innerWidth;
+    //     canvas.height = window.innerWidth*3/4;
+    // }
+    // if (canvas.width < 800 || canvas.height < 600){
+    //     canvas.width = 800;
+    //     canvas.height = 600;
+    // }
     //depending on the canvas element resize the div container
     container.style.height = canvas.height+'px';
     container.style.width = canvas.width+'px' ;
     //resize the camera
 
+    camera.right = canvas.width / canvas.height /2 + object.xPos + offsetX;
+    camera.left = -canvas.width / canvas.height /2 + object.xPos + offsetX;
+    //const camera = new THREE.OrthographicCamera( left,right,top,bottom, near, far );
     camera.updateProjectionMatrix();
 
     renderer.setSize( canvas.width, canvas.height );

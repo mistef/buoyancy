@@ -1,38 +1,12 @@
 #container{
     position: relative;
-/*
-    margin: 0 auto;
-    text-align: left;
-    background-color: black;
-    display: inline-block;
-    margin-left: auto;
-    margin-right: auto;
-
-    width: 100%;
-
-    justify-content: center;
-    align-items: center;
-*/
-    
 
     display : flex;
     margin: auto;
-
+    container-type:size;
 }
 
 #canvas1 {
-    /*position : absolute;
-    background: grey;
-    height:100%;
-    width: 100%;
-    /*margin-left: auto;
-    margin-right: auto;
-
-    top: 0;
-    left: 0;
-    
-    max-width:100%;
-    max-height:100%;*/
 
     margin:auto;
     display: block;
@@ -54,6 +28,7 @@
     color:rgb(255, 35, 35);
     text-align: center;
     font-weight:bold;
+    display: none;
 }
  /*
 #buttonUp:hover {
@@ -99,6 +74,7 @@ body, html {
     text-align: center;
     vertical-align: middle;
     font-weight:bold;
+    display: none;
     
 }
 
@@ -114,13 +90,7 @@ body, html {
     color:white;
  }
 
-#parameters{
-    position:absolute;
-    height : 100%;
-    width:20%;
-    background-color: #444444 ;
-    user-select: none;
-}
+
 
 #radioBtns{
     top:0%;
@@ -579,6 +549,7 @@ input[type=radio]:checked:hover + label {
 
     text-align:center;
     font-weight:bold;
+    display: none;
 }
 
 #forceInfo{
@@ -606,6 +577,7 @@ input[type=radio]:checked:hover + label {
     font-size: 160%;
     border-radius: 20px;
     user-select: none;
+    display: none;
 }
 
 
@@ -615,6 +587,7 @@ input[type=radio]:checked:hover + label {
     height: 30%;
     right: 0%;
     background-color: #444444;
+    display: none;
 }
 
 #controlsData{
@@ -627,7 +600,7 @@ input[type=radio]:checked:hover + label {
     display: flex;
     align-items: center;
     margin:auto;
-
+    display: none;
 }
 
 #xAxis{
@@ -660,7 +633,8 @@ input[type=radio]:checked:hover + label {
     height: 60%;
     background-color: #444444;
     overflow: auto;
-    text-align: center
+    text-align: center;
+    display: none;
 }
 
 
@@ -668,16 +642,6 @@ input[type=radio]:checked:hover + label {
     background-color: gray;
   }
 
-
-#gravityText{
-    display: inline-block;
-    margin: auto;
-    margin-top:10%;
-    width: 90%;
-    font-weight:200;
-    color:#000;
-    font-size: 1.1em;
-}
 
 
 .deleteButtons{
@@ -713,6 +677,7 @@ input[type=radio]:checked:hover + label {
 
 #showHeightLine{
     position: absolute;
+    display: none;
 }
 
 #forceDiv{

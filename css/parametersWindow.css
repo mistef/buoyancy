@@ -1,0 +1,57 @@
+#parameters{
+    position:fixed;
+    height : 100%;
+    width: 40cqh;
+    left: -40cqh;
+    background-color: #444444 ;
+    user-select: none;
+    transition: all .5s ease;
+    z-index: 1;
+}
+
+#showParameters{
+    display: none;
+}
+
+label #openParameters, label #closeParameters{
+    position: absolute;
+    left:5px;
+    cursor:pointer;
+    color: #444444;
+    border-radius: 5px;
+    margin: 15px 30px;
+    font-size: 29px;
+    background-color: #e8d1ff;
+    box-shadow:inset 2px 2px 2px 0px rgba(255,255,255,.5),
+      inset -7px -7px 10px 0px rgba(0,0,0,.1),
+     3.5px 3.5px 20px 0px rgba(0,0,0,.1),
+     2px 2px 5px 0px rgba(0,0,0,.1);
+    height: 45px;
+    width: 45px;
+    text-align: center;
+    text-shadow: 2px 2px 3px rgba(255,255,255,0.5);
+    line-height: 45px;
+    transition: all .5s ease;
+
+}
+
+label #closeParameters{
+    opacity: 0;
+    visibility: hidden;
+}
+
+#showParameters:checked ~ #parameters{
+  left: 0;
+}
+
+#showParameters:checked ~ label #openParameters{
+    margin-left: 40cqh;
+    opacity: 0;
+    visibility: hidden;
+}
+
+#showParameters:checked ~ label #closeParameters{
+    margin-left: 40cqh;
+    opacity: 1;
+    visibility: visible;
+}

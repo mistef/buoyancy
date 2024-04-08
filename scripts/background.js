@@ -8,7 +8,7 @@ export function drawBackground(scene, beakerHeight){
     let table = {
         width : 0.5,
         height : 0.02,
-        length : 3
+        length : 4
     }
 
     //Add the table
@@ -22,7 +22,7 @@ export function drawBackground(scene, beakerHeight){
     let underTable = {
         width : 0.02,
         height : 1,
-        length : 3
+        length : 4
     }
     //Add the underside of the Table
     const backUnder = new THREE.Mesh( new THREE.BoxGeometry( underTable.length, underTable.height,  underTable.width), new THREE.MeshPhongMaterial( { color: 0xffffff } ));

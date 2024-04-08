@@ -6,9 +6,12 @@
     <title>Buoyancy</title>
     <link rel="stylesheet" href="style.css">
     <link href="https://cdn.datatables.net/v/dt/jq-3.7.0/dt-1.13.6/sl-1.7.0/datatables.min.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Lato&display=swap" rel="stylesheet">
+    <link href="https://use.fontawesome.com/releases/v5.6.1/css/all.css" rel="stylesheet">
     <link rel="stylesheet" href="tableStyle.css" />
     <link rel="stylesheet" href="./css/buttonsDimention.css" />
     <link rel="stylesheet" href="./css/sliderGravity.css"/>
+    <link rel="stylesheet" href="./css/parametersWindow.css"/>
     <script type="importmap">
         {
           "imports": {
@@ -26,6 +29,11 @@
         </div>
         <button id = 'buttonUp'>+</button>
         <button id = 'buttonDown'>-</button>
+        <input type="checkbox" id="showParameters">
+        <label for="showParameters">
+          <i class="fas fa-bars" id="openParameters"></i>
+          <i class="fas fa-times" id="closeParameters"></i>
+        </label>
         <div id="parameters">
             <div id = radioBtns>
                 <input type="radio" id="rSphere" name="rShape" value="sphere" checked>
