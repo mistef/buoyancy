@@ -581,27 +581,6 @@ input[type=radio]:checked:hover + label {
 }
 
 
-#chartContainer{
-    position: absolute;
-    width: 40%;
-    height: 30%;
-    right: 0%;
-    background-color: #444444;
-    display: none;
-}
-
-#controlsData{
-    position: absolute;
-    width: 40%;
-    height:10%;
-    top:30%;
-    right: 0%;
-    background-color: #444444;
-    display: flex;
-    align-items: center;
-    margin:auto;
-    display: none;
-}
 
 #xAxis{
     color: #ccc;
@@ -625,17 +604,7 @@ input[type=radio]:checked:hover + label {
     margin:auto;
 }
 
-#tableDiv{
-    position: absolute;
-    width:40%;
-    right:0%;
-    top:40%;
-    height: 60%;
-    background-color: #444444;
-    overflow: auto;
-    text-align: center;
-    display: none;
-}
+
 
 
 .dataTables_wrapper  th.sorting {

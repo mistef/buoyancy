@@ -605,6 +605,14 @@ function resizeCanvas(){
     else{
         offsetX = 0.2;
     }
+
+    if(aspect > 1){
+        document.getElementById("showParameters").checked = true;
+        // document.getElementById("closeParameters").style.visibility = "hidden";
+    }
+    else{
+        // document.getElementById("closeParameters").style.visibility = "visible";
+    }
     // if (canvas.width < 1000 || canvas.height < 700){
     //     canvas.width = 1000;
     //     canvas.height = 700;
