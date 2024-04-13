@@ -64,14 +64,14 @@ const chart = new Chart("myChart", {
             y: {
               //beginAtZero: true,
               title: {
-                display: true,
+                display: false,
                 text: 'Y-Axis Label',
                 color: "#cccccc"
               }
             },
             x: {
               title: {
-                display: true,
+                display: false,
                 text: 'X-Axis Label',
                 color: "#cccccc"
               }

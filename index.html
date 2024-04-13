@@ -181,35 +181,40 @@
         <div id="dataContainer">
             <div id="chartContainer">
                 <canvas id="myChart"></canvas>
-            </div>
-            <div id="controlsData">
-                <div id="xAxis">x:</div>
-                <div id = "xSelect" class="custom-select" style="width:40%;font-size: 90%;">
-                    <select id = xSelectList>
-                        <option value="volumeL">Όγκος περιεχομένου δοχείου (L)</option>
-                        <option value="force">Ένδειξη δυναμόμετρου (N)</option>
-                        <option value="height">Ύψος από το έδαφος (m)</option>
-                        <option value="mass">Μάζα αντικειμένου (kg)</option>
-                        <option value="densityO">Πυκνότητα υγρού (kg/m³)</option>
-                        <option value="volumeO">Όγκος αντικειμένου (L)</option>
-                        <option value="densityL">Πυκνότητα αντικειμένου (kg/m³)</option>
-                        <option value="gravity">g (m/s²)</option>
-                    </select>
+
+                <div id="xAxisSelectBar">
+                    <div id = "xSelect" class="custom-select">
+                        <select id = xSelectList>
+                            <option value="volumeL">Όγκος περιεχομένου δοχείου (L)</option>
+                            <option value="force">Ένδειξη δυναμόμετρου (N)</option>
+                            <option value="height">Ύψος από το έδαφος (m)</option>
+                            <option value="mass">Μάζα αντικειμένου (kg)</option>
+                            <option value="densityO">Πυκνότητα υγρού (kg/m³)</option>
+                            <option value="volumeO">Όγκος αντικειμένου (L)</option>
+                            <option value="densityL">Πυκνότητα αντικειμένου (kg/m³)</option>
+                            <option value="gravity">g (m/s²)</option>
+                        </select>
+                    </div>
+                    <div id="xAxis"><center>Ανεξάρτητη μεταβλητή<br><span class="axisLetter">X</span></center></div>
                 </div>
-                <div id="yAxis">y:</div>
-                <div id = "ySelect" class="custom-select" style="width:40%;font-size: 90%;">
-                    <select id = ySelectList>
-                        <option value="volumeL">Όγκος περιεχομένου δοχείου (L)</option>
-                        <option value="force">Ένδειξη δυναμόμετρου (N)</option>
-                        <option value="height">Ύψος από το έδαφος (m)</option>
-                        <option value="mass">Μάζα αντικειμένου (kg)</option>
-                        <option value="densityO">Πυκνότητα υγρού (kg/m³)</option>
-                        <option value="volumeO">Όγκος αντικειμένου (L)</option>
-                        <option value="densityL">Πυκνότητα αντικειμένου (kg/m³)</option>
-                        <option value="gravity">g (m/s²)</option>
-                    </select>
+
+                <div id="yAxisSelectBar">
+                    <!-- <div id="yAxis"><center>Εξαρτημένη μεταβλητή <span class="axisLetter">Υ</span></center></div> -->
+                    <div id = "ySelect" class="custom-select">
+                        <select id = ySelectList>
+                            <option value="volumeL">Όγκος περιεχομένου δοχείου (L)</option>
+                            <option value="force">Ένδειξη δυναμόμετρου (N)</option>
+                            <!-- <option value="height">Ύψος από το έδαφος (m)</option>
+                            <option value="mass">Μάζα αντικειμένου (kg)</option>
+                            <option value="densityO">Πυκνότητα υγρού (kg/m³)</option>
+                            <option value="volumeO">Όγκος αντικειμένου (L)</option>
+                            <option value="densityL">Πυκνότητα αντικειμένου (kg/m³)</option>
+                            <option value="gravity">g (m/s²)</option> -->
+                        </select>
+                    </div>
                 </div>
             </div>
+            <div id="controlsData"></div>
             <div id="tableDiv">
                 <button id = 'deleteSelected' class = "deleteButtons">Αφαίρεση Επιλεγμένων</button>
                 <button id = 'deleteEverything' class = "deleteButtons">Αφαίρεση Όλων</button>
@@ -224,7 +229,7 @@
                             <th>Όγκος αντικειμένου (L)</th>
                             <th>Πυκνότητα αντικειμένου (kg/m³)</th>
                             <th>g (m/s²)</th>
-                            <th>Όγκος υγρού (L)</th>
+                            <th>Όγκος περιεχομένου δοχείου (L)</th>
                             <th>Ένδειξη δυναμόμετρου (N)</th>
                             <th>Ύψος που βρίσκεται το σώμα (m)</th>
                             <th>Μάζα αντικειμένου (kg)</th>

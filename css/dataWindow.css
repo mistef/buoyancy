@@ -13,6 +13,7 @@
 
 #showData{
     display: none;
+    
 }
 
 label #openData, label #closeData{
@@ -63,6 +64,7 @@ label #closeData{
 #chartContainer{
     height: 30%;
     margin:5%;
+    margin-left: 15%;
 }
 
 #tableDiv{
@@ -76,4 +78,56 @@ label #closeData{
     align-items: center;
     margin:auto;
     margin-bottom: 5%;
+}
+
+#xAxisSelectBar{
+    display: flex;
+    align-items: center;
+    container-type:inline-size;
+}
+
+#yAxisSelectBar{
+    position:absolute;
+    left:-25%;
+    top:15%;
+    width: 60%;
+    display: flex;
+    align-items: center;
+    container-type:inline-size;
+    transform:rotate(-90deg)
+}
+
+#xAxis{
+    color: #ccc;
+    font-family: Arial, Helvetica, sans-serif;
+    margin:auto;
+    font-size: 3cqw;
+}
+
+#xSelect{
+    width: 95%;
+    display: inline-block;
+    margin-top:2%;
+}
+
+#ySelect{
+    width: 60%;
+    display: inline-block;
+    margin-top:2%;
+}
+
+#yAxis{
+    color: #ccc;
+    font-family: Arial, Helvetica, sans-serif;
+    margin:auto;
+    font-size: 4cqw;
+}
+
+#ySelect{
+    display: inline-block;
+    margin:auto;
+}
+
+.axisLetter{
+    color:white;
 }
