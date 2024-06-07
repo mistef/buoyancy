@@ -122,13 +122,14 @@ let ui = {
 
 let volumefluidStart = 2200;
 let measurments = {
-    volume : 1000,
-    force : 5.1,
-    height : 0.5,
-    mass: 0.297,
-    density : 1000,
-    volumeObj : 100,
-    densityFl : 997,
+    volume : 1000, //in mL
+    force : 5.1, //in N
+    heightF : 0.5, // in m
+    heightW : 0.5, // in m
+    mass: 0.297, // in kg
+    density : 1000, // in kg*m^3
+    volumeObj : 100, // in mL
+    densityFl : 997, // in kg*m^3
     gravity: 9.81
 }
 export { measurments };
@@ -1980,8 +1981,9 @@ function updateObjectPosition(type, height){
         heightShow -= object.c;
     }
 
-    measurments.height = calculateErrorHeight(heightShow);
-    heightText.textContent = measurments.height.toFixed(1).replace(".", ",")    + " cm";
+    measurments.heightF = calculateErrorHeight(heightShow);
+    measurments.heightW = calculateErrorHeight(heightShow - beaker.waterHeight);
+    heightText.textContent = measurments.heightF.toFixed(1).replace(".", ",")    + " cm";
     
     heightBottom = heightShow;
 }

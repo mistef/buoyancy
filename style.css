@@ -40,7 +40,6 @@ body{
     color:rgb(255, 35, 35);
     text-align: center;
     font-weight:bold;
-    display: none;
 }
  /*
 #buttonUp:hover {
@@ -86,7 +85,6 @@ body, html {
     text-align: center;
     vertical-align: middle;
     font-weight:bold;
-    display: none;
     
 }
 
@@ -561,7 +559,6 @@ input[type=radio]:checked:hover + label {
 
     text-align:center;
     font-weight:bold;
-    display: none;
 }
 
 #forceInfo{
@@ -589,7 +586,6 @@ input[type=radio]:checked:hover + label {
     font-size: 160%;
     border-radius: 20px;
     user-select: none;
-    display: none;
 }
 
 

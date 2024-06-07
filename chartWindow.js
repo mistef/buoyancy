@@ -13,7 +13,7 @@ import { measurments } from './threeJS.js'
 let xId = 0;
 let yId = 10;
 
-let isValues = false; //If both have X and Y have been selected in order to allow drawing
+let isValues = false; //If both have X and Y have been selected in order to allow recording of values
 let whatHeight = "floor";
 let whatHeightY = "floor";
 let isBuoyancy = false;
@@ -29,11 +29,20 @@ record.addEventListener('click', function() {
     //console.log(measurments);
     //let measure = Object.values(measurments);
 
+    if(isValues){
+        table.order([]);
+        let row = addNewRow(measurments);
+    
+        addData(chart, parseNum(row[xId]), parseNum(row[yId]));
+    }
+    else{
+        Swal.fire({
+            html: `
+            Δεν έχουν επιλεχθεί μεταβλητές για καταγραφή! <br> <br>
+            Επέλεξε μεταβλητές πατώντας πάνω στους <b>άξονες στο γράφημα δεξιά</b>.
+          `});
+    }
 
-    table.order([]);
-    let row = addNewRow(measurments);
-
-    addData(chart, parseNum(row[xId]), parseNum(row[yId]));
 
 
 });
@@ -176,6 +185,8 @@ let table = new DataTable('#myTable', {
         emptyTable: "Δεν έχουν καταγραφεί μετρήσεις"
     },
     select: true,
+    // scrollCollapse: true,
+    // scrollY: '20cqh',
     stateSave: true,
     stateSaveParams : function (settings, data) {
         data.search.search = "";
@@ -201,23 +212,27 @@ $('#example').dataTable( {
 // }
 function addNewRow(data) {
     let row = [
-    (data.volume/1000).toString().replace(".", ","),   //in L
-    (data.force).toString().replace(".", ","),  //in N
-    (Math.round(data.height*10)/1000).toString().replace(".", ","),   //in m
-    (Math.round(data.mass*1000)/1000).toString().replace(".", ","),
-    data.densityFl.toString().replace(".", ","),
-    (data.volumeObj/1000).toString().replace(".", ","),    //in L
-    (data.density).toString().replace(".", ","),    //Second Time for Y
-    (data.gravity).toString().replace(".", ","),
-    (data.volume/1000).toString().replace(".", ","),   //in L
-    (data.force).toString().replace(".", ","),  //in N
-    (Math.round(data.height*10)/1000).toString().replace(".", ","),   //in m
-    (Math.round(data.mass*1000)/1000).toString().replace(".", ","),
-    data.densityFl.toString().replace(".", ","),
-    (data.volumeObj/1000).toString().replace(".", ","),    //in L
-    (data.density).toString().replace(".", ","),
-    (data.gravity).toString().replace(".", ",")
-
+        0,
+        (data.force).toString().replace(".", ","),  //in N
+        (Math.round(data.heightF*10)/1000).toString().replace(".", ","),   //in m
+        (Math.round(data.heightW*10)/1000).toString().replace(".", ","),   //in m
+        (data.volume/1000).toString().replace(".", ","),   //in L
+        data.densityFl.toString().replace(".", ","),
+        (Math.round(data.mass*1000)/1000).toString().replace(".", ","),
+        (data.volumeObj/1000).toString().replace(".", ","),    //in L
+        (data.density).toString().replace(".", ","),
+        (data.gravity).toString().replace(".", ","),
+        0,  //Second time for Y
+        (data.force).toString().replace(".", ","),  //in N
+        (Math.round(data.heightF*10)/1000).toString().replace(".", ","),   //in m
+        (Math.round(data.heightW*10)/1000).toString().replace(".", ","),   //in m
+        (data.volume/1000).toString().replace(".", ","),   //in L
+        data.densityFl.toString().replace(".", ","),
+        (Math.round(data.mass*1000)/1000).toString().replace(".", ","),
+        (data.volumeObj/1000).toString().replace(".", ","),    //in L
+        (data.density).toString().replace(".", ","),
+        (data.gravity).toString().replace(".", ","),
+        (Math.round((data.force - data.gravity*Math.round(data.mass*1000)/1000)*100)/100).toString().replace(".", ",")  // Buoyancy in N
     ];
     table.row
         .add(row)

@@ -14,6 +14,8 @@
     <link rel="stylesheet" href="./css/parametersWindow.css"/>
     <link rel="stylesheet" href="./css/dataWindow.css"/>
     <link rel="stylesheet" href="./css/parameterModals.css"/>
+    <link rel="stylesheet" href="./css/sweetalert2.min.css">
+    <script src="./scripts/sweetalert2.min.js"></script>
     <script type="importmap">
         {
           "imports": {
@@ -212,10 +214,12 @@
                     <button type="button" id="yBuoyancy">Άνωση (Ν)</button>
                 </div>
             </div>
-            <div id="controlsData"></div>
+            <div id="controlsData">
+                <button id = 'deleteEverything' class = "deleteButtons">Εκκαθάριση τιμών</button>
+                <button id = 'deleteSelected' class = "deleteButtons">Αφαίρεση Επιλεγμένων τιμών</button>
+            </div>
+            
             <div id="tableDiv">
-                <button id = 'deleteSelected' class = "deleteButtons">Αφαίρεση Επιλεγμένων</button>
-                <button id = 'deleteEverything' class = "deleteButtons">Αφαίρεση Όλων</button>
                 <table id="myTable" class="display" style="width:90%;">
                     <thead>
                         <tr>

@@ -71,6 +71,7 @@ label #closeData{
 #tableDiv{
     overflow: auto;
     text-align: center;
+    height: 52cqh;
 }
 
 
