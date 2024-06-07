@@ -65,6 +65,7 @@ label #closeData{
     height: 30%;
     margin:5%;
     margin-left: 15%;
+    margin-bottom: 0;
 }
 
 #tableDiv{
@@ -89,7 +90,7 @@ label #closeData{
 #yAxisSelectBar{
     position:absolute;
     left:-25%;
-    top:15%;
+    top:10%;
     width: 60%;
     display: flex;
     align-items: center;
@@ -130,4 +131,132 @@ label #closeData{
 
 .axisLetter{
     color:white;
+}
+
+
+#ySelectButton{
+    display: block;
+    font-weight: bold;
+    background-color: #d4ffc5;
+    border-style: none;
+    border-radius: 10px;
+    transition-duration: 200ms;
+    padding: 1ch;
+    margin-left:20%;
+    margin-right:20%;
+    width: 20cqh;
+    height: 6cqh;
+    margin-top:3cqh;
+    font-size: 1.6cqh;
+}
+
+#ySelectButton:hover{
+    background-color: #9AD284;
+}
+
+#ySelectButton:active{
+    background-color: #9AD284;
+    scale:0.95;
+}
+
+.variableText{
+    color:blue;
+}
+
+
+#xSelectButton{
+    display: block;
+    font-weight: bold;
+    background-color: #d4ffc5;
+    border-style: none;
+    border-radius: 10px;
+    transition-duration: 200ms;
+    padding: 1ch;
+    margin-left:10%;
+    margin-right:10%;
+    width: 90cqh;
+    height: 4cqh;
+    margin-top:1cqh;
+    font-size: 1.6cqh;
+}
+
+#xSelectButton:hover{
+    background-color: #9AD284;
+}
+
+#xSelectButton:active{
+    background-color: #9AD284;
+    scale:0.95;
+}
+
+#calcBuoyancyButton{
+    display: block;
+    font-weight: bold;
+    background-color: #ffc8c8;
+    border-style: none;
+    border-radius: 10px;
+    transition-duration: 200ms;
+    padding: 1ch;
+    margin-left:10%;
+    margin-right:10%;
+    width: 50cqh;
+    height: 4cqh;
+    margin-top:1cqh;
+    font-size: 1.6cqh;
+
+    /* display:none; */
+}
+
+.buoyancyText{
+    color:blue;
+    font-weight: bolder;
+}
+
+#calcBuoyancyButton:hover{
+    background-color: #fcadad;
+}
+
+#calcBuoyancyButton:active{
+    background-color: #fcadad;
+    scale:0.95;
+}
+
+
+
+
+#chartContainerBuoyancy{
+    height: 25%;
+    margin:5%;
+    margin-left: 15%;
+    margin-top: 0;
+    margin-bottom: 0;
+
+    display: none;
+}
+
+#yAxisSelectBarBuoyancy{
+    position:absolute;
+    left:-25%;
+    top:40%;
+    width: 60%;
+    display: flex;
+    align-items: center;
+    container-type:inline-size;
+    transform:rotate(-90deg)
+}
+
+#yBuoyancy{
+    display: block;
+    font-weight: bold;
+    background-color: #ffc8c8;
+    border-style: none;
+    border-radius: 10px;
+    transition-duration: 200ms;
+    padding: 1ch;
+    margin-left:20%;
+    margin-right:20%;
+    width: 20cqh;
+    height: 4cqh;
+    margin-top:3cqh;
+    font-size: 1.8cqh;
 }

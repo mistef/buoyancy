@@ -7,8 +7,8 @@ import { measurments } from './threeJS.js'
 //import 'datatables.net-select-dt';
 //import 'datatables.net-colreorder-dt';
 
-const xSelect = document.getElementById('xSelectList');
-const ySelect = document.getElementById('ySelectList');
+// const xSelect = document.getElementById('xSelectList');
+// const ySelect = document.getElementById('ySelectList');
 
 let xId = 0;
 let yId = 8;
@@ -38,6 +38,7 @@ record.addEventListener('click', function() {
 
 
 let xyValues = [];
+let xyValuesBuoyancy = [];
 
 
   
@@ -88,6 +89,63 @@ chart.options.scales['x'].ticks.color = "#cccccc";
 chart.options.scales['y'].ticks.color = "#cccccc";
 
 chart.update();
+
+
+//second chart for buoyancy
+const ctxBuoyancy = document.getElementById('myChartBuoyancy');
+
+
+
+
+  
+const chartBuoyancy = new Chart("myChartBuoyancy", {
+    type: "scatter",
+    data: {
+        datasets: [{
+        pointRadius: 4,
+        pointBackgroundColor: "rgba(154,210,132,1)",
+        pointBorderColor: "rgba(154,210,132,1)",
+        data: xyValuesBuoyancy
+        }]
+    },
+    options: {
+        plugins: {
+            legend: {
+                display: false
+            },
+            tooltip: {
+                displayColors: false
+            }
+        },
+        scales: {
+            y: {
+              //beginAtZero: true,
+              title: {
+                display: false,
+                text: 'Y-Axis Label',
+                color: "#cccccc"
+              }
+            },
+            x: {
+              title: {
+                display: false,
+                text: 'X-Axis Label',
+                color: "#cccccc"
+              }
+            }
+        }
+   }
+    
+
+});
+
+
+chartBuoyancy.options.scales['x'].grid.color = "#555555";
+chartBuoyancy.options.scales['y'].grid.color = "#555555";
+chartBuoyancy.options.scales['x'].ticks.color = "#cccccc";
+chartBuoyancy.options.scales['y'].ticks.color = "#cccccc";
+
+chartBuoyancy.update();
 
 //export { chart };
 
@@ -178,67 +236,67 @@ clearAndUpdateChart();
 //     });
 // } );
 
-xSelect.addEventListener('change', function() {
-    switch (this.value) {
-        case "volumeL":
-            xId = 0;
-            break;
-        case "force":
-            xId = 1;
-            break;
-        case "height":
-            xId = 2;
-            break;
-        case "mass":
-            xId = 3;
-            break;
-        case "densityO":
-            xId = 4;
-            break;
-        case "volumeO":
-            xId = 5;
-            break;
-        case "densityL":
-            xId = 6;
-            break;
-        case "gravity":
-            xId = 7;
-            break;
-    }
-    visibleColumns(table, xId, yId);
-    clearAndUpdateChart();
-});
+// xSelect.addEventListener('change', function() {
+//     switch (this.value) {
+//         case "volumeL":
+//             xId = 0;
+//             break;
+//         case "force":
+//             xId = 1;
+//             break;
+//         case "height":
+//             xId = 2;
+//             break;
+//         case "mass":
+//             xId = 3;
+//             break;
+//         case "densityO":
+//             xId = 4;
+//             break;
+//         case "volumeO":
+//             xId = 5;
+//             break;
+//         case "densityL":
+//             xId = 6;
+//             break;
+//         case "gravity":
+//             xId = 7;
+//             break;
+//     }
+//     visibleColumns(table, xId, yId);
+//     clearAndUpdateChart();
+// });
 
-ySelect.addEventListener('change', function() {
-    switch (this.value) {
-        case "volumeL":
-            yId = 8;
-            break;
-        case "force":
-            yId = 9;
-            break;
-        case "height":
-            yId = 10;
-            break;
-        case "mass":
-            yId = 11;
-            break;
-        case "densityO":
-            yId = 12;
-            break;
-        case "volumeO":
-            yId = 13;
-            break;
-        case "densityL":
-            yId = 14;
-            break;
-        case "gravity":
-            yId = 15;
-            break;
-    }
-    visibleColumns(table, xId, yId);
-    clearAndUpdateChart();
-});
+// ySelect.addEventListener('change', function() {
+//     switch (this.value) {
+//         case "volumeL":
+//             yId = 8;
+//             break;
+//         case "force":
+//             yId = 9;
+//             break;
+//         case "height":
+//             yId = 10;
+//             break;
+//         case "mass":
+//             yId = 11;
+//             break;
+//         case "densityO":
+//             yId = 12;
+//             break;
+//         case "volumeO":
+//             yId = 13;
+//             break;
+//         case "densityL":
+//             yId = 14;
+//             break;
+//         case "gravity":
+//             yId = 15;
+//             break;
+//     }
+//     visibleColumns(table, xId, yId);
+//     clearAndUpdateChart();
+// });
 
 //on del key press remove rows
 $(document).on('keyup', function ( e ) {
@@ -254,19 +312,27 @@ function clearAndUpdateChart(){
     //chart.clear();
     //Clear the array for the data
     xyValues.length = 0;
+    xyValuesBuoyancy.length = 0;
 
     let data = table.rows().data();
 
-    let xLabel = xSelect.options[xSelect.selectedIndex].text;
-    chart.options.scales['x'].title.text = xLabel;
+    // let xLabel = xSelect.options[xSelect.selectedIndex].text;
+    // chart.options.scales['x'].title.text = xLabel;
+    // chartBuoyancy.options.scales['x'].title.text = xLabel;
 
-    let yLabel = ySelect.options[ySelect.selectedIndex].text;
-    chart.options.scales['y'].title.text = yLabel;
+    // let yLabel = ySelect.options[ySelect.selectedIndex].text;
+    // chart.options.scales['y'].title.text = yLabel;
+    // chartBuoyancy.options.scales['y'].title.text = "Άνωση (Ν)";
 
     for(let i = 0; i < data.length; i++){
         addData(chart, parseNum(data[i][xId]), parseNum(data[i][yId]));
     }
     chart.update();
+
+    for(let i = 0; i < data.length; i++){
+        addData(chartBuoyancy, parseNum(data[i][xId]), parseNum(data[i][yId]));
+    }
+    chartBuoyancy.update();
 }
 
 //get string with comma seperator and return float
@@ -305,3 +371,19 @@ deleteEverything.addEventListener('click', function() {
     table.rows().remove().draw(false);
     clearAndUpdateChart();
 });
+
+
+
+//Show window to display buoyancy
+let calcBuoyancyButton = document.getElementById("calcBuoyancyButton");
+
+
+calcBuoyancyButton.addEventListener('click', function() {
+    calcBuoyancyButton.style.display = "none";
+    document.getElementById("chartContainerBuoyancy").style.display = "block";
+});
+
+
+
+
+

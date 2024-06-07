@@ -183,7 +183,8 @@
                 <canvas id="myChart"></canvas>
 
                 <div id="xAxisSelectBar">
-                    <div id = "xSelect" class="custom-select">
+                    <button type="button" id="xSelectButton">Επιλογή <span class="variableText">Ανεξάρτητης</span> Μεταβλητής (Χ)</button>
+                    <!-- <div id = "xSelect" class="custom-select">
                         <select id = xSelectList>
                             <option value="volumeL">Όγκος περιεχομένου δοχείου (L)</option>
                             <option value="force">Ένδειξη δυναμόμετρου (N)</option>
@@ -194,24 +195,20 @@
                             <option value="densityL">Πυκνότητα αντικειμένου (kg/m³)</option>
                             <option value="gravity">g (m/s²)</option>
                         </select>
-                    </div>
-                    <div id="xAxis"><center>Ανεξάρτητη μεταβλητή<br><span class="axisLetter">X</span></center></div>
+                    </div> -->
                 </div>
 
                 <div id="yAxisSelectBar">
+                    <button type="button" id="ySelectButton">Επιλογή <span class="variableText">Εξαρτημένης</span> Μεταβλητής (Υ)</button>
                     <!-- <div id="yAxis"><center>Εξαρτημένη μεταβλητή <span class="axisLetter">Υ</span></center></div> -->
-                    <div id = "ySelect" class="custom-select">
-                        <select id = ySelectList>
-                            <option value="volumeL">Όγκος περιεχομένου δοχείου (L)</option>
-                            <option value="force">Ένδειξη δυναμόμετρου (N)</option>
-                            <!-- <option value="height">Ύψος από το έδαφος (m)</option>
-                            <option value="mass">Μάζα αντικειμένου (kg)</option>
-                            <option value="densityO">Πυκνότητα υγρού (kg/m³)</option>
-                            <option value="volumeO">Όγκος αντικειμένου (L)</option>
-                            <option value="densityL">Πυκνότητα αντικειμένου (kg/m³)</option>
-                            <option value="gravity">g (m/s²)</option> -->
-                        </select>
-                    </div>
+                </div>
+            </div>
+            <button type="button" id="calcBuoyancyButton">Εμφάνιση <span class="buoyancyText">Άνωσης</span>   <span>&#40;</span>Υπολογισμένο Μέγεθος<span>&#41;</span></button>
+            <div id="chartContainerBuoyancy">
+                <canvas id="myChartBuoyancy"></canvas>
+
+                <div id="yAxisSelectBarBuoyancy">
+                    <button type="button" id="yBuoyancy">Άνωση (Ν)</button>
                 </div>
             </div>
             <div id="controlsData"></div>
@@ -279,6 +276,7 @@
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script> 
     <script src="https://cdn.datatables.net/v/dt/jq-3.7.0/dt-1.13.6/sl-1.7.0/datatables.min.js"></script>
     <script type="module" src="modifySelect.js"></script>
+    <script type="modyle" src="./scripts/customSelectVertical.js"></script>
     <script type="module" src="./scripts/silderGravity.js"></script>
     <script type="module" src="threeJS.js"></script>
     <script type="module" src="chartWindow.js"></script>
