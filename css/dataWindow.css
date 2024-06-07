@@ -71,15 +71,16 @@ label #closeData{
 #tableDiv{
     overflow: auto;
     text-align: center;
-    height: 52cqh;
+    height: 58cqh;
 }
 
 
 #controlsData{
     display: flex;
     align-items: center;
+    justify-content: space-evenly;
     margin:auto;
-    margin-bottom: 5%;
+    margin-top: 2cqh;
 }
 
 #xAxisSelectBar{
@@ -260,4 +261,28 @@ label #closeData{
     height: 4cqh;
     margin-top:3cqh;
     font-size: 1.8cqh;
+}
+
+.deleteButtons{
+    position:relative;
+    height : 3cqh;
+    margin:1cqh;
+    display: inline-block;
+    width : fit-content;
+    min-width: 30%;
+    vertical-align: middle;
+    background-color: #9AD284;
+    border-radius: 10px;
+    border-style: none;
+    font-size: 1.8cqh;
+    transition-duration: 250ms;
+}
+
+.deleteButtons:hover{
+    background-color: #6d9e59;
+}
+
+.deleteButtons:active{
+    background-color: #6d9e59;
+    transform: scale(0.99);
 }

@@ -404,6 +404,7 @@ calcBuoyancyButton.addEventListener('click', function() {
     calcBuoyancyButton.style.display = "none";
     document.getElementById("chartContainerBuoyancy").style.display = "block";
     isBuoyancy = true;
+    document.getElementById("tableDiv").style.height = "32cqh";
     visibleColumns(table, xId, yId);
     clearAndUpdateChart();
 });
@@ -583,6 +584,7 @@ document.getElementById("forceParamY").onclick = function(){
     showYWindow.textContent = document.getElementById("forceParamY").textContent;
     if(isBuoyancy == false){
         calcBuoyancyButton.style.display = "block";
+        document.getElementById("tableDiv").style.height = "52cqh";
     }
 }
 

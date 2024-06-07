@@ -581,14 +581,26 @@ input[type=radio]:checked:hover + label {
 
 #record{
     position: absolute;
-    bottom: 2%;
-    left: 29%;
-    font-size: 160%;
-    border-radius: 20px;
+    bottom: 2cqh;
+    left: 10cqh;
+    font-size: 3cqh;
+    border-radius: 10px;
     user-select: none;
+    background-color: #3b22aa;
+    color:white;
+    border-style: none;
+    padding:0.8cqh;
+    transition-duration: 100ms;
 }
 
+#record:hover{
+    background-color: #2100b6;
+}
 
+#record:active{
+    background-color: #2100b6;
+    transform:scale(0.98);
+}
 
 
 
@@ -597,21 +609,6 @@ input[type=radio]:checked:hover + label {
     background-color: gray;
   }
 
-
-
-.deleteButtons{
-    position:relative;
-    height : 6%;
-    margin:auto;
-    margin-bottom: 3%;
-    display: inline-block;
-    width : fit-content;
-    min-width: 30%;
-    vertical-align: middle;
-    background-color: #9AD284;
-    border-radius: 50px;
-
-}
 
 
 #settingsSim{
