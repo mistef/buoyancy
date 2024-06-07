@@ -33,7 +33,8 @@ record.addEventListener('click', function() {
         table.order([]);
         let row = addNewRow(measurments);
     
-        addData(chart, parseNum(row[xId]), parseNum(row[yId]));
+        addData(chart, parseNum(row[xId]), parseNum(row[yId]), xyValues);
+        addData(chartBuoyancy, parseNum(row[xId]), parseNum(row[20]), xyValuesBuoyancy);
     }
     else{
         Swal.fire({
@@ -115,8 +116,8 @@ const chartBuoyancy = new Chart("myChartBuoyancy", {
     data: {
         datasets: [{
         pointRadius: 4,
-        pointBackgroundColor: "rgba(154,210,132,1)",
-        pointBorderColor: "rgba(154,210,132,1)",
+        pointBackgroundColor: "rgba(242,144,144,1)",
+        pointBorderColor: "rgba(242,144,144,1)",
         data: xyValuesBuoyancy
         }]
     },
@@ -161,13 +162,13 @@ chartBuoyancy.update();
 
 //export { chart };
 
-function addData(chart, x, y) {
+function addData(chart, x, y, values) {
     let xy = {
         x:x,
         y:y
     }
-    xyValues.push(xy);
-    sessionStorage.setItem("chartData", xyValues);
+    values.push(xy);
+    sessionStorage.setItem("chartData", values);
     chart.update();
 }
 
@@ -232,7 +233,7 @@ function addNewRow(data) {
         (data.volumeObj/1000).toString().replace(".", ","),    //in L
         (data.density).toString().replace(".", ","),
         (data.gravity).toString().replace(".", ","),
-        (Math.round((data.force - data.gravity*Math.round(data.mass*1000)/1000)*100)/100).toString().replace(".", ",")  // Buoyancy in N
+        (Math.round((data.gravity*Math.round(data.mass*1000)/1000 - data.force)*100)/100).toString().replace(".", ",")  // Buoyancy in N
     ];
     table.row
         .add(row)
@@ -343,12 +344,12 @@ function clearAndUpdateChart(){
     // chartBuoyancy.options.scales['y'].title.text = "Άνωση (Ν)";
 
     for(let i = 0; i < data.length; i++){
-        addData(chart, parseNum(data[i][xId]), parseNum(data[i][yId]));
+        addData(chart, parseNum(data[i][xId]), parseNum(data[i][yId]), xyValues);
     }
     chart.update();
 
     for(let i = 0; i < data.length; i++){
-        addData(chartBuoyancy, parseNum(data[i][xId]), parseNum(data[i][yId]));
+        addData(chartBuoyancy, parseNum(data[i][xId]), parseNum(data[i][20]), xyValuesBuoyancy);
     }
     chartBuoyancy.update();
 }
