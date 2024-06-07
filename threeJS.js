@@ -589,7 +589,7 @@ window.addEventListener('resize', function(){
 
 function resizeCanvas(){
     //First resize the canvas element
-    canvas.height = window.innerHeight*0.99;
+    canvas.height = window.innerHeight*1;
     canvas.width = window.innerWidth;
 
     let aspect = canvas.width / canvas.height;

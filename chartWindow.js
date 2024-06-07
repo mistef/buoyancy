@@ -11,9 +11,12 @@ import { measurments } from './threeJS.js'
 // const ySelect = document.getElementById('ySelectList');
 
 let xId = 0;
-let yId = 8;
+let yId = 10;
 
-
+let isValues = false; //If both have X and Y have been selected in order to allow drawing
+let whatHeight = "floor";
+let whatHeightY = "floor";
+let isBuoyancy = false;
 
 
 //import {DataTable} from './/jquery.dataTables.min.js'
@@ -341,19 +344,23 @@ function parseNum (string){
 }
 
 //Make only the x and y colums visible hide the others
-function visibleColumns(table, x, y){
+function visibleColumns(table, x, y, b=false){
     table.column( x ).visible( true );
     table.column( y ).visible( true );
 
-    for (let i = 0; i < 16; i++){
+    for (let i = 0; i < 21; i++){
         if (i != x && i != y){
             table.column( i ).visible( false );
         }
     }
 
-    //reorder the x and y colomns
-    //table.colReorder.move( x, 0 );
-    
+    if(isBuoyancy){
+        table.column( 20 ).visible( true );
+    }
+
+    if(x != 0 && y != 10){
+        isValues = true;
+    }
 }
 
 
@@ -381,9 +388,276 @@ let calcBuoyancyButton = document.getElementById("calcBuoyancyButton");
 calcBuoyancyButton.addEventListener('click', function() {
     calcBuoyancyButton.style.display = "none";
     document.getElementById("chartContainerBuoyancy").style.display = "block";
+    isBuoyancy = true;
+    visibleColumns(table, xId, yId);
+    clearAndUpdateChart();
 });
 
 
+//The X variable modal window
+let parameterXWindow = document.getElementById("parameterXWindow");
 
+let showXWindow = document.getElementById("xSelectButton");
 
+var span = document.getElementsByClassName("close")[0];
 
+showXWindow.onclick = function() {
+    parameterXWindow.style.display = "block";
+}
+
+span.onclick = function() {
+    parameterXWindow.style.display = "none";
+}
+
+//The Y variable modal window
+let parameterYWindow = document.getElementById("parameterYWindow");
+
+let showYWindow = document.getElementById("ySelectButton");
+
+var spanY = document.getElementsByClassName("close")[1];
+
+showYWindow.onclick = function() {
+    parameterYWindow.style.display = "block";
+}
+
+spanY.onclick = function() {
+    parameterYWindow.style.display = "none";
+}
+
+window.onclick = function(event) {
+    if (event.target == parameterYWindow) {
+        parameterYWindow.style.display = "none";
+    }
+    if (event.target == parameterXWindow) {
+        parameterXWindow.style.display = "none";
+    }
+}
+
+//Select X
+function makeXGrey(){
+    document.getElementById("forceParamX").style.backgroundColor = "#c7c7c7";
+    document.getElementById("heightParamX").style.backgroundColor = "#c7c7c7";
+    document.getElementById("volumeLParamX").style.backgroundColor = "#c7c7c7";
+    document.getElementById("densityLParamX").style.backgroundColor = "#c7c7c7";
+    document.getElementById("massParamX").style.backgroundColor = "#c7c7c7";
+    document.getElementById("volumeParamX").style.backgroundColor = "#c7c7c7";
+    document.getElementById("densityParamX").style.backgroundColor = "#c7c7c7";
+    document.getElementById("gravityParamX").style.backgroundColor = "#c7c7c7";
+    document.getElementById("chooseHeightType").style.display = "none";
+}
+
+document.getElementById("forceParamX").onclick = function(){
+    makeXGrey();
+    document.getElementById("forceParamX").style.backgroundColor = "#9AD284";
+    xId = 1;
+    visibleColumns(table, xId, yId);
+    clearAndUpdateChart();
+    showXWindow.textContent = document.getElementById("forceParamX").textContent;
+}
+
+document.getElementById("heightParamX").onclick = function(){
+    makeXGrey();
+    document.getElementById("heightParamX").style.backgroundColor = "#9AD284";
+    document.getElementById("chooseHeightType").style.display = "block";
+    if (whatHeight == "floor"){
+        xId = 2;
+        showXWindow.textContent = "Απόσταση από έδαφος (m)";
+    }
+    else {
+        xId = 3;
+        showXWindow.textContent = "Απόσταση από επιφάνεια υγρού (m)";
+    }
+    visibleColumns(table, xId, yId);
+    clearAndUpdateChart();
+    
+}
+
+document.getElementById("volumeLParamX").onclick = function(){
+    makeXGrey();
+    document.getElementById("volumeLParamX").style.backgroundColor = "#9AD284";
+    xId = 4;
+    visibleColumns(table, xId, yId);
+    clearAndUpdateChart();
+    showXWindow.textContent = document.getElementById("volumeLParamX").textContent;
+}
+
+document.getElementById("densityLParamX").onclick = function(){
+    makeXGrey();
+    document.getElementById("densityLParamX").style.backgroundColor = "#9AD284";
+    xId = 5;
+    visibleColumns(table, xId, yId);
+    clearAndUpdateChart();
+    showXWindow.textContent = document.getElementById("densityLParamX").textContent;
+}
+
+document.getElementById("massParamX").onclick = function(){
+    makeXGrey();
+    document.getElementById("massParamX").style.backgroundColor = "#9AD284";
+    xId = 6;
+    visibleColumns(table, xId, yId);
+    clearAndUpdateChart();
+    showXWindow.textContent = document.getElementById("massParamX").textContent;
+}
+
+document.getElementById("volumeParamX").onclick = function(){
+    makeXGrey();
+    document.getElementById("volumeParamX").style.backgroundColor = "#9AD284";
+    xId = 7;
+    visibleColumns(table, xId, yId);
+    clearAndUpdateChart();
+    showXWindow.textContent = document.getElementById("volumeParamX").textContent;
+}
+
+document.getElementById("densityParamX").onclick = function(){
+    makeXGrey();
+    document.getElementById("densityParamX").style.backgroundColor = "#9AD284";
+    xId = 8;
+    visibleColumns(table, xId, yId);
+    clearAndUpdateChart();
+    showXWindow.textContent = document.getElementById("densityParamX").textContent;
+}
+
+document.getElementById("gravityParamX").onclick = function(){
+    makeXGrey();
+    document.getElementById("gravityParamX").style.backgroundColor = "#9AD284";
+    xId = 9;
+    visibleColumns(table, xId, yId);
+    clearAndUpdateChart();
+    showXWindow.textContent = document.getElementById("gravityParamX").textContent;
+}
+
+document.getElementById("heightParamXfloor").onclick = function(){
+    document.getElementById("heightParamXfloor").style.backgroundColor = "#9AD284";
+    document.getElementById("heightParamXwater").style.backgroundColor = "#c7c7c7";
+    xId = 2;
+    visibleColumns(table, xId, yId);
+    clearAndUpdateChart();
+    showXWindow.textContent = "Απόσταση από έδαφος (m)";
+    whatHeight = "floor";
+}
+
+document.getElementById("heightParamXwater").onclick = function(){
+    document.getElementById("heightParamXwater").style.backgroundColor = "#9AD284";
+    document.getElementById("heightParamXfloor").style.backgroundColor = "#c7c7c7";
+    xId = 3;
+    visibleColumns(table, xId, yId);
+    clearAndUpdateChart();
+    showXWindow.textContent = "Απόσταση από επιφάνεια υγρού (m)";
+    whatHeight = "water";
+}
+
+//SelectY
+function makeYGrey(){
+    document.getElementById("forceParamY").style.backgroundColor = "#c7c7c7";
+    document.getElementById("heightParamY").style.backgroundColor = "#c7c7c7";
+    document.getElementById("volumeLParamY").style.backgroundColor = "#c7c7c7";
+    document.getElementById("densityLParamY").style.backgroundColor = "#c7c7c7";
+    document.getElementById("massParamY").style.backgroundColor = "#c7c7c7";
+    document.getElementById("volumeParamY").style.backgroundColor = "#c7c7c7";
+    document.getElementById("densityParamY").style.backgroundColor = "#c7c7c7";
+    document.getElementById("gravityParamY").style.backgroundColor = "#c7c7c7";
+    document.getElementById("chooseHeightTypeY").style.display = "none";
+}
+
+document.getElementById("forceParamY").onclick = function(){
+    makeYGrey();
+    document.getElementById("forceParamY").style.backgroundColor = "#9AD284";
+    yId = 11;
+    visibleColumns(table, xId, yId);
+    clearAndUpdateChart();
+    showYWindow.textContent = document.getElementById("forceParamY").textContent;
+    if(isBuoyancy == false){
+        calcBuoyancyButton.style.display = "block";
+    }
+}
+
+document.getElementById("heightParamY").onclick = function(){
+    makeYGrey();
+    document.getElementById("heightParamY").style.backgroundColor = "#9AD284";
+    document.getElementById("chooseHeightTypeY").style.display = "block";
+    if (whatHeightY == "floor"){
+        yId = 12;
+        showYWindow.textContent = "Απόσταση από έδαφος (m)";
+    }
+    else {
+        yId = 13;
+        showYWindow.textContent = "Απόσταση από επιφάνεια υγρού (m)";
+    }
+    visibleColumns(table, xId, yId);
+    clearAndUpdateChart();
+    
+}
+
+document.getElementById("volumeLParamY").onclick = function(){
+    makeYGrey();
+    document.getElementById("volumeLParamY").style.backgroundColor = "#9AD284";
+    yId = 14;
+    visibleColumns(table, xId, yId);
+    clearAndUpdateChart();
+    showYWindow.textContent = document.getElementById("volumeLParamY").textContent;
+}
+
+document.getElementById("densityLParamY").onclick = function(){
+    makeYGrey();
+    document.getElementById("densityLParamY").style.backgroundColor = "#9AD284";
+    yId = 15;
+    visibleColumns(table, xId, yId);
+    clearAndUpdateChart();
+    showYWindow.textContent = document.getElementById("densityLParamY").textContent;
+}
+
+document.getElementById("massParamY").onclick = function(){
+    makeYGrey();
+    document.getElementById("massParamY").style.backgroundColor = "#9AD284";
+    yId = 16;
+    visibleColumns(table, xId, yId);
+    clearAndUpdateChart();
+    showYWindow.textContent = document.getElementById("massParamY").textContent;
+}
+
+document.getElementById("volumeParamY").onclick = function(){
+    makeYGrey();
+    document.getElementById("volumeParamY").style.backgroundColor = "#9AD284";
+    yId = 17;
+    visibleColumns(table, xId, yId);
+    clearAndUpdateChart();
+    showYWindow.textContent = document.getElementById("volumeParamY").textContent;
+}
+
+document.getElementById("densityParamY").onclick = function(){
+    makeYGrey();
+    document.getElementById("densityParamY").style.backgroundColor = "#9AD284";
+    yId = 18;
+    visibleColumns(table, xId, yId);
+    clearAndUpdateChart();
+    showYWindow.textContent = document.getElementById("densityParamY").textContent;
+}
+
+document.getElementById("gravityParamY").onclick = function(){
+    makeYGrey();
+    document.getElementById("gravityParamY").style.backgroundColor = "#9AD284";
+    yId = 19;
+    visibleColumns(table, xId, yId);
+    clearAndUpdateChart();
+    showYWindow.textContent = document.getElementById("gravityParamY").textContent;
+}
+
+document.getElementById("heightParamYfloor").onclick = function(){
+    document.getElementById("heightParamYfloor").style.backgroundColor = "#9AD284";
+    document.getElementById("heightParamYwater").style.backgroundColor = "#c7c7c7";
+    yId = 12;
+    visibleColumns(table, xId, yId);
+    clearAndUpdateChart();
+    showYWindow.textContent = "Απόσταση από έδαφος (m)";
+    whatHeightY = "floor";
+}
+
+document.getElementById("heightParamYwater").onclick = function(){
+    document.getElementById("heightParamYwater").style.backgroundColor = "#9AD284";
+    document.getElementById("heightParamYfloor").style.backgroundColor = "#c7c7c7";
+    yId = 13;
+    visibleColumns(table, xId, yId);
+    clearAndUpdateChart();
+    showYWindow.textContent = "Απόσταση από επιφάνεια υγρού (m)";
+    whatHeightY = "water";
+}

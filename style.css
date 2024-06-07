@@ -14,6 +14,8 @@ body{
     display : flex;
     margin: auto;
     container-type:size;
+
+    position: fixed;
 }
 
 #canvas1 {

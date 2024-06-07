@@ -13,6 +13,7 @@
     <link rel="stylesheet" href="./css/sliderGravity.css"/>
     <link rel="stylesheet" href="./css/parametersWindow.css"/>
     <link rel="stylesheet" href="./css/dataWindow.css"/>
+    <link rel="stylesheet" href="./css/parameterModals.css"/>
     <script type="importmap">
         {
           "imports": {
@@ -218,22 +219,27 @@
                 <table id="myTable" class="display" style="width:90%;">
                     <thead>
                         <tr>
-                            <th>Όγκος περιεχομένου δοχείου (L)</th>
+                            <th>...</th>
                             <th>Ένδειξη δυναμόμετρου (N)</th>
                             <th>Ύψος από το έδαφος (m)</th>
-                            <th>Μάζα αντικειμένου (kg)</th>
-                            <th>Πυκνότητα υγρού (kg/m³)</th>
-                            <th>Όγκος αντικειμένου (L)</th>
-                            <th>Πυκνότητα αντικειμένου (kg/m³)</th>
-                            <th>g (m/s²)</th>
+                            <th>Ύψος από το επιφάνεια υγρού (m)</th>
                             <th>Όγκος περιεχομένου δοχείου (L)</th>
-                            <th>Ένδειξη δυναμόμετρου (N)</th>
-                            <th>Ύψος που βρίσκεται το σώμα (m)</th>
+                            <th>Πυκνότητα υγρού (kg/m³)</th>                            
                             <th>Μάζα αντικειμένου (kg)</th>
-                            <th>Πυκνότητα υγρού (kg/m³)</th>
                             <th>Όγκος αντικειμένου (L)</th>
                             <th>Πυκνότητα αντικειμένου (kg/m³)</th>
-                            <th>g (m/s²)</th>
+                            <th>Επιτάχυνση της βαρύτητας (m/s²)</th>
+                            <th>...</th>
+                            <th>Ένδειξη δυναμόμετρου (N)</th>
+                            <th>Ύψος από το έδαφος (m)</th>
+                            <th>Ύψος από το επιφάνεια υγρού (m)</th>
+                            <th>Όγκος περιεχομένου δοχείου (L)</th>
+                            <th>Πυκνότητα υγρού (kg/m³)</th>                            
+                            <th>Μάζα αντικειμένου (kg)</th>
+                            <th>Όγκος αντικειμένου (L)</th>
+                            <th>Πυκνότητα αντικειμένου (kg/m³)</th>
+                            <th>Επιτάχυνση της βαρύτητας (m/s²)</th>
+                            <th>Άνωση (Ν)</th>
                         </tr>
                     </thead>
                 </table>
@@ -269,7 +275,53 @@
         </div>
         <button id = 'incForce' class="small-buttons">+</button>
         <button id = 'decForce' class="small-buttons">-</button>
+        
+        <div id="parameterXWindow" class="modalParameterWindowBackground">
+            <div class="modalParameterContent">
+              <div class="modalParameterHeader">
+                <span class="close">&times;</span>
+                <h2>Ανεξάρτητη μεταβλητή (Χ)</h2>
+              </div>
+              <div id = "modalParameterContainer">
+                <button id = 'forceParamX' class="paramButtons">Ένδειξη δυναμόμετρου (N)</button>
+                <button id = 'heightParamX' class="paramButtons">Ύψος από ... (m)</button>
+                <div id = "chooseHeightType">
+                    <button id = 'heightParamXfloor'>έδαφος</button>
+                    <button id = 'heightParamXwater'>επιφάνεια υγρού</button>
+                </div>
+                <button id = 'volumeLParamX' class="paramButtons">Όγκος περιεχομένου δοχείου (L)</button>
+                <button id = 'densityLParamX' class="paramButtons">Πυκνότητα υγρού (kg/m³)</button>
+                <button id = 'massParamX' class="paramButtons">Μάζα αντικειμένου (kg)</button>
+                <button id = 'volumeParamX' class="paramButtons">Όγκος αντικειμένου (L)</button>
+                <button id = 'densityParamX' class="paramButtons">Πυκνότητα αντικειμένου (kg/m³)</button>
+                <button id = 'gravityParamX' class="paramButtons">Επιτάχυση της βαρύτητας (m/s²)</button>
+              </div>
+            </div>
+          </div>
 
+          <div id="parameterYWindow" class="modalParameterWindowBackground">
+            <div class="modalParameterContent">
+              <div class="modalParameterHeader">
+                <span class="close">&times;</span>
+                <h2>Εξαρτημένη μεταβλητή (Y)</h2>
+              </div>
+              <div id = "modalParameterContainer">
+                <button id = 'forceParamY' class="paramButtons">Ένδειξη δυναμόμετρου (N)</button>
+                <button id = 'heightParamY' class="paramButtons">Ύψος από ... (m)</button>
+                <div id = "chooseHeightTypeY">
+                    <button id = 'heightParamYfloor'>έδαφος</button>
+                    <button id = 'heightParamYwater'>επιφάνεια υγρού</button>
+                </div>
+                <button id = 'volumeLParamY' class="paramButtons">Όγκος περιεχομένου δοχείου (L)</button>
+                <button id = 'densityLParamY' class="paramButtons">Πυκνότητα υγρού (kg/m³)</button>
+                <button id = 'massParamY' class="paramButtons">Μάζα αντικειμένου (kg)</button>
+                <button id = 'volumeParamY' class="paramButtons">Όγκος αντικειμένου (L)</button>
+                <button id = 'densityParamY' class="paramButtons">Πυκνότητα αντικειμένου (kg/m³)</button>
+                <button id = 'gravityParamY' class="paramButtons">Επιτάχυση της βαρύτητας (m/s²)</button>
+              </div>
+            </div>
+  
+          </div>
 
     </div>
 

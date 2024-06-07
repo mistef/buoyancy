@@ -1,0 +1,140 @@
+.modalParameterWindowBackground {
+    display: none;
+    position: fixed;
+    z-index: 2;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    overflow: auto;
+    background-color: rgb(0,0,0);
+    background-color: rgba(0,0,0,0.4);
+
+    
+}
+
+.modalParameterContent {
+    position: relative;
+    background-color: #fefefe;
+    margin: auto;
+    padding: 0;
+    border: 1px solid #888;
+    height: 80%;
+    aspect-ratio: 3/4;
+    box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2),0 6px 20px 0 rgba(0,0,0,0.19);
+    animation-name: animatetop;
+    animation-duration: 0.4s;
+    top:5%;
+    container-type:inline-size;
+}
+
+.modalParameterHeader {
+    padding: 2px 16px;
+    background-color: #9AD284;;
+    color: rgb(0, 0, 0);  
+    font-size: 1.4cqh;
+}
+
+/* Add Animation */
+@keyframes animatetop {
+    from {top: -1000px; opacity: 0}
+    to {top: 5%; opacity: 1}
+}
+
+.close {
+    color: #000000;
+    float: right;
+    font-size: 28px;
+    font-weight: bold;
+}
+  
+.close:hover,
+.close:focus {
+    color: black;
+    text-decoration: none;
+    cursor: pointer;
+}
+
+#modalParameterContainer{
+    -moz-box-sizing: border-box;
+    box-sizing: border-box;
+    /* border-style: solid; */
+    margin: 1%;
+    width:98%;
+    aspect-ratio: 4/3;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.paramButtons{
+    margin:1.5cqh;
+    font-weight: bold;
+    font-size: 2cqh;
+    padding: 1cqh;
+    border-style: none;
+    background-color: #c7c7c7;
+    border-radius: 0.5cqh;
+    width:80%;
+    transition-duration: 250ms;
+}
+
+.paramButtons:hover{
+    background-color: #d4ffc5;
+}
+
+.paramButtons:active{
+    background-color: #9AD284;
+}
+
+#chooseHeightType{
+    display: flex;
+    align-items:center;
+    display: none;
+}
+
+#heightParamXfloor{
+    font-size: 1.8cqh;
+    margin:1cqh;
+    background-color: #9AD284;
+    border-style: none;
+    border-radius: 5px;
+    margin-top: 0;
+    width:20cqh;
+}
+
+#heightParamXwater{
+    font-size: 1.8cqh;
+    margin:1cqh;
+    background-color: #c7c7c7;
+    border-style: none;
+    border-radius: 5px;
+    margin-top: 0;
+    width:20cqh;
+}
+
+#chooseHeightTypeY{
+    display: flex;
+    align-items:center;
+    display: none;
+}
+
+#heightParamYfloor{
+    font-size: 1.8cqh;
+    margin:1cqh;
+    background-color: #9AD284;
+    border-style: none;
+    border-radius: 5px;
+    margin-top: 0;
+    width:20cqh;
+}
+
+#heightParamYwater{
+    font-size: 1.8cqh;
+    margin:1cqh;
+    background-color: #c7c7c7;
+    border-style: none;
+    border-radius: 5px;
+    margin-top: 0;
+    width:20cqh;
+}
