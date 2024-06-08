@@ -36,7 +36,7 @@ const cText = document.getElementById('cInfo');
 const forceText = document.getElementById('forceInfo');
 const massText = document.getElementById('massInfo');
 const saltText = document.getElementById('saltText');
-const volumeText = document.getElementById('volumeText');
+const volumeText = document.getElementById('volumeInfoBox');
 const volumeObj = document.getElementById('volumeObj');
 
 const mInfo = document.getElementById('mInfo');
@@ -102,7 +102,8 @@ let beaker = {
     density: 997,
     ellipseFactor:0,
     saltContent : 0,
-    accuracy : 1
+    accuracy : 1,
+    startVolume : 2200
 }
 beaker.xPos = object.xPos-beaker.radius;
 beaker.ellipseFactor = beaker.radius/3;
@@ -588,13 +589,13 @@ window.addEventListener('resize', function(){
     resizeCanvas();
 });
 
+let offsetX = 0;
 function resizeCanvas(){
     //First resize the canvas element
     canvas.height = window.innerHeight*1;
     canvas.width = window.innerWidth;
 
     let aspect = canvas.width / canvas.height;
-    let offsetX = 0;
     if (aspect < 0.7){
         canvas.width = window.innerWidth;
         canvas.height = window.innerWidth/0.7;
@@ -669,7 +670,7 @@ function resizeCanvas(){
         // showHeightLine.style.left = canvas.width*(object.xPos + beaker.radius + 0.005)*3/4  + 'px';
         // showHeightLine.style.bottom = canvas.height*(beaker.mixedHeight + beaker.yPos ) + 2.25*unit/10 + 'px';
         //resise indicator for volume
-        volumeText.style.fontSize = unit/40 + 'px';
+        // volumeText.style.fontSize = unit/40 + 'px';
 
         //the record Button
         // record.style.left = canvas.width*(object.xPos)*3/4 - 68.5  + 'px';
@@ -1485,6 +1486,9 @@ function redrawBeaker(radius, height){
     else{
         beakerVolume.textContent = Number((height*radius*radius*Math.PI*1000*1).toPrecision(2)).toLocaleString() + "L ± " + 1 + "ml";
     }
+    //write the starting volume of water
+    beaker.startVolume = beaker.waterHeight*radius*radius*Math.PI*1000*1000*1;
+    document.getElementById("startVolumeText").textContent = Math.round(beaker.startVolume) + "ml";
 
 
     //reset scene to avoid errors
@@ -1992,7 +1996,7 @@ function updateObjectPosition(type, height){
     }
 
     measurments.heightF = calculateErrorHeight(heightShow);
-    measurments.heightW = calculateErrorHeight(heightShow - beaker.waterHeight);
+    measurments.heightW = calculateErrorHeight(heightShow - beaker.mixedHeight);
 
     if (document.getElementById("chooseHeightTypeInfo").textContent == "Έδαφος"){
         heightText.textContent = measurments.heightF.toFixed(1).replace(".", ",")    + " cm";
@@ -2027,7 +2031,8 @@ function render( time ) {
     //volumeText.style.left = (object.xPos - beaker.radius - 0.105)*100*3/4 + "%";
     //measurments.volume = Math.round(beaker.mixedHeight*Math.PI*beaker.radius*beaker.radius/beaker.accuracy*1000000)*beaker.accuracy;
     measurments.volume = calculateVolume(beaker.mixedHeight, beaker.radius, beaker.accuracy);
-    volumeText.textContent = measurments.volume.toPrecision(4) + "ml";
+    document.getElementById("totalVolumeText").textContent = Math.round(measurments.volume) + "ml";
+    document.getElementById("diffVolumeText").textContent = Math.round((measurments.volume-beaker.startVolume)) + "ml";
 
     if (ui.upBtn){
 
@@ -2140,20 +2145,21 @@ function updateLineVolume(){
     lineVolume.geometry.attributes.position.setXYZ(1, beaker.radius + object.xPos - 0.00, beaker.mixedHeight + beaker.yPos, 0  );
     lineVolume.geometry.attributes.position.setXYZ(2, beaker.radius + object.xPos + 0.01*1.414/2, beaker.mixedHeight + beaker.yPos - 0.01*1.414/2, 0  );
     lineVolume.geometry.attributes.position.setXYZ(3, beaker.radius + object.xPos - 0.00, beaker.mixedHeight + beaker.yPos, 0  );
-    lineVolume.geometry.attributes.position.setXYZ(4, beaker.radius + object.xPos + 0.1, beaker.mixedHeight + beaker.yPos, 0  );
+    lineVolume.geometry.attributes.position.setXYZ(4, beaker.radius + object.xPos + 0.18, beaker.mixedHeight + beaker.yPos, 0  );
     lineVolume.geometry.attributes.position.needsUpdate = true;
+
+
+    const unitW = canvas.width;
+    let a = unitW/(canvas.width / canvas.height) //pixel/m
+    volumeText.style.left = (unitW/2+a*(-offsetX+beaker.radius*1.2))/window.devicePixelRatio + "px";
 
     
 
-    volumeText.style.left = (object.xPos + beaker.radius + 0.02)*100*3/4 + "%";
-    volumeText.style.bottom = (beaker.yPos + beaker.mixedHeight)*100 + "%";
     if (cameraDimention == "3D"){
-        volumeText.style.bottom = (beaker.yPos + beaker.mixedHeight- 0.014)*100 + "%";
-        //volumeText.style.transform = "translateY(30%)";
+        volumeText.style.bottom = ((a*(beaker.mixedHeight+beaker.yPos))/window.devicePixelRatio - volumeText.getBoundingClientRect().height/2) + "px";
     }
     else{
-        volumeText.style.bottom = (beaker.yPos + beaker.mixedHeight)*100 + "%";
-        //volumeText.style.transform = "translateY(0%)";
+        volumeText.style.bottom = ((a*(beaker.mixedHeight+beaker.yPos))/window.devicePixelRatio - volumeText.getBoundingClientRect().height/2) + "px";
     }
 }
 

@@ -1,0 +1,29 @@
+#volumeInfoBox{
+    position: absolute;
+    z-index: 1;
+    width:17cqh;
+    left:45%;
+    bottom:20%;
+}
+
+#volumeInfoBoxFirstNames{
+    display: flex;
+    justify-content: space-between;
+}
+
+.namesVolumeInfo{
+    font-size: 1.2cqh;
+    font-weight: bold;
+    text-align: center;
+}
+
+#volumeInfoBoxFirstValues{
+    display: flex;
+    justify-content: space-around;
+}
+
+.valsVolumeInfo{
+    font-size: 2cqh;
+    font-weight:bold;
+    text-align: center;
+}

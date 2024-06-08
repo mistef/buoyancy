@@ -15,6 +15,7 @@
     <link rel="stylesheet" href="./css/dataWindow.css"/>
     <link rel="stylesheet" href="./css/parameterModals.css"/>
     <link rel="stylesheet" href="./css/incDecHeightBox.css"/>
+    <link rel="stylesheet" href="./css/volumeInfoBox.css"/>
     <link rel="stylesheet" href="./css/sweetalert2.min.css">
     <script src="./scripts/sweetalert2.min.js"></script>
     <script type="importmap">
@@ -201,8 +202,24 @@
         </div>
         <input type="checkbox" id="showHeightLine">
 
-
-        <div id="volumeText">500mL ►</div>
+        <div id="volumeInfoBox">
+            <div id="volumeInfoBoxFirstNames">
+                <div style="color:rgb(0, 0, 128); margin-left:1.5cqh;" class="namesVolumeInfo">Ένδειξη</div>
+                <div style="color:rgb(165, 0, 0)" class="namesVolumeInfo">Αρχικός Όγκος</div>
+            </div>
+            <div id="volumeInfoBoxFirstValues">
+                <div style="color:rgb(0, 0, 128)" class="valsVolumeInfo" id="totalVolumeText">2400ml</div>
+                <div style="color:rgb(0, 0, 0)" class="valsVolumeInfo">-</div>
+                <div style="color:rgb(165, 0, 0)" class="valsVolumeInfo" id="startVolumeText">2200ml</div>
+            </div>
+            <div id="volumeInfoBoxSecValues">
+                <div style="color:rgb(0, 146, 0)" class="valsVolumeInfo" id="diffVolumeText">200ml</div>
+            </div>
+            <div id="volumeInfoBoxSecNames">
+                <div style="color:rgb(0, 146, 0);" class="namesVolumeInfo">Βυθισμένος όγκος</div>
+            </div>
+        </div>
+        <!-- <div id="volumeText">500mL ►</div> -->
         <button id = 'record'>Καταγραφή</button>
 
         <input type="checkbox" id="showData">
