@@ -2156,7 +2156,7 @@ function updateLineVolume(){
     
 
     if (cameraDimention == "3D"){
-        volumeText.style.bottom = ((a*(beaker.mixedHeight+beaker.yPos))/window.devicePixelRatio - volumeText.getBoundingClientRect().height/2) + "px";
+        volumeText.style.bottom = ((a*(beaker.mixedHeight+beaker.yPos-0.01))/window.devicePixelRatio - volumeText.getBoundingClientRect().height/2) + "px";
     }
     else{
         volumeText.style.bottom = ((a*(beaker.mixedHeight+beaker.yPos))/window.devicePixelRatio - volumeText.getBoundingClientRect().height/2) + "px";

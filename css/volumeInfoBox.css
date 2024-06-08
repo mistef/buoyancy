@@ -4,6 +4,7 @@
     width:17cqh;
     left:45%;
     bottom:20%;
+    transition-duration: 100ms;
 }
 
 #volumeInfoBoxFirstNames{
