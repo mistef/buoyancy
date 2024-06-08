@@ -7,28 +7,28 @@
 }
 
 .buttonBackground {
-    background: #2600ff;
+    background: #91d3ff;
     border-radius: 20%;
     cursor: pointer;
-    height: 50px;
+    height: 5cqh;
     position: absolute;
-    width: 50px;
+    width: 5cqh;
 }
 
   .buttonStart:active .buttonBackground {
-    background: #2200e0;
+    background: #b9d5ff;
   }
   .buttonIcon {
-    height: 50px;
+    height: 5cqh;
     transform: rotate(-0deg);
     transition: transform 500ms;
-    width: 50px;
+    width: 5cqh;
   }
   .movPart {
-    background: white;
-    height: 50px;
+    background: black;
+    height: 5cqh;
     position: absolute;
-    width: 50px;
+    width: 5cqh;
   }
   .leftPart {
     clip-path: polygon(14% 29%, 18% 26%, 23% 24%, 31% 24%, 36% 26%, 39% 29%, 41% 33%, 41% 40%, 40% 45%, 37% 50%, 35% 53%, 32% 56%, 29% 59%, 25% 63%, 22% 66%, 
@@ -48,10 +48,10 @@
   .cursorArea {
     border-radius: 50%;
     cursor: pointer;
-    height: 50px;
+    height: 5cqh;
     position: absolute;
     -webkit-tap-highlight-color: transparent;
-    width: 50px;
+    width: 5cqh;
   }
 
   .active .leftPart {
@@ -68,10 +68,18 @@
     74% 70%, 66% 71%, 59% 71%, 59% 66%, 70% 66%, 75% 65%, 79% 62%, 82% 59%, 85% 54%, 85% 40%, 84% 36%, 82% 33%, 79% 31%, 76% 29%, 73% 28%, 69% 27%, 54% 27%);
   }
 
+#buttonDimention{
+  position:absolute;
+  height: 5cqh;
+  width: 5cqh;
+  right: 2cqh;
+  top: 3cqh;
+}
 
 
   .buttonAccuracy {
-    display:inline;
+    display: none;
+    /* display:inline; */
     appearance: button;
     backface-visibility: hidden;
     background-color: #405cf5;
@@ -100,6 +108,10 @@
     width: 10%;
     left: 44.7%;
     position: absolute;
+  }
+
+  #volumeControl{
+    display: none;
   }
 
 

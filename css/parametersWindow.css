@@ -56,3 +56,42 @@ label #closeParameters{
     visibility: visible;
 }
 
+
+.titleParam{
+    display: block;
+    color:white;
+    background-color: rgb(33, 141, 33);
+    padding:0.5cqh;
+    padding-left: 2cqh;
+    font-weight: bold;
+    font-size: 2cqh;
+}
+
+#matTitle{
+    margin-top:2cqh;
+}
+
+#massVolInfoContainer{
+    display: flex;
+    justify-content: space-around;
+    margin-top:2cqh;
+}
+
+.volmassInfo{
+    background-color: #cff0c3;
+    padding:1cqh;
+    width:13cqh;
+    text-align: center;
+    font-size: 2cqh;
+    border-radius: 5px;
+    font-weight: bold;
+}
+
+#liqTitle{
+    position: relative;
+    top:-8cqh;
+}
+
+#fluidSelect{
+    top:-9cqh;
+}

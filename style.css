@@ -105,7 +105,7 @@ body, html {
 #radioBtns{
     top:0%;
     height:6.7%;
-    width:100%;
+    width:80%;
     display: block;
 }
 
@@ -582,7 +582,7 @@ input[type=radio]:checked:hover + label {
 #record{
     position: absolute;
     bottom: 2cqh;
-    left: 10cqh;
+    left: 35%;
     font-size: 3cqh;
     border-radius: 10px;
     user-select: none;
@@ -612,9 +612,9 @@ input[type=radio]:checked:hover + label {
 
 
 #settingsSim{
-    position: relative;
-    left: 55%;
-    top : 1%;
+    position: absolute;
+    left: 30%;
+    bottom : 2%;
 }
 
 .toggleSettings{

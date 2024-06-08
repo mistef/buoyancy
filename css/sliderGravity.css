@@ -33,7 +33,9 @@
     width: 1.4rem;
     height: 1.4rem;
     border-radius: var(--thumbBorderRad);
-    background: #04AA6D;
+    background: #9AD284;
+    border-style: solid;
+    border-color: #04AA6D;
     cursor: pointer;
 
     transform: var(--thumbTransform);
@@ -45,7 +47,9 @@
     width: 1.4rem;
     height: 1.4rem;
     border-radius: var(--thumbBorderRad);
-    background: #04AA6D;
+    background: #9AD284;
+    border-style: solid;
+    border-color: #04AA6D;
     cursor: pointer;
     
     transform: var(--thumbTransform);
@@ -95,7 +99,7 @@
 
 #sliderEarth{
     left:31.5%;
-
+    top: -3cqh;
     
     transform: var(--earthTransform);
 }
@@ -103,6 +107,7 @@
 #sliderMoon{
     left:0%;
     transform: var(--moonTransform);
+    top: -3cqh;
 }
 
 #sliderMars{
@@ -124,19 +129,20 @@
     background-color: #9AD284;
     width:45%;
     right:1%;
+    top:-8cqh;
     display: flex;
     flex-direction: row;
     align-items: center;
-    border-radius: 10px;
+    border-radius: 5px;
 }
 
 #gravityText{
     margin: 1cqw;
     margin-left:auto;
     margin-right: auto;
-    font-weight:200;
+    font-weight:bold;
     color:#000;
-    font-size: 7cqw;
+    font-size: 10cqh;
 }
 
 #gravityTitle{

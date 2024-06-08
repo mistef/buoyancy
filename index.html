@@ -27,7 +27,7 @@
 <body>
     <div id="container">
         <canvas id = "canvas1"></canvas>
-        <div style="position: absolute; z-index: 1; background-color:#9AD284; width:19%; height:10%; top:62%; border-style: solid; border-radius: 0 30px 30px 0; user-select: none; container-type: inline-size;">
+        <div style="position: absolute; z-index: 1; background-color:#9AD284; width:19%; height:10%; top:62%; border-style: solid; border-radius: 0 30px 30px 0; user-select: none; container-type: inline-size; display: none;">
             <div style="position: absolute; width:100%; font-size: 7cqw; font-weight: bold; top: 20%; left:4%;">Όγκος σώματος (V): <span id="vInfo" class="greenText">268ml</span></div>
             <div style="position: absolute; width:100%; font-size: 7cqw; font-weight: bold; top: 60%; left:4%;">Μάζα σώματος (m): <span id="mInfo" class="greenText">483gr</span></div>
         </div>
@@ -39,6 +39,8 @@
           <i class="fas fa-times" id="closeParameters"></i>
         </label>
         <div id="parameters">
+
+            <div class="titleParam" id = "shapeTitle">Σχήμα</div>
             <div id = radioBtns>
                 <input type="radio" id="rSphere" name="rShape" value="sphere" checked>
                 <label for="rSphere">
@@ -83,6 +85,15 @@
                         <circle cx="50.74" cy="14.8" r="0.5"/>
                 </svg>
                 </label>
+                <div id="buttonDimention" class="buttonStart" onclick="this.classList.toggle('active')">
+                    <div class="buttonBackground" x="0" y="0" width="100" height="100"></div>
+                    <div class="buttonIcon" width="100" height="100">
+                      <div class="movPart leftPart" x="0" y="0" width="100" height="100" fill="#fff"></div>
+                      <div class="movPart rightPart" x="0" y="0" width="100" height="100" fill="#fff"></div>
+                      <div class="movPart rightestPart" x="0" y="0" width="100" height="100" fill="#fff"></div>
+                    </div>
+                    <div class="cursorArea"></div>
+                </div>
             </div>
             <div id="radiusInfo">Ακτίνα: 4 cm</div>
             <input type="range" min="150" max="500" value="400" class="slider" id="radiusSlider">
@@ -95,6 +106,11 @@
                 <input type="radio" id="rmass" name="tgmass" value="mass">
                 <label for="rmass" class="switch">Μάζα</label>
             </div>
+            <div id="massVolInfoContainer">
+                <div class="volmassInfo" id="volumeTextP">V=3m3</div>
+                <div class="volmassInfo" id="massTextP">m=3kg</div>
+            </div>
+            <div class="titleParam" id = "matTitle">Υλικό</div>
             <div id = "materialSelect" class="custom-select" style="width:95%;">
                 <select id = selectList>
                     <option value="coal">Άνθρακας (1800 kg/m³)</option>
@@ -108,7 +124,30 @@
             </div>
             <div id="massInfo">100cm</div>
             <input type="range" min="10" max="200" value="40" class="slider" id="massSlider">
-            <div id="fluidText">Υγρό δοχείου</div>
+            <div class="titleParam" id = "gravTitle">Επιτάχυνση της Βαρύτητας</div>
+            <div id="gravitySliderContainer">
+                <div class="planetIconsLine">
+                    <div class="gravitySliderPlanet" id="sliderEarth"><img src="./images/earthMini.png" alt="earth" style="max-height:100%">Γη</div>
+                    <div class="gravitySliderPlanet" id="sliderMoon"><img src="./images/moonMini.png" alt="earth" style="max-height:100%">Σελήνη</div>
+                    <div class="gravityTextBox">
+                        <div id="gravityText">g: 9,81 m/s²</div>
+                    </div>
+                </div>
+                <!-- <div class="upTicks">
+                    <div class="gravitySliderTick" id="earthTick"></div>
+                    <div class="gravitySliderTick" id="moonTick"></div>
+                </div> -->
+                <input type="range" min="100" max="2500" value="981" class="slider" id="gravitySlider" list="planets">
+                <!-- <div class="upTicks">
+                    <div class="gravitySliderTick" id="marsTick"></div>
+                </div> -->
+                <div class="planetIconsLine">
+                    <div class="gravitySliderPlanet" id="sliderMars"><img src="./images/marsMini.png" alt="earth" style="max-height:100%">Άρης</div>
+                </div>
+                
+            </div>
+            <div class="titleParam" id = "liqTitle">Υγρό δοχείου</div>
+            <!-- <div id="fluidText">Υγρό δοχείου</div> -->
             <div id = "fluidSelect" class="custom-select" style="width:96%;">
                 <select id = fluidList>
                 <option value="water">Νερό (997 kg/m³)</option>
@@ -124,28 +163,7 @@
 
 
 
-            <div id="gravitySliderContainer">
-                <div id="gravityTitle" >Επιτάχυνση της βαρύτητας</div>
-                <div class="planetIconsLine">
-                    <div class="gravitySliderPlanet" id="sliderEarth"><img src="./images/earthMini.png" alt="earth" style="max-height:100%">Γη</div>
-                    <div class="gravitySliderPlanet" id="sliderMoon"><img src="./images/moonMini.png" alt="earth" style="max-height:100%">Σελήνη</div>
-                    <div class="gravityTextBox">
-                        <div id="gravityText">g: 9,81 m/s²</div>
-                    </div>
-                </div>
-                <div class="upTicks">
-                    <div class="gravitySliderTick" id="earthTick"></div>
-                    <div class="gravitySliderTick" id="moonTick"></div>
-                </div>
-                <input type="range" min="100" max="2500" value="981" class="slider" id="gravitySlider" list="planets">
-                <div class="upTicks">
-                    <div class="gravitySliderTick" id="marsTick"></div>
-                </div>
-                <div class="planetIconsLine">
-                    <div class="gravitySliderPlanet" id="sliderMars"><img src="./images/marsMini.png" alt="earth" style="max-height:100%">Άρης</div>
-                </div>
-                
-            </div>
+
 
             <datalist id="planets">
                 <option value="162"></option>
@@ -251,15 +269,7 @@
         </div>
 
         <div id = "settingsSim">
-            <div id="buttonDimention" class="buttonStart" onclick="this.classList.toggle('active')">
-                <div class="buttonBackground" x="0" y="0" width="100" height="100"></div>
-                <div class="buttonIcon" width="100" height="100">
-                  <div class="movPart leftPart" x="0" y="0" width="100" height="100" fill="#fff"></div>
-                  <div class="movPart rightPart" x="0" y="0" width="100" height="100" fill="#fff"></div>
-                  <div class="movPart rightestPart" x="0" y="0" width="100" height="100" fill="#fff"></div>
-                </div>
-                <div class="cursorArea"></div>
-            </div>
+
 
             <div id="volumeControl" class="buttonStart" onclick="this.classList.toggle('active')">
                 <div class="buttonBackground" x="0" y="0" width="100" height="100"></div>
