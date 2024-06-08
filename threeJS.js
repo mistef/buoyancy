@@ -648,7 +648,7 @@ function resizeCanvas(){
         const unit = canvas.height;
         const unitW = canvas.width;
         let a = unitW/(canvas.width / canvas.height) //pixel/m
-        document.getElementById("incDecHeight").style.left = unitW/2+a*(-offsetX+beaker.radius*1.2) + "px";
+        document.getElementById("incDecHeight").style.left = (unitW/2+a*(-offsetX+beaker.radius*1.2))/window.devicePixelRatio + "px";
         // increaseHeight.style.height = unit/20 + 'px';
         // increaseHeight.style.width = unit/20 + 'px';
         // increaseHeight.style.borderRadius = unit/60 + 'px';
