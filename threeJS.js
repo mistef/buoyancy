@@ -22,7 +22,7 @@ const incBeakerRadiusBtn = document.getElementById('incRadius');
 const decBeakerRadiusBtn = document.getElementById('decRadius');
 const beakerHeightValue = document.getElementById('beakerHeightValue');
 const beakerRadiusValue = document.getElementById('beakerRadiusValue');
-const beakerVolume = document.getElementById('beakerVolume');
+//const beakerVolume = document.getElementById('beakerVolume');
 
 //Radio Change Shape
 const radioShape = document.querySelectorAll('input[type=radio][name="rShape"]');
@@ -1485,12 +1485,12 @@ function redrawBeaker(radius, height){
     }
 
     //Write the volume and the accuracy of the beaker
-    if (isError){
-        beakerVolume.textContent = Number((height*radius*radius*Math.PI*1000*1).toPrecision(2)).toLocaleString() + "L ± " + Number(beaker.accuracy.toPrecision(2)).toLocaleString() + "ml"
-    }
-    else{
-        beakerVolume.textContent = Number((height*radius*radius*Math.PI*1000*1).toPrecision(2)).toLocaleString() + "L ± " + 1 + "ml";
-    }
+    // if (isError){
+    //     beakerVolume.textContent = Number((height*radius*radius*Math.PI*1000*1).toPrecision(2)).toLocaleString() + "L ± " + Number(beaker.accuracy.toPrecision(2)).toLocaleString() + "ml"
+    // }
+    // else{
+    //     beakerVolume.textContent = Number((height*radius*radius*Math.PI*1000*1).toPrecision(2)).toLocaleString() + "L ± " + 1 + "ml";
+    // }
     //write the starting volume of water
     beaker.startVolume = beaker.waterHeight*radius*radius*Math.PI*1000*1000*1;
     document.getElementById("startVolumeText").textContent = Math.round(beaker.startVolume) + "ml";

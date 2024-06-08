@@ -324,6 +324,7 @@ input[type=radio]:checked:hover + label {
     display: flex;
     align-items: center;
     margin:auto;
+    margin-top: 1cqh;
     width: 95%;
     height: 5%;
 }
@@ -350,6 +351,7 @@ input[type=radio]:checked:hover + label {
     width: 35%;
     user-select: none;
     font-weight:bold;
+    font-size: 1.8cqh;
     color:#ccc;
 }
 
@@ -359,11 +361,14 @@ input[type=radio]:checked:hover + label {
     margin:auto;
     color:#ccc;
     width: 25%;
+    font-size: 1.8cqh;
 
 }
 
 
 #incRadius{
+    height:3cqh;
+    width:3cqh;
     background-color: #9AD284;
     color:rgb(0, 0, 0);
 }
@@ -375,6 +380,8 @@ input[type=radio]:checked:hover + label {
 }
 
 #decRadius{
+    height:3cqh;
+    width:3cqh;
     background-color: #d29684;
     color:rgb(0, 0, 0);
 }
@@ -388,6 +395,7 @@ input[type=radio]:checked:hover + label {
     display: flex;
     align-items: center;
     margin:auto;
+    margin-top: 1cqh;
     width: 95%;
     height: 5%;
 }
@@ -399,6 +407,7 @@ input[type=radio]:checked:hover + label {
     width: 35%;
     user-select: none;
     font-weight:bold;
+    font-size: 1.8cqh;
     color:#ccc;
 }
 
@@ -408,10 +417,13 @@ input[type=radio]:checked:hover + label {
     margin:auto;
     color:#ccc;
     width: 25%;
+    font-size: 1.8cqh;
 }
 
 
 #incHeight{
+    height:3cqh;
+    width:3cqh;
     background-color: #9AD284;
     color:rgb(0, 0, 0);
 }
@@ -423,6 +435,8 @@ input[type=radio]:checked:hover + label {
 }
 
 #decHeight{
+    height:3cqh;
+    width:3cqh;
     background-color: #d29684;
     color:rgb(0, 0, 0);
 }
@@ -480,8 +494,7 @@ input[type=radio]:checked:hover + label {
     color:rgb(0, 0, 0);
     width: 3cqh;
     height: 3cqh;
-    top: 32.5%;
-    left:42.5%;
+
 }
 
 #incForce:hover{
@@ -494,8 +507,7 @@ input[type=radio]:checked:hover + label {
     color:rgb(0, 0, 0);
     width: 3cqh;
     height: 3cqh;
-    top: 32.5%;
-    left:54.9%;
+
 }
 
 #decForce:hover{
@@ -595,14 +607,12 @@ input[type=radio]:checked:hover + label {
 }
 
 #beakerBox{
-    position:absolute;
-    border-style: solid;
-    border-radius: 30px;
+    position: absolute;
+    border-style: none;
     border-color: #9AD284;
-    height: 17%;
-    width:90%;
-    left:3.9%;
-    bottom: 5%;
+    height: fit-content;
+    width:100%;
+    bottom: 1cqh;
     display: flex;
     flex-direction: column;
 }
