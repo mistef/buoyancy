@@ -170,24 +170,32 @@ export function placeForceMeter(displ, holder){
     //forceText.style.top = (100 - textHeight*100) + "%";
 
     let numPres = 2;
+    let acc;
     switch (maxForce) {
         case 1:
             numPres = 2 + !isError;
+            acc = 0.002;
             break;
         case 5:
             numPres = 2;
+            acc = 0.01;
             break;
         case 10:
             numPres = 1 + !isError;
+            acc = 0.02;
             break;
         case 50:
             numPres = 1;
+            acc = 0.1;
             break;
         case 100:
             numPres = 0 + !isError;
+            acc = 0.2;
             break;
     }
-    forceText.textContent = "F:" + force.toFixed(numPres).replace(".", ",") + " N";
+    //forceText.textContent = "F:" + force.toFixed(numPres).replace(".", ",") + " N";
+
+    forceText.textContent = "F:" + (Math.round(force/acc)*acc).toFixed(numPres).replace(".", ",") + " N";
     
     if(force == maxForce){
         forceText.style.color = "red";
@@ -196,7 +204,7 @@ export function placeForceMeter(displ, holder){
         forceText.style.color = "black";
     }
 
-    return parseFloat(force.toFixed(numPres));
+    return parseFloat((Math.round(force/acc)*acc).toFixed(numPres));
     //measurments.force = parseFloat(force.toFixed(numPres));
     //console.log(typeof force.toPrecision(2));
     

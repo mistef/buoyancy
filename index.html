@@ -311,12 +311,20 @@
         </div>
         <button id = "buttonAcc" class="buttonAccuracy" role="button">Ακρίβεια: Μέγιστη</button>
         <div id = "forceDiv">
-            <div id="forcemeterText">Δυναμόμετρο</div>
-            <div id="forceInfo">F: 0N</div>
-            <div id="forcemeterLimit">(5 ± 0,01) N</div>
+            <div>
+                <button id = 'incForce' class="small-buttons">+</button>
+            </div>
+            <div>
+                <div id="forcemeterText">Δυναμόμετρο</div>
+                <div id="forceInfo">F: 0N</div>
+                <div id="forcemeterLimit">Μέγιστο: 5Ν</div>
+                <div id="forcemeterLimitSec">Ακρίβεια: 0,01Ν</div>
+            </div>
+            <div>
+                <button id = 'decForce' class="small-buttons">-</button>
+            </div>
         </div>
-        <button id = 'incForce' class="small-buttons">+</button>
-        <button id = 'decForce' class="small-buttons">-</button>
+
         
         <div id="parameterXWindow" class="modalParameterWindowBackground">
             <div class="modalParameterContent">

@@ -446,8 +446,8 @@ input[type=radio]:checked:hover + label {
 #forcemeterText{
     position:relative;
     align-self: center;
-    font-size:10cqw; 
-    font-weight:200;
+    font-size:2cqh;
+    font-weight: 500;
     color:black;
     text-align: center;
 }
@@ -461,21 +461,27 @@ input[type=radio]:checked:hover + label {
 }
 
 #forcemeterLimit{
-    font-size: 7cqw; 
+    font-size: 1.34cqh; 
     text-align: center;
     align-self: center;
     color:black;
 
 }
 
+#forcemeterLimitSec{
+    font-size: 1.3cqh; 
+    text-align: center;
+    align-self: center;
+    color:black;
+}
+
 #incForce{
     background-color: #4e9432;
     color:rgb(0, 0, 0);
-    width: 2%;
-    height: 2.8%;
+    width: 3cqh;
+    height: 3cqh;
     top: 32.5%;
     left:42.5%;
-    position:absolute;
 }
 
 #incForce:hover{
@@ -486,11 +492,10 @@ input[type=radio]:checked:hover + label {
 #decForce{
     background-color: #cc5050;
     color:rgb(0, 0, 0);
-    width: 2%;
-    height: 2.8%;
+    width: 3cqh;
+    height: 3cqh;
     top: 32.5%;
     left:54.9%;
-    position:absolute;
 }
 
 #decForce:hover{
@@ -503,7 +508,7 @@ input[type=radio]:checked:hover + label {
 
 #forceInfo{
     position: relative;
-    font-size:12cqw; 
+    font-size: 2.5cqh; 
     text-align:center;
     font-weight:bold;
 }
@@ -575,17 +580,18 @@ input[type=radio]:checked:hover + label {
 #forceDiv{
     position:absolute;
     border-style: solid;
-    border-radius:20px;
+    border-radius:2cqh;
     border-color:  #444444;
     background-color: #9AD284;
     top: 30%;
     left:42%;
-    width: 15%;
-    height: 7%;
+    width: 20cqh;
+    height: 10cqh;
     display : flex;
-    flex-direction: column;
+    flex-direction: row;
     justify-content: center;
-    container-type: inline-size;
+    align-items: center;
+
 }
 
 #beakerBox{

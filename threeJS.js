@@ -89,7 +89,9 @@ object.ellipseFactor = object.radius/3;
 
 let maxFall = 0.15;
 
-forcemeterLimit.textContent = "(" + 5 + " ± " + (5/100/5).toLocaleString() + ") N";
+//forcemeterLimit.textContent = "(" + 5 + " ± " + (5/100/5).toLocaleString() + ") N";
+forcemeterLimit.textContent = "Μέγιστο: 5Ν";
+
 
 //beaker characteristics
 let beaker = {
@@ -488,14 +490,14 @@ incForce.addEventListener('click', function() {
             break
         case 5 :
             force = 10;
-            ratio = 10;
+            // ratio = 10;
             break
         case 10 :
             force = 50;
             break
         case 50 :
             force = 100;
-            ratio = 10;
+            // ratio = 10;
             disableBtn(incForce, "disable");
             break
     }
@@ -504,7 +506,8 @@ incForce.addEventListener('click', function() {
         forcemeterLimit.textContent = "(" + force + " ± " + (force/100).toLocaleString() + ") N";
     }
     else{
-        forcemeterLimit.textContent = "(" + force + " ± " + (force/100/ratio).toLocaleString() + ") N";
+        forcemeterLimit.textContent = "Μέγιστο: " + force + "N";
+        document.getElementById("forcemeterLimitSec").textContent = "Ακρίβεια: " + (force/100/ratio).toLocaleString() + "N";
     }
     
 });
@@ -531,14 +534,14 @@ decForce.addEventListener('click', function() {
             break
         case 50 :
             force = 10;
-            ratio = 10;
+            // ratio = 10;
             break
         case 10 :
             force = 5;
             break
         case 5 :
             force = 1;
-            ratio = 10;
+            // ratio = 10;
             disableBtn(decForce, "disable");
             break
     }
@@ -547,7 +550,8 @@ decForce.addEventListener('click', function() {
         forcemeterLimit.textContent = "(" + force + " ± " + (force/100).toLocaleString() + ") N";
     }
     else{
-        forcemeterLimit.textContent = "(" + force + " ± " + (force/100/ratio).toLocaleString() + ") N";
+        forcemeterLimit.textContent = "Μέγιστο: " + force + "N";
+        document.getElementById("forcemeterLimitSec").textContent = "Ακρίβεια: " + (force/100/ratio).toLocaleString() + "N";
     }
 });
 
@@ -650,6 +654,7 @@ function resizeCanvas(){
         const unitW = canvas.width;
         let a = unitW/(canvas.width / canvas.height) //pixel/m
         document.getElementById("incDecHeight").style.left = (unitW/2+a*(-offsetX+beaker.radius*1.2))/window.devicePixelRatio + "px";
+        document.getElementById("forceDiv").style.left = (unitW/2+a*(-offsetX+beaker.radius*1.2))/window.devicePixelRatio + "px";
         // increaseHeight.style.height = unit/20 + 'px';
         // increaseHeight.style.width = unit/20 + 'px';
         // increaseHeight.style.borderRadius = unit/60 + 'px';
