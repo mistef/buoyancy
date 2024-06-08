@@ -645,26 +645,29 @@ function resizeCanvas(){
     renderer.setPixelRatio( window.devicePixelRatio );
 
         //resize the buttons
-        const unit = canvas.height>500 ? canvas.height : 500;
-        increaseHeight.style.height = unit/20 + 'px';
-        increaseHeight.style.width = unit/20 + 'px';
-        increaseHeight.style.borderRadius = unit/60 + 'px';
-        increaseHeight.style.fontSize = unit/30 + 'px';
-        reduceHeight.style.height = unit/20 + 'px';
-        reduceHeight.style.width = unit/20 + 'px';
-        reduceHeight.style.borderRadius = unit/60 + 'px';
-        reduceHeight.style.fontSize = unit/30 + 'px';
-        //Place the buttons
-        increaseHeight.style.left = canvas.width*(object.xPos + beaker.radius + 0.03)*3/4  + 'px';
-        reduceHeight.style.left = canvas.width*(object.xPos + beaker.radius + 0.03)*3/4   + 'px';
-        increaseHeight.style.bottom = canvas.height*(beaker.mixedHeight + beaker.yPos ) + 1.6* unit/10 + 'px';
-        reduceHeight.style.bottom = canvas.height*(beaker.mixedHeight + beaker.yPos ) + unit/10 + 'px';
+        const unit = canvas.height;
+        const unitW = canvas.width;
+        let a = unitW/(canvas.width / canvas.height) //pixel/m
+        document.getElementById("incDecHeight").style.left = unitW/2+a*(-offsetX+beaker.radius*1.2) + "px";
+        // increaseHeight.style.height = unit/20 + 'px';
+        // increaseHeight.style.width = unit/20 + 'px';
+        // increaseHeight.style.borderRadius = unit/60 + 'px';
+        // increaseHeight.style.fontSize = unit/30 + 'px';
+        // reduceHeight.style.height = unit/20 + 'px';
+        // reduceHeight.style.width = unit/20 + 'px';
+        // reduceHeight.style.borderRadius = unit/60 + 'px';
+        // reduceHeight.style.fontSize = unit/30 + 'px';
+        // //Place the buttons
+        // increaseHeight.style.left = canvas.width*(object.xPos + beaker.radius + 0.03)*3/4  + 'px';
+        // reduceHeight.style.left = canvas.width*(object.xPos + beaker.radius + 0.03)*3/4   + 'px';
+        // increaseHeight.style.bottom = canvas.height*(beaker.mixedHeight + beaker.yPos ) + 1.6* unit/10 + 'px';
+        // reduceHeight.style.bottom = canvas.height*(beaker.mixedHeight + beaker.yPos ) + unit/10 + 'px';
         //the text for the height
-        heightText.style.left = canvas.width*(object.xPos + beaker.radius + 0.03)*3/4  + 'px';
-        heightText.style.bottom = canvas.height*(beaker.mixedHeight + beaker.yPos ) + 2.2*unit/10 + 'px';
-        //the checkbox for the height arrow
-        showHeightLine.style.left = canvas.width*(object.xPos + beaker.radius + 0.005)*3/4  + 'px';
-        showHeightLine.style.bottom = canvas.height*(beaker.mixedHeight + beaker.yPos ) + 2.25*unit/10 + 'px';
+        // heightText.style.left = canvas.width*(object.xPos + beaker.radius + 0.03)*3/4  + 'px';
+        // heightText.style.bottom = canvas.height*(beaker.mixedHeight + beaker.yPos ) + 2.2*unit/10 + 'px';
+        // //the checkbox for the height arrow
+        // showHeightLine.style.left = canvas.width*(object.xPos + beaker.radius + 0.005)*3/4  + 'px';
+        // showHeightLine.style.bottom = canvas.height*(beaker.mixedHeight + beaker.yPos ) + 2.25*unit/10 + 'px';
         //resise indicator for volume
         volumeText.style.fontSize = unit/40 + 'px';
 
@@ -979,6 +982,11 @@ function calculateForce(){
                 density = 2700;
                 updateMatt(true, 0xd0d5d7, object.type);
                 object.color = 0xd0d5d7;
+            break;
+            case 'iron':
+                density = 7860;
+                updateMatt(true, 0xD4D7D9, object.type);
+                object.color = 0xD4D7D9;
             break;
             case 'PE':
                 density = 950;
@@ -1985,8 +1993,13 @@ function updateObjectPosition(type, height){
 
     measurments.heightF = calculateErrorHeight(heightShow);
     measurments.heightW = calculateErrorHeight(heightShow - beaker.waterHeight);
-    heightText.textContent = measurments.heightF.toFixed(1).replace(".", ",")    + " cm";
-    
+
+    if (document.getElementById("chooseHeightTypeInfo").textContent == "Έδαφος"){
+        heightText.textContent = measurments.heightF.toFixed(1).replace(".", ",")    + " cm";
+    }
+    else{
+        heightText.textContent = measurments.heightW.toFixed(1).replace(".", ",")    + " cm";
+    }   
     heightBottom = heightShow;
 }
 let heightBottom = 0.5;
@@ -2156,3 +2169,12 @@ function calculateVolume(mixedHeight, beakerRadius, accuracy){
 
 
 
+document.getElementById("chooseHeightTypeInfo").onclick = function(){
+    let i = document.getElementById("chooseHeightTypeInfo");
+    if (i.textContent == "Έδαφος"){
+        i.textContent = "Επιφάνεια υγρού";
+    }
+    else{
+        i.textContent = "Έδαφος";
+    }
+}

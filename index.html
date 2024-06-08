@@ -14,6 +14,7 @@
     <link rel="stylesheet" href="./css/parametersWindow.css"/>
     <link rel="stylesheet" href="./css/dataWindow.css"/>
     <link rel="stylesheet" href="./css/parameterModals.css"/>
+    <link rel="stylesheet" href="./css/incDecHeightBox.css"/>
     <link rel="stylesheet" href="./css/sweetalert2.min.css">
     <script src="./scripts/sweetalert2.min.js"></script>
     <script type="importmap">
@@ -31,8 +32,17 @@
             <div style="position: absolute; width:100%; font-size: 7cqw; font-weight: bold; top: 20%; left:4%;">Όγκος σώματος (V): <span id="vInfo" class="greenText">268ml</span></div>
             <div style="position: absolute; width:100%; font-size: 7cqw; font-weight: bold; top: 60%; left:4%;">Μάζα σώματος (m): <span id="mInfo" class="greenText">483gr</span></div>
         </div>
-        <button id = 'buttonUp'>+</button>
-        <button id = 'buttonDown'>-</button>
+        <div id="incDecHeight">
+            <div id="incDecHeightFirstCol">
+                <button id = 'buttonUp'>+</button>
+                <button id = 'buttonDown'>-</button>
+            </div>
+            <div id="incDecHeightSecondCol">
+                <span id = "textDistance">Απόσταση από</span> 
+                <button id = 'chooseHeightTypeInfo'>Έδαφος</button>
+                <div id="heightInfo">100cm</div>
+            </div>
+        </div>
         <input type="checkbox" id="showParameters">
         <label for="showParameters">
           <i class="fas fa-bars" id="openParameters"></i>
@@ -117,7 +127,8 @@
                     <option value="ABS">Πλαστικό ABS (1100 kg/m³)</option>
                     <option value="PE">Πλαστικό PE (950 kg/m³)</option>
                     <option value="pine">Ξύλο Πεύκου (500 kg/m³)</option>
-                    <option value="walnut">Ξύλο Καστανιάς (670 kg/m³)</option>
+                    <!-- <option value="walnut">Ξύλο Καστανιάς (670 kg/m³)</option> -->
+                    <option value="iron">Σίδηρος (7860 kg/m³)</option>
                     <option value="steel">Ατσάλι (8000 kg/m³)</option>
                     <option value="aluminum">Αλουμίνιο (2700 kg/m³)</option>
                 </select>
@@ -189,7 +200,7 @@
             </div>
         </div>
         <input type="checkbox" id="showHeightLine">
-        <div id="heightInfo">100cm</div>
+
 
         <div id="volumeText">500mL ►</div>
         <button id = 'record'>Καταγραφή</button>

@@ -1,0 +1,115 @@
+#incDecHeight{
+    position:absolute;
+    left:50%;
+    top:50%;
+    display: flex;
+    z-index: 1;
+    height:fit-content;
+}
+
+#incDecHeightFirstCol{
+    display: flex;
+    flex-direction: column;
+    margin-right:2cqh;
+}
+
+#incDecHeightSecondCol{
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+}
+
+#textDistance{
+    font-size: 2cqh;
+    font-weight: 500;
+}
+
+#chooseHeightTypeInfo{
+    background-color: rgb(46, 46, 241);
+    border-style: none;
+    color:white;
+    transition-duration: 200ms;
+    padding:0.5cqh;
+    border-radius: 5px;
+    font-weight: bold;
+    font-size: 1.6cqh;
+}
+
+#chooseHeightTypeInfo:hover{
+    background-color: rgb(8, 8, 194);
+
+}
+
+#chooseHeightTypeInfo:active{
+    background-color: rgb(8, 8, 194);
+    transform: scale(0.96);
+}
+
+#buttonUp
+{
+    border-radius: 10px;
+    height:5cqh;
+    width:5cqh;
+    margin:1cqh;
+    font-size: 3cqh;
+    user-select: none;
+    padding: none;
+    border: none;
+    background-color: rgb(98, 255, 132);
+    color:rgb(255, 35, 35);
+    text-align: center;
+    font-weight:bold;
+}
+
+@media (hover: hover) {
+    #buttonUp:hover {
+        background-color: rgb(0, 182, 0);
+        color:white;
+    }
+}
+
+#buttonUp:active {
+    background-color: rgb(0, 119, 0);
+    color:white;
+ }
+
+
+#buttonDown
+{
+    border-radius: 10px;
+    height:5cqh;
+    width:5cqh;
+    margin:1cqh;
+    font-size: 3cqh;
+    user-select: none;
+    padding: none;
+    border: none;
+    background-color: rgb(255, 138, 138);
+    color:rgb(0, 0, 0);
+    text-align: center;
+    vertical-align: middle;
+    font-weight:bold;
+    
+}
+
+@media (hover: hover) {
+    #buttonDown:hover {
+        background-color: rgb(255, 66, 66);
+        color:white;
+    }
+}
+
+#buttonDown:active {
+    background-color: rgb(255, 21, 21);
+    color:white;
+ }
+
+
+ #heightInfo {
+
+	display:block;
+    user-select: none;
+    font-size: 2.5cqh;
+    text-align:center;
+    font-weight:bold;
+}
