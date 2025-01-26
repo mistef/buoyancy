@@ -867,6 +867,7 @@ function calculateForce(){
         //add the draf Force
         force += object.dragCoefficient*(-1)*object.speed*Math.abs(object.speed);
         isInWater = false;
+        beaker.mixedHeight = beaker.waterHeight + dVolume/(Math.PI*beaker.radius*beaker.radius);
     }
     else {
         //change the container water Height according to volume
