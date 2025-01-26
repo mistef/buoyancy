@@ -622,3 +622,30 @@ input[type=radio]:checked:hover + label {
     color:rgb(22, 16, 58);
 }
 
+#arrowWeight{
+    width: 0.2cqw;
+    height : 10cqw;
+    background-color: #9b1616;
+    position: absolute;
+    left: 50%;
+    user-select: none;
+}
+
+#arrowWeightText{
+    position: relative;
+    bottom : -50%;
+    left : 1cqw;
+    font-weight: bold;
+    font-size: 1.5cqw;
+    color: #9b1616;
+}
+
+#arrowWeightArrow{
+    position: absolute;
+    width: 1.5cqw;
+    height: 1.5cqw;
+    background-color: #9b1616;
+    clip-path: polygon(0 50%, 15% 51%, 50% 85%, 85% 50%, 100% 50%, 50% 100%);
+    top: 100%;
+    transform: translateY(-85%) translateX(-45%);
+}

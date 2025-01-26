@@ -2025,6 +2025,24 @@ function render( time ) {
     updateLineHeight();
     updateLineVolume();
 
+    let proj;
+
+    if (object.type == "sphere"){
+        proj = toScreenPosition(sphere, camera);
+    }
+    else if (object.type == "cylinder"){
+        proj = toScreenPosition(cyl, camera);
+    }
+    else if (object.type == "cube"){
+        proj = toScreenPosition(cube, camera);
+    }
+    else if (object.type == "cone"){
+        proj = toScreenPosition(cone, camera);
+    }
+
+    document.getElementById("arrowWeight").style.left = proj.x + "px";
+    document.getElementById("arrowWeight").style.top = proj.y + "px";
+    document.getElementById("arrowWeight").style.height = object.mass*(-object.gravity) + "cqw";
     moveCameraStep(camera, cameraDimention, 0.1);
 
 
@@ -2149,3 +2167,19 @@ document.getElementById("chooseHeightTypeInfo").onclick = function(){
         i.textContent = "Έδαφος";
     }
 }
+
+//convert point coordinates to screen position
+const toScreenPosition = function(obj, camera){
+    let vector = new THREE.Vector3();
+    let widthHalf = 0.5 * renderer.getContext().canvas.width;
+    let heightHalf = 0.5 * renderer.getContext().canvas.height;
+    obj.updateMatrixWorld();
+    vector.setFromMatrixPosition(obj.matrixWorld);
+    vector.project(camera);
+    vector.x = ( vector.x * widthHalf ) + widthHalf + $(canvas).offset().left;
+    vector.y = - ( vector.y * heightHalf ) + heightHalf + $(canvas).offset().top;
+    return {
+        x: vector.x,
+        y: vector.y
+    };
+};
