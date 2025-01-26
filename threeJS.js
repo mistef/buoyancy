@@ -2,8 +2,6 @@ import * as THREE from 'three';
 import { drawBackground } from './scripts/background.js';
 import {calculateErrorBeaker, calculateErrorHeight, isError} from './scripts/errors.js'
 import * as FORCEM from './scripts/forcemeter.js'
-//(function(){var script=document.createElement('script');script.onload=function(){var stats=new Stats();document.body.appendChild(stats.dom);requestAnimationFrame(function loop(){stats.update();requestAnimationFrame(loop)});};script.src='https://mrdoob.github.io/stats.js/build/stats.min.js';document.head.appendChild(script);})()
-
 
 const canvas = document.querySelector( '#canvas1' );
 const container = document.getElementById('container'); //This contains the canvas and ui elements
@@ -619,32 +617,6 @@ function resizeCanvas(){
         offsetX = 0.2;
     }
 
-    // if(aspect < 1){
-    //     document.getElementById("showParameters").checked = false;
-    //     //document.getElementById("closeParameters").style.visibility = "hidden";
-    // }
-
-    // else{
-    //     //document.getElementById("closeParameters").style.visibility = "visible";
-    // }
-    // if (canvas.width < 1000 || canvas.height < 700){
-    //     canvas.width = 1000;
-    //     canvas.height = 700;
-    // }
-
-    // if (window.innerHeight*4/3 < window.innerWidth){
-    //     canvas.height = window.innerHeight;
-    //     canvas.width = window.innerHeight*4/3;
-    // }
-    // else{
-    //     canvas.width = window.innerWidth;
-    //     canvas.height = window.innerWidth*3/4;
-    // }
-    // if (canvas.width < 800 || canvas.height < 600){
-    //     canvas.width = 800;
-    //     canvas.height = 600;
-    // }
-    //depending on the canvas element resize the div container
     container.style.height = canvas.height+'px';
     container.style.width = canvas.width+'px' ;
     //resize the camera
@@ -663,27 +635,6 @@ function resizeCanvas(){
         let a = unitW/(canvas.width / canvas.height) //pixel/m
         document.getElementById("incDecHeight").style.left = (unitW/2+a*(-offsetX+beaker.radius*1.2))/window.devicePixelRatio + "px";
         document.getElementById("forceDiv").style.left = (unitW/2+a*(-offsetX+beaker.radius*1.2))/window.devicePixelRatio + "px";
-        // increaseHeight.style.height = unit/20 + 'px';
-        // increaseHeight.style.width = unit/20 + 'px';
-        // increaseHeight.style.borderRadius = unit/60 + 'px';
-        // increaseHeight.style.fontSize = unit/30 + 'px';
-        // reduceHeight.style.height = unit/20 + 'px';
-        // reduceHeight.style.width = unit/20 + 'px';
-        // reduceHeight.style.borderRadius = unit/60 + 'px';
-        // reduceHeight.style.fontSize = unit/30 + 'px';
-        // //Place the buttons
-        // increaseHeight.style.left = canvas.width*(object.xPos + beaker.radius + 0.03)*3/4  + 'px';
-        // reduceHeight.style.left = canvas.width*(object.xPos + beaker.radius + 0.03)*3/4   + 'px';
-        // increaseHeight.style.bottom = canvas.height*(beaker.mixedHeight + beaker.yPos ) + 1.6* unit/10 + 'px';
-        // reduceHeight.style.bottom = canvas.height*(beaker.mixedHeight + beaker.yPos ) + unit/10 + 'px';
-        //the text for the height
-        // heightText.style.left = canvas.width*(object.xPos + beaker.radius + 0.03)*3/4  + 'px';
-        // heightText.style.bottom = canvas.height*(beaker.mixedHeight + beaker.yPos ) + 2.2*unit/10 + 'px';
-        // //the checkbox for the height arrow
-        // showHeightLine.style.left = canvas.width*(object.xPos + beaker.radius + 0.005)*3/4  + 'px';
-        // showHeightLine.style.bottom = canvas.height*(beaker.mixedHeight + beaker.yPos ) + 2.25*unit/10 + 'px';
-        //resise indicator for volume
-        // volumeText.style.fontSize = unit/40 + 'px';
 
         //the record Button
         // record.style.left = canvas.width*(object.xPos)*3/4 - 68.5  + 'px';
