@@ -603,7 +603,7 @@ input[type=radio]:checked:hover + label {
     flex-direction: row;
     justify-content: center;
     align-items: center;
-
+    user-select: none;
 }
 
 #beakerBox{
@@ -615,6 +615,7 @@ input[type=radio]:checked:hover + label {
     bottom: 1cqh;
     display: flex;
     flex-direction: column;
+    user-select: none;
 }
 
 .greenText
@@ -623,6 +624,7 @@ input[type=radio]:checked:hover + label {
 }
 
 #arrowWeight{
+    display: none;
     width: 0.2cqw;
     height : 10cqw;
     background-color: #9b1616;
@@ -648,4 +650,35 @@ input[type=radio]:checked:hover + label {
     clip-path: polygon(0 50%, 15% 51%, 50% 85%, 85% 50%, 100% 50%, 50% 100%);
     top: 100%;
     transform: translateY(-85%) translateX(-45%);
+}
+
+#arrowMeter{
+    display: none;
+    width: 0.2cqw;
+    height : 10cqw;
+    background-color: #104400;
+    position: absolute;
+    left: 50%;
+    top: 10%;
+    user-select: none;
+    transform: translateY(-99%);
+}
+
+#arrowMeterText{
+    position: relative;
+    bottom : -20%;
+    left : 1cqw;
+    font-weight: bold;
+    font-size: 1.5cqw;
+    color: #104400;
+}
+
+#arrowMeterArrow{
+    position: absolute;
+    width: 1.5cqw;
+    height: 1.5cqw;
+    background-color: #104400;
+    clip-path: polygon(0 50%, 15% 51%, 50% 85%, 85% 50%, 100% 50%, 50% 100%);
+    top: 0%;
+    transform: translateY(-15%) translateX(-45%) rotate(180deg);
 }

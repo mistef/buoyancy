@@ -125,8 +125,9 @@ export function placeForceMeter(displ, holder){
     //forceMeter.displacement = forceMeter.displacement < -0.05 ? -0.05 : forceMeter.displacement;
 
     displacement = -displ;
-    
+
     displacement = displacement < -0.05 ? -0.05 : displacement;
+    
 
     indicator.position.y += displacement;
     rod.position.y += displacement;

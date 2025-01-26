@@ -735,7 +735,7 @@ drawBackground(scene, beaker.yPos);
 
 	}
 
-    
+  
     function calculateNewPosition(dt, type){
         let isInWaterBefore = isInWater;
         dt = (dt>50) ? 50 : dt;
@@ -785,16 +785,17 @@ drawBackground(scene, beaker.yPos);
             }
         }
 
+
         if (displacement > 0.05 ) {
             ropeHeight = FORCEM.height - 0.3 - 0.05;
             object.height = ropeHeight;
             object.speed = 0;
         }
 
-
+        
         measurments.force = FORCEM.placeForceMeter(displacement, holder);
         placeRope(ropeHeight, FORCEM.height - displacement, type);
-
+        
         if (isInWater != isInWaterBefore && Math.abs(object.speed) > 0.1){
             audioSplash.play();
         }
@@ -838,7 +839,7 @@ function calculateForce(){
         //add resistance to spring movement in order not to bounce
         force += -FORCEM.maxForce*object.speed;
     }
-    
+
     return force;
 }
     
@@ -1974,7 +1975,7 @@ function updateObjectPosition(type, height){
 let heightBottom = 0.5;
 
 
-
+let showForces = false;
 let timePrev = 0;
 function render( time ) {
     //var start = new Date().getTime();
@@ -2025,24 +2026,52 @@ function render( time ) {
     updateLineHeight();
     updateLineVolume();
 
-    let proj;
 
-    if (object.type == "sphere"){
-        proj = toScreenPosition(sphere, camera);
-    }
-    else if (object.type == "cylinder"){
-        proj = toScreenPosition(cyl, camera);
-    }
-    else if (object.type == "cube"){
-        proj = toScreenPosition(cube, camera);
-    }
-    else if (object.type == "cone"){
-        proj = toScreenPosition(cone, camera);
+    if (showForces){
+        let proj;
+
+        if (object.type == "sphere"){
+            proj = toScreenPosition(sphere, camera);
+        }
+        else if (object.type == "cylinder"){
+            proj = toScreenPosition(cyl, camera);
+        }
+        else if (object.type == "cube"){
+            proj = toScreenPosition(cube, camera);
+        }
+        else if (object.type == "cone"){
+            proj = toScreenPosition(cone, camera);
+        }
+    
+        document.getElementById("arrowWeight").style.left = proj.x + "px";
+        document.getElementById("arrowWeight").style.top = proj.y + "px";
+        document.getElementById("arrowWeight").style.height = object.mass*(-object.gravity) + "cqw";
+    
+        document.getElementById("arrowMeter").style.left = proj.x + "px";
+        document.getElementById("arrowMeter").style.top = proj.y + "px";
+        document.getElementById("arrowMeter").style.height = measurments.force + "cqw";
+    
+        if (measurments.force == 0){
+            document.getElementById("arrowMeter").style.display = "none";
+        }
+        else{
+            document.getElementById("arrowMeter").style.display = "block";
+        }
+        if (measurments.force == FORCEM.maxForce){
+            document.getElementById("arrowMeter").style.backgroundColor = "red";
+            document.getElementById("arrowMeterText").style.color = "red";
+            document.getElementById("arrowMeterText").innerHTML = "F*";
+            document.getElementById("arrowMeterArrow").style.backgroundColor = "red";
+        }
+        else{
+            document.getElementById("arrowMeter").style.backgroundColor = "#104400";
+            document.getElementById("arrowMeterText").style.color = "#104400";
+            document.getElementById("arrowMeterText").innerHTML = "F";
+            document.getElementById("arrowMeterArrow").style.backgroundColor = "#104400";
+        }
     }
 
-    document.getElementById("arrowWeight").style.left = proj.x + "px";
-    document.getElementById("arrowWeight").style.top = proj.y + "px";
-    document.getElementById("arrowWeight").style.height = object.mass*(-object.gravity) + "cqw";
+
     moveCameraStep(camera, cameraDimention, 0.1);
 
 
