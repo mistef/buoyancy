@@ -254,11 +254,10 @@ label #closeData{
     border-style: none;
     border-radius: 10px;
     transition-duration: 200ms;
-    padding: 1ch;
+    padding: 0.5ch;
     margin-left:20%;
     margin-right:20%;
     width: 20cqh;
-    height: 4cqh;
     margin-top:3cqh;
     font-size: 1.8cqh;
 }
