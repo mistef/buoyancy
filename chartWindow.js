@@ -66,6 +66,7 @@ const chart = new Chart("myChart", {
         }]
     },
     options: {
+        locale: 'el-GR',
         plugins: {
             legend: {
                 display: false
@@ -122,6 +123,7 @@ const chartBuoyancy = new Chart("myChartBuoyancy", {
         }]
     },
     options: {
+        locale: 'el-GR',
         plugins: {
             legend: {
                 display: false
