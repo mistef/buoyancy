@@ -35,7 +35,6 @@ const forceText = document.getElementById('forceInfo');
 const massText = document.getElementById('massInfo');
 const saltText = document.getElementById('saltText');
 const volumeText = document.getElementById('volumeInfoBox');
-const volumeObj = document.getElementById('volumeObj');
 
 const mInfo = document.getElementById('mInfo');
 const vInfo = document.getElementById('vInfo');
@@ -233,7 +232,6 @@ changeRadius.addEventListener("input", function(){
     }
     else{
         measurments.volumeObj = Math.round(getSubmergedVolume(object.type, 1)[0]*1000*1000);
-        volumeObj.textContent = "V = " + measurments.volumeObj + "ml";
         vInfo.textContent = measurments.volumeObj + "ml";
         measurments.density = measurments.mass/measurments.volumeObj;
     }
@@ -247,7 +245,6 @@ massSlider.addEventListener("input", function(){
     massText.textContent = "Μάζα: " + object.mass.toFixed(3).replace(".", ",") + " kg";
     vInfo.textContent = measurments.volumeObj + "ml";
     mInfo.textContent = Math.round(measurments.mass*1000) + "gr";
-    volumeObj.textContent = "V = " + measurments.volumeObj + "ml" +", m = " + measurments.mass.toFixed(3).replace(".", ",") + "kg";
 })
 saltSlider.addEventListener("input", function(){
     let density = 997 + 7.6*saltSlider.value;
@@ -270,7 +267,6 @@ heightSlider.addEventListener("input", function(){
     }
     else{
         measurments.volumeObj = Math.round(getSubmergedVolume(object.type, 1)[0]*1000*1000);
-        volumeObj.textContent = "V = " + measurments.volumeObj + "ml";
         vInfo.textContent = measurments.volumeObj + "ml";
         measurments.density = measurments.mass/measurments.volumeObj;
     }
@@ -638,15 +634,6 @@ function resizeCanvas(){
 
         //the record Button
         // record.style.left = canvas.width*(object.xPos)*3/4 - 68.5  + 'px';
-        if (canvas.height < 800){
-            // record.style.fontSize = (160 - 120*(800- canvas.height)/525).toString() + "%"
-            // record.style.left = canvas.width*(object.xPos)*3/4 - 68.5 + 45*(800- canvas.height)/525 + 'px';
-            volumeObj.style.fontSize = (100 - 40*(800- canvas.height)/525).toString() + "%"
-        }
-        else{
-            // record.style.fontSize = "160%";
-            volumeObj.style.fontSize = "100%";
-        }
 
 
         //forcemetertext
@@ -980,7 +967,6 @@ function calculateForce(){
         measurments.mass = mass;
         measurments.density = density;
 
-        volumeObj.textContent = "V = " + measurments.volumeObj + "ml" +", m = " + measurments.mass.toFixed(3).replace(".", ",") + "kg";
         vInfo.textContent = measurments.volumeObj + "ml";
         mInfo.textContent = Math.round(measurments.mass*1000) + "gr";
         document.getElementById("volumeTextP").textContent = "V = " + measurments.volumeObj + "ml";
