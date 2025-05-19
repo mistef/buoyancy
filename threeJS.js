@@ -232,7 +232,7 @@ changeRadius.addEventListener("input", function(){
     }
     else{
         measurments.volumeObj = Math.round(getSubmergedVolume(object.type, 1)[0]*1000*1000);
-        vInfo.textContent = measurments.volumeObj + "ml";
+        updateVolumeLabel(measurments.volumeObj);
         measurments.density = measurments.mass/measurments.volumeObj;
     }
 })
@@ -243,7 +243,7 @@ massSlider.addEventListener("input", function(){
     measurments.mass = object.mass;
     measurments.density = 1000*object.mass/measurments.volumeObj;
     massText.textContent = "Μάζα: " + object.mass.toFixed(3).replace(".", ",") + " kg";
-    vInfo.textContent = measurments.volumeObj + "ml";
+    updateVolumeLabel(measurments.volumeObj);
     mInfo.textContent = Math.round(measurments.mass*1000) + "gr";
 })
 saltSlider.addEventListener("input", function(){
@@ -267,7 +267,7 @@ heightSlider.addEventListener("input", function(){
     }
     else{
         measurments.volumeObj = Math.round(getSubmergedVolume(object.type, 1)[0]*1000*1000);
-        vInfo.textContent = measurments.volumeObj + "ml";
+        updateVolumeLabel(measurments.volumeObj);
         measurments.density = measurments.mass/measurments.volumeObj;
     }
 })
@@ -967,9 +967,9 @@ function calculateForce(){
         measurments.mass = mass;
         measurments.density = density;
 
-        vInfo.textContent = measurments.volumeObj + "ml";
+        updateVolumeLabel(measurments.volumeObj);
         mInfo.textContent = Math.round(measurments.mass*1000) + "gr";
-        document.getElementById("volumeTextP").textContent = "V = " + measurments.volumeObj + "ml";
+        document.getElementById("volumeTextP").textContent = "V = " + measurments.volumeObj + " cm³";
         document.getElementById("massTextP").textContent = "m = " + Math.round(measurments.mass*1000) + "gr";
     }
 
@@ -2198,3 +2198,7 @@ const toScreenPosition = function(obj, camera){
         y: vector.y
     };
 };
+
+function updateVolumeLabel(x){
+    vInfo.textContent = x + " cm³";
+}
